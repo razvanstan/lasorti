@@ -1,0 +1,275 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroDemo from '../components/HeroDemo.astro';
+import { SITE } from '../config';
+import Email from '../components/Email.astro';
+import '../styles/landing.css';
+
+const faq = [
+  {
+    q: 'Chiar e gratuit?',
+    a: 'Da, extragerea e gratuită. E un proiect personal, făcut pentru comunitate: fără reclame, fără cont, fără abonament și fără colectare de date. Codul e public pe GitHub, deci poți verifica singur.',
+  },
+  {
+    q: 'Unde ajung datele participanților?',
+    a: 'Nicăieri. Listele se procesează și se salvează doar în browserul tău, pe calculatorul de pe care faci extragerea. Nu există server, bază de date sau cookie-uri. Le poți șterge oricând dintr-un buton.',
+  },
+  {
+    q: 'De unde știu că extragerea e corectă?',
+    a: 'Câștigătorul se alege cu generatorul criptografic al browserului, așa că fiecare participant rămas în joc are exact aceeași șansă. Pe lângă asta, primești o amprentă SHA-256 a listei, pe care o poți publica înainte de extragere, și un proces-verbal cu toți câștigătorii și toate re-extragerile.',
+  },
+  {
+    q: 'Poate câștiga cineva de două ori?',
+    a: 'Implicit nu: fiecare persoană poate câștiga un singur premiu. La tombolă poți bifa ca o persoană să poată câștiga mai multe premii. Tot acolo alegi dacă se elimină duplicatele și după ce: email, telefon, nume sau un cod. La nume se ignoră diacriticele, majusculele și ordinea: „Popescu Ion” e aceeași persoană cu „Ion Popescu”.',
+  },
+  {
+    q: 'Ce fac dacă persoana extrasă nu e în sală?',
+    a: 'Apeși „Re-extrage”: persoana iese din joc și se extrage alt câștigător pentru același premiu. Fiecare re-extragere apare în procesul-verbal, ca să fie totul transparent.',
+  },
+  {
+    q: 'Merge pentru un giveaway pe Instagram sau Facebook?',
+    a: 'Da, are un mod dedicat. Lipești comentariile copiate de sub postare de Instagram (pentru Facebook sau alte platforme, o listă de participanți), setezi regulile (minim tag-uri, un hashtag obligatoriu, conturi excluse, o șansă de persoană sau una pe comentariu) și extragi câștigătorii plus rezerve. Instrumentul nu se conectează la contul tău: lucrează doar cu textul lipit.',
+  },
+  {
+    q: 'Pot pune logo-ul și culorile evenimentului?',
+    a: 'Da. Setezi numele evenimentului, un subtitlu, logo-ul și una din cinci culori de accent, iar ecranul poate fi luminos sau întunecat. În timpul extragerii schimbi tema cu tasta T, util dacă proiectorul nu se vede bine într-o sală luminoasă.',
+  },
+  {
+    q: 'Ce se întâmplă dacă dau refresh sau se închide browserul?',
+    a: 'Nimic grav. Progresul se salvează după fiecare pas, iar la redeschidere apare butonul „Continuă extragerea”. Poți salva și toată configurația într-un fișier, ca să o încarci pe alt laptop.',
+  },
+  {
+    q: 'Am nevoie de internet la eveniment?',
+    a: 'Doar ca să deschizi pagina. După ce s-a încărcat, extragerea rulează integral pe calculatorul tău și nu mai are nevoie de conexiune. Doar nu da refresh cât timp ești offline.',
+  },
+  {
+    q: 'Mai am nevoie de un regulament?',
+    a: 'Da, dacă organizezi o campanie sau o tombolă. Instrumentul doar face extragerea; regulamentul, eligibilitatea participanților, premiile și obligațiile legale rămân în grija organizatorului.',
+  },
+];
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+const appLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: SITE.name,
+  url: SITE.url,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Orice browser modern',
+  inLanguage: 'ro',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'RON' },
+  author: { '@type': 'Person', name: SITE.author, url: SITE.authorUrl },
+};
+---
+
+<Base description="Extragere de premii pentru conferințe, tombole și giveaway-uri, proiectată live cu suspans și confetti. Gratuit, fără reclame, fără cont; datele rămân în browserul tău.">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(appLd)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Gratuit · fără reclame · fără cont</p>
+        <h1>
+          Extrageri de premii care țin sala <em>cu sufletul la gură</em>.
+        </h1>
+        <p class="hero-lead">
+          Tombola de la conferință, giveaway-ul de pe Instagram sau premiile de la petrecerea firmei: lipești lista,
+          proiectezi pe ecran și apeși <kbd>Space</kbd>. Restul e suspans, aplauze și un proces-verbal la final.
+        </p>
+        <div class="hero-cta">
+          <a class="cta big" href="/extragere/">
+            Pregătește extragerea →
+          </a>
+          <a class="cta ghost big" href="/demo/">
+            Vezi un demo
+          </a>
+        </div>
+        <p class="hero-note">Durează cam două minute. Datele participanților nu pleacă din browserul tău.</p>
+      </div>
+      <div class="hero-visual">
+        <HeroDemo />
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow center">Cum funcționează</p>
+      <h2 class="section-title">Trei pași, de la Excel la aplauze</h2>
+      <ol class="how">
+        <li>
+          <span class="how-n">1</span>
+          <h3>Lipești participanții</h3>
+          <p>
+            Copiezi coloanele din Excel, Google Sheets sau Forms. Antetele, datele și duplicatele se curăță singure, iar
+            tu vezi exact ce s-a eliminat și de ce.
+          </p>
+        </li>
+        <li>
+          <span class="how-n">2</span>
+          <h3>Adaugi premiile</h3>
+          <p>
+            În ordinea în care vrei să le extragi, cu sponsorul fiecăruia. Premiile primesc automat o raritate, iar
+            marele premiu are parte de mai mult suspans.
+          </p>
+        </li>
+        <li>
+          <span class="how-n">3</span>
+          <h3>Proiectezi și apeși Space</h3>
+          <p>
+            Numărătoare inversă, nume care se derulează din ce în ce mai încet, confetti. La final descarci câștigătorii
+            și procesul-verbal.
+          </p>
+        </li>
+      </ol>
+      <p class="center">
+        <a href="/cum-functioneaza/">Toate detaliile, pas cu pas →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="block alt">
+    <div class="wrap">
+      <p class="eyebrow center">De ce la sorți</p>
+      <h2 class="section-title">Făcut pentru scenă</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="ico">🎬</div>
+          <h3>Un mic spectacol</h3>
+          <p>
+            Numărătoare 3-2-1, derulare cu suspans, sunete, confetti, tablă cu toate premiile și o bandă cu numele
+            participanților. Ecran complet cu <kbd>F</kbd>.
+          </p>
+        </div>
+        <div class="feature">
+          <div class="ico">🔒</div>
+          <h3>Datele rămân la tine</h3>
+          <p>Nu există server, cont sau bază de date. Listele se procesează și se salvează doar în browserul tău.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🎲</div>
+          <h3>Corect și verificabil</h3>
+          <p>Generator criptografic, amprentă SHA-256 a listei, proces-verbal cu fiecare re-extragere și cod public.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🧹</div>
+          <h3>Curăță listele singur</h3>
+          <p>
+            Elimină duplicatele după email, nume, telefon sau un cod, chiar dacă cineva s-a înscris ca „Popescu Ion” și
+            apoi ca „ion popescu”.
+          </p>
+        </div>
+        <div class="feature">
+          <div class="ico">🎨</div>
+          <h3>Cu brandul tău</h3>
+          <p>Numele evenimentului, logo, cinci culori de accent, temă luminoasă sau întunecată, după cum arată sala.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">↻</div>
+          <h3>Nu se pierde nimic</h3>
+          <p>
+            Rezistă la refresh, iar configurația o salvezi pe un stick și o încarci pe alt laptop în câteva secunde.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow center">Pentru cine</p>
+      <h2 class="section-title">Oriunde se împart premii</h2>
+      <div class="usecases">
+        <div>
+          <span>🎤</span>
+          <b>Conferințe și evenimente</b>
+          <p>Tombola de la final, cu sponsori și un mare premiu.</p>
+        </div>
+        <div>
+          <span>📱</span>
+          <b>Giveaway-uri online</b>
+          <p>Din comentariile de pe Instagram sau dintr-o listă, cu reguli și rezerve.</p>
+        </div>
+        <div>
+          <span>🥂</span>
+          <b>Petreceri de firmă</b>
+          <p>Team building, petrecerea de Crăciun, aniversări.</p>
+        </div>
+        <div>
+          <span>🏫</span>
+          <b>Școli și ONG-uri</b>
+          <p>Tombole caritabile, concursuri, premii pentru voluntari.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block alt" id="intrebari">
+    <div class="wrap faq-wrap">
+      <p class="eyebrow center">Întrebări frecvente</p>
+      <h2 class="section-title">Ce te-ar putea interesa</h2>
+      <div class="faq">
+        {faq.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}</summary>
+            <p>
+              {f.a}
+              {f.q.startsWith('Mai am nevoie') && (
+                <>
+                  {' '}
+                  Detalii în <a href="/termeni/">Termeni</a>.
+                </>
+              )}
+            </p>
+          </details>
+        ))}
+      </div>
+      <p class="center faq-more">
+        Altă întrebare? Scrie-mi la <Email /> sau deschide un <a href={`${SITE.repoUrl}/issues`}>issue pe GitHub</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="block">
+    <div class="wrap">
+      <div class="final-cta">
+        <h2>Gata de extragere?</h2>
+        <p>
+          Pregătește listele acum și repetă o dată înainte de eveniment. Sau încearcă întâi demo-ul, cu participanți
+          fictivi.
+        </p>
+        <div class="hero-cta center">
+          <a class="cta big" href="/extragere/">
+            Pregătește extragerea →
+          </a>
+          <a class="cta ghost big" href="/demo/">
+            Încearcă demo-ul
+          </a>
+        </div>
+      </div>
+      <div class="maker">
+        <h2>Cine a făcut asta</h2>
+        <p>
+          Sunt{' '}
+          <a href={SITE.authorUrl} rel="author">
+            {SITE.author}
+          </a>
+          , arhitect software. Construiesc platforme și site-uri, de la arhitectură până la lansare. „La sorți” e unul
+          dintre proiectele mele personale. <a href={SITE.projectsUrl}>Vezi și la ce altceva lucrez →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

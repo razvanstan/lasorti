@@ -1,0 +1,17 @@
+---
+// The address is assembled in the browser, to make it harder for spam bots to collect.
+// Without JavaScript it stays readable as "contact [at] lasorti.ro".
+import { SITE } from '../config';
+const [user, domain] = SITE.email.split('@');
+---
+
+<a class="js-email" data-u={user} data-d={domain}>
+  {user} [at] {domain}
+</a>
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('a.js-email').forEach((a) => {
+    const addr = `${a.dataset.u}@${a.dataset.d}`;
+    a.href = `mailto:${addr}`;
+    a.textContent = addr;
+  });
+</script>

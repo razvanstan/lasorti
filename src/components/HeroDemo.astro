@@ -1,0 +1,336 @@
+---
+// Animated preview for the home page. Decorative only: made-up names, not the real draw logic.
+const prizes = [
+  { n: 'Premiul 3 din 5', t: 'Ședință foto de o oră', s: 'Studio Foto Lumina', r: 'rare', rl: 'Rar' },
+  { n: 'Premiul 4 din 5', t: 'Weekend la munte pentru 2', s: 'Agenția Drum Bun', r: 'epic', rl: 'Epic' },
+  {
+    n: '⭐ Ultimul premiu · 5 din 5',
+    t: 'Marele premiu: o tabletă',
+    s: 'Organizatorul',
+    r: 'legendary',
+    rl: '★ Legendar',
+  },
+];
+---
+
+<div class="hero-demo" aria-hidden="true" data-prizes={JSON.stringify(prizes)}>
+  <div class="hd-bar">
+    <span class="hd-dot"></span>
+    <span class="hd-dot"></span>
+    <span class="hd-dot"></span>
+    <span class="hd-title">Conferința Anuală 2026 · Live</span>
+  </div>
+  <div class="hd-body">
+    <div class={`hd-prize ${prizes[0].r}`}>
+      <div class="hd-num">{prizes[0].n}</div>
+      <div class="hd-name display">{prizes[0].t}</div>
+      <div class="hd-sp">
+        oferit de {prizes[0].s} · <span class="hd-rar">{prizes[0].rl}</span>
+      </div>
+    </div>
+    <div class="hd-slot">
+      <span class="hd-winner display">Ioana Stan</span>
+    </div>
+    <div class="hd-mail">io•••@gmail.com</div>
+    <div class="hd-tiles">
+      <i class="won"></i>
+      <i class="won"></i>
+      <i class="cur"></i>
+      <i></i>
+      <i class="leg"></i>
+    </div>
+  </div>
+  <canvas class="hd-conf"></canvas>
+</div>
+
+<script>
+  import { createConfetti, prefersReducedMotion } from '../scripts/confetti';
+  import { foldDiacritics } from '../scripts/text';
+
+  const NAMES = [
+    'Andrei Popescu',
+    'Maria Ionescu',
+    'Elena Dumitrescu',
+    'Mihai Constantin',
+    'Ioana Stan',
+    'Bogdan Radu',
+    'Cristina Marin',
+    'Vlad Munteanu',
+    'Raluca Stoica',
+    'George Dobre',
+    'Diana Ene',
+    'Ștefan Ilie',
+    'Laura Matei',
+    'Tudor Ciobanu',
+    'Simona Lazăr',
+  ];
+  const SPIN_MS = 2600;
+  const LONG_SPIN_MS = 3600;
+  const PAUSE_MS = 2600;
+  const HIDDEN_RETRY_MS = 800;
+  const TILES_ALREADY_WON = 2;
+  const LAST_TILE = 4;
+
+  const demo = document.querySelector<HTMLElement>('.hero-demo');
+  if (demo) run(demo);
+
+  function run(box: HTMLElement) {
+    const prizes = JSON.parse(box.dataset.prizes || '[]');
+    const find = <T extends HTMLElement = HTMLElement>(selector: string) => box.querySelector<T>(selector)!;
+    const slot = find('.hd-slot');
+    const winnerName = find('.hd-winner');
+    const email = find('.hd-mail');
+    const canvas = find<HTMLCanvasElement>('.hd-conf');
+    const tiles = [...box.querySelectorAll<HTMLElement>('.hd-tiles i')];
+    const fire = createConfetti(canvas, {
+      count: 70,
+      colors: ['--acc-fill', '--acc-hi', '--leg', '--r-rare', '--r-epic'],
+      spread: 9,
+      lift: 8,
+      baseLift: 2,
+      sizeRange: 5,
+      baseSize: 3,
+      gravity: 0.25,
+      drag: 1,
+      maxAge: 160,
+      margin: 10,
+    });
+    let prizeIndex = 0;
+    let isVisible = true;
+    new IntersectionObserver(([entry]) => (isVisible = entry.isIntersecting)).observe(box);
+
+    const randomName = () => NAMES[Math.floor(Math.random() * NAMES.length)];
+
+    function tileClass(tile: number, prize: number) {
+      const current = prize + TILES_ALREADY_WON;
+      if (tile < current) return 'won';
+      if (tile === current) return 'cur';
+      return tile === LAST_TILE ? 'leg' : '';
+    }
+
+    function showPrize(index: number) {
+      const prize = prizes[index];
+      find('.hd-prize').className = `hd-prize ${prize.r}`;
+      find('.hd-num').textContent = prize.n;
+      find('.hd-name').textContent = prize.t;
+      find('.hd-sp').innerHTML = `oferit de ${prize.s} · <span class="hd-rar">${prize.rl}</span>`;
+      tiles.forEach((tile, i) => (tile.className = tileClass(i, index)));
+    }
+
+    function showWinner(name: string) {
+      winnerName.textContent = name;
+      slot.classList.add('win');
+      email.textContent = `${foldDiacritics(name).slice(0, 2)}•••@gmail.com`;
+      email.style.opacity = '1';
+      fireFromSlot();
+    }
+
+    function fireFromSlot() {
+      canvas.width = box.clientWidth;
+      canvas.height = box.clientHeight;
+      const slotRect = slot.getBoundingClientRect();
+      const boxRect = box.getBoundingClientRect();
+      fire(slotRect.left - boxRect.left + slotRect.width / 2, slotRect.top - boxRect.top + slotRect.height / 2);
+    }
+
+    function spin() {
+      if (!isVisible || document.hidden) {
+        setTimeout(spin, HIDDEN_RETRY_MS);
+        return;
+      }
+      showPrize(prizeIndex);
+      slot.classList.remove('win');
+      email.style.opacity = '0';
+      const winner = randomName();
+      const duration = prizes[prizeIndex].r === 'legendary' ? LONG_SPIN_MS : SPIN_MS;
+      const start = performance.now();
+      let lastSwap = 0;
+
+      function frame(now: number) {
+        const progress = Math.min((now - start) / duration, 1);
+        if (progress === 1) {
+          showWinner(winner);
+          prizeIndex = (prizeIndex + 1) % prizes.length;
+          setTimeout(spin, PAUSE_MS);
+          return;
+        }
+        if (now - lastSwap >= 30 + Math.pow(progress, 4) * 360) {
+          lastSwap = now;
+          winnerName.textContent = randomName();
+        }
+        requestAnimationFrame(frame);
+      }
+      frame(start);
+    }
+
+    if (prefersReducedMotion()) {
+      showPrize(1);
+      slot.classList.add('win');
+      email.style.opacity = '1';
+    } else {
+      setTimeout(spin, 600);
+    }
+  }
+</script>
+
+<style>
+  .hero-demo {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 80px -30px rgba(var(--acc-rgb), 0.35),
+      0 10px 30px -10px rgba(0, 0, 0, 0.25);
+  }
+  .hd-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel2);
+  }
+  .hd-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+  .hd-title {
+    margin-left: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hd-body {
+    padding: 20px 20px 18px;
+    text-align: center;
+  }
+  .hd-prize {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px;
+    background: var(--bg);
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+  .hd-prize.legendary {
+    border-color: var(--leg);
+    box-shadow: 0 0 34px rgba(var(--leg-rgb), 0.25);
+  }
+  .hd-num {
+    color: var(--acc);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .hd-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.2;
+    margin: 4px 0 2px;
+  }
+  .hd-sp {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .hd-rar {
+    font-weight: 700;
+  }
+  /* .hd-rar is inserted through innerHTML, so it does not get the scope attribute */
+  .rare :global(.hd-rar) {
+    color: var(--r-rare);
+  }
+  .epic :global(.hd-rar) {
+    color: var(--r-epic);
+  }
+  .legendary :global(.hd-rar) {
+    color: var(--leg);
+  }
+  .hd-slot {
+    margin-top: 14px;
+    height: 88px;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    background: var(--slot);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.3s;
+  }
+  .hd-slot.win {
+    border-color: var(--acc);
+    box-shadow: 0 0 40px rgba(var(--acc-rgb), 0.3);
+  }
+  .hd-winner {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 34px;
+    color: var(--ink);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+  .hd-slot.win .hd-winner {
+    background: linear-gradient(118deg, var(--grad-1), var(--grad-2) 40%, var(--grad-1) 65%, var(--grad-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hd-mail {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+    min-height: 18px;
+    transition: opacity 0.3s;
+  }
+  .hd-tiles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .hd-tiles i {
+    height: 26px;
+    border-radius: 7px;
+    border: 1px solid var(--line);
+    background: var(--panel2);
+    opacity: 0.6;
+  }
+  .hd-tiles i.won {
+    opacity: 1;
+    background: rgba(var(--acc-rgb), 0.14);
+    border-color: rgba(var(--acc-rgb), 0.35);
+  }
+  .hd-tiles i.cur {
+    opacity: 1;
+    border-color: var(--acc);
+    box-shadow: 0 0 0 1px var(--acc);
+  }
+  .hd-tiles i.leg {
+    border-color: rgba(var(--leg-rgb), 0.6);
+  }
+  .hd-conf {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  @media (max-width: 520px) {
+    .hd-winner {
+      font-size: 26px;
+    }
+    .hd-name {
+      font-size: 18px;
+    }
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import DrawApp from '../../components/DrawApp.astro';
+---
+
+<Base
+  title="Tombolă: extragere cu premii multiple"
+  description="Lipește participanții din Excel sau Google Forms și premiile cu sponsori, apoi proiectează extragerea live. Gratuit, fără reclame, datele rămân în browserul tău."
+>
+  <div class="wrap">
+    <a class="back-link page-intro" href="/extragere/">
+      ← Alege alt tip de extragere
+    </a>
+    <DrawApp kind="tombola">
+      <div slot="intro" class="page-intro">
+        <h1>Tombolă</h1>
+        <p class="sub">
+          Pentru evenimente cu mai multe premii. Lipește participanții și premiile, alege cum arată ecranul și pornește.
+          Tu hotărăști cum se elimină duplicatele și dacă o persoană poate câștiga mai multe premii. Datele rămân în
+          browserul tău. Prima dată aici? Încearcă <a href="/demo/">demo-ul</a> sau citește{' '}
+          <a href="/cum-functioneaza/">cum funcționează</a>.
+        </p>
+      </div>
+    </DrawApp>
+  </div>
+</Base>

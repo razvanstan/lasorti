@@ -1,0 +1,511 @@
+---
+import '../styles/app.css';
+import { SITE } from '../config';
+import Mark from './Mark.astro';
+import {
+  DEMO_PEOPLE,
+  DEMO_PRIZES,
+  DEMO_TITLE,
+  DEMO_GW_TITLE,
+  DEMO_GW_PRIZE,
+  DEMO_GW_EXCLUDE,
+  DEMO_GW_COMMENTS,
+} from '../data/demo';
+
+interface Props {
+  demo?: boolean;
+  /** tombola = several prizes, from lists; giveaway = winners from social media comments */
+  kind?: 'tombola' | 'giveaway';
+}
+const { demo = false, kind = 'tombola' } = Astro.props;
+const gw = kind === 'giveaway';
+---
+
+<canvas id="conf" aria-hidden="true"></canvas>
+<div id="ticker" aria-hidden="true">
+  <div class="track" id="track"></div>
+</div>
+
+<div class="app" id="app" data-mode={demo ? 'demo' : 'live'} data-kind={kind}>
+  <!-- ================= SETUP ================= -->
+  <section id="setup">
+    <div class="resume" id="resumeBox">
+      <p>
+        ⚠️ <b>Există o extragere în desfășurare:</b> <span id="resumeInfo"></span>
+      </p>
+      <div class="row" style="margin-top:0">
+        <button class="primary" id="resumeBtn">
+          ▶ Continuă extragerea
+        </button>
+        <button id="resetBtn">Șterge și începe de la zero</button>
+      </div>
+    </div>
+
+    {demo && !gw && (
+      <div class="demo-note">
+        <b>Mod demo:</b> 22 de participanți fictivi (doi sunt duplicate, ca să vezi cum se elimină) și 5 premii. Apasă
+        „Pornește extragerea” și apoi <kbd>Space</kbd>. Pentru evenimentul tău, folosește{' '}
+        <a href="/extragere/">pagina de extragere</a>.
+      </div>
+    )}
+    {demo && gw && (
+      <div class="demo-note">
+        <b>Mod demo:</b> comentarii fictive copiate de pe Instagram, cu tot „zgomotul” (timpi, like-uri, „Reply”).
+        Regula: minim un tag; contul organizatorului e exclus. Apasă „Verifică comentariile” ca să vezi ce s-a eliminat
+        și de ce. Pentru giveaway-ul tău, folosește <a href="/extragere/giveaway/">pagina de giveaway</a>.
+      </div>
+    )}
+
+    <slot name="intro" />
+
+    <div class="grid3">
+      <div>
+        <label class="f" for="evTitle">
+          {gw ? 'Numele giveaway-ului' : 'Numele evenimentului'}{' '}
+          <span class="hint">– apare sus, pe ecranul de extragere</span>
+        </label>
+        <input
+          type="text"
+          id="evTitle"
+          data-persist="title"
+          maxlength="80"
+          placeholder={gw ? 'ex. Giveaway de Crăciun' : 'ex. Conferința Anuală 2026'}
+          value={demo ? (gw ? DEMO_GW_TITLE : DEMO_TITLE) : undefined}
+        />
+      </div>
+      <div>
+        <label class="f" for="evSub">
+          Subtitlu
+        </label>
+        <input
+          type="text"
+          id="evSub"
+          data-persist="sub"
+          maxlength="80"
+          placeholder={gw ? 'Giveaway · Extragere live' : 'Extragere premii · Live'}
+        />
+      </div>
+      <div>
+        <label class="f" for="theme">
+          Culoare
+        </label>
+        <select id="theme" data-persist="theme">
+          <option value="">Roșu</option>
+          <option value="auriu">Auriu</option>
+          <option value="albastru">Albastru</option>
+          <option value="verde">Verde</option>
+          <option value="violet">Violet</option>
+        </select>
+      </div>
+    </div>
+
+    {!gw && (
+      <div class="grid2">
+        <div>
+          <label class="f" for="people">
+            Participanți <span class="hint">– copy-paste din Excel, Sheets sau Forms: nume + email sau doar nume</span>
+          </label>
+          <textarea
+            id="people"
+            data-persist="people"
+            spellcheck="false"
+            placeholder={'Ion Popescu\tion@gmail.com\nMaria Ionescu\tmaria@yahoo.com\nsau doar nume, câte unul pe rând'}
+          >{demo ? DEMO_PEOPLE : ''}</textarea>
+          <div class="hint">
+            Un rând = o persoană. Coloanele cu date (ex. marcajul de timp din Forms), numerele de ordine și antetul se
+            ignoră.
+          </div>
+        </div>
+        <div>
+          <label class="f" for="prizes">
+            Premii{' '}
+            <span class="hint">
+              – în ordinea extragerii, marele premiu ultimul. <b>Sponsor | Premiu</b> sau doar premiul
+            </span>
+          </label>
+          <textarea
+            id="prizes"
+            data-persist="prizes"
+            spellcheck="false"
+            placeholder={
+              'Cafeneaua X | Voucher de 100 lei\nAgenția Y | Weekend la munte (1.200 euro)\nOrganizatorul | Marele premiu: o tabletă'
+            }
+          >{demo ? DEMO_PRIZES : ''}</textarea>
+          <div class="hint">
+            Raritatea se deduce din valoare (lei/euro); o poți forța cu <b>#comun</b>, <b>#rar</b>, <b>#epic</b>,{' '}
+            <b>#legendar</b>. <a href="/cum-functioneaza/#raritate">Detalii</a>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {gw && (
+      <div class="grid2 gw-grid">
+        <div>
+          <label class="f" for="gwSource">
+            Sursa
+          </label>
+          <select id="gwSource" data-persist="gwSource">
+            <option value="instagram">Comentarii copiate de pe Instagram</option>
+            <option value="list">Listă sau tabel (orice platformă)</option>
+          </select>
+          <label class="f" for="comments">
+            Comentarii <span class="hint">– comentariile de sub postare, cu tot cu ore și „Reply”, sau lista ta</span>
+          </label>
+          <textarea
+            id="comments"
+            class="tall"
+            data-persist="comments"
+            spellcheck="false"
+            placeholder={
+              'ana.pop\nVreau și eu! @maria.ionescu\n2h  3 likes  Reply\n\nsau, cu sursa „Listă sau tabel”:\nIon Popescu\n@ana.pop'
+            }
+          >{demo ? DEMO_GW_COMMENTS : ''}</textarea>
+          <div class="hint">
+            Participanții nu au nevoie de <b>@</b>: simbolul contează doar la prietenii menționați în comentariu. Pentru
+            Facebook și TikTok folosește o listă sau un tabel (<b>nume</b> + <b>comentariu</b>).{' '}
+            <a href="/cum-functioneaza/#giveaway">Cum copiez comentariile?</a>
+          </div>
+        </div>
+        <div class="rules">
+          <label class="f" for="gwPrize">
+            Premiul
+          </label>
+          <input
+            type="text"
+            id="gwPrize"
+            data-persist="gwPrize"
+            maxlength="200"
+            placeholder="ex. Voucher de 300 lei"
+            value={demo ? DEMO_GW_PRIZE : undefined}
+          />
+          <div class="rules-row">
+            <div>
+              <label class="f" for="gwWinners">
+                Câștigători
+              </label>
+              <input type="number" id="gwWinners" data-persist="gwWinners" min="1" max="100" value="1" />
+            </div>
+            <div>
+              <label class="f" for="gwReserves">
+                Rezerve <span class="hint">– dacă nu răspunde</span>
+              </label>
+              <input
+                type="number"
+                id="gwReserves"
+                data-persist="gwReserves"
+                min="0"
+                max="20"
+                value={demo ? '2' : '1'}
+              />
+            </div>
+            <div>
+              <label class="f" for="gwMinTags">
+                Minim tag-uri
+              </label>
+              <input type="number" id="gwMinTags" data-persist="gwMinTags" min="0" max="20" value={demo ? '1' : '0'} />
+            </div>
+          </div>
+          <label class="f" for="gwKeyword">
+            Cuvânt sau hashtag obligatoriu <span class="hint">– opțional</span>
+          </label>
+          <input type="text" id="gwKeyword" data-persist="gwKeyword" maxlength="60" placeholder="ex. #cafea" />
+          <label class="f" for="gwExclude">
+            Conturi excluse{' '}
+            <span class="hint">– organizatorul, echipa; separate prin virgulă sau câte unul pe rând</span>
+          </label>
+          <textarea
+            id="gwExclude"
+            class="short"
+            data-persist="gwExclude"
+            spellcheck="false"
+            placeholder="@brandul_tau, @colegul"
+          >{demo ? DEMO_GW_EXCLUDE : ''}</textarea>
+          <fieldset class="chances">
+            <legend class="f">Șanse</legend>
+            <label class="opt">
+              <input type="radio" name="gwMode" value="person" data-persist="gwMode" checked />{' '}
+              <span>
+                <b>O șansă de persoană</b>, oricâte comentarii ar lăsa
+              </span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="gwMode" value="comment" data-persist="gwMode" />{' '}
+              <span>
+                <b>Fiecare comentariu valid = o șansă</b> (mai multe comentarii, mai multe șanse)
+              </span>
+            </label>
+          </fieldset>
+        </div>
+      </div>
+    )}
+
+    {!gw && (
+      <div class="dedupe">
+        <div>
+          <label class="f" for="dedupe">
+            Duplicate <span class="hint">– câmpul unic, după care se recunoaște aceeași persoană</span>
+          </label>
+          <select id="dedupe" data-persist="dedupe">
+            <option value="email-name">Elimină după email și nume</option>
+            <option value="email">Elimină după email</option>
+            <option value="phone">Elimină după telefon</option>
+            <option value="name">Elimină după nume</option>
+            <option value="code">Elimină după altă coloană (cod, nr. bilet…)</option>
+            <option value="none">Nu elimina: fiecare rând e o șansă</option>
+          </select>
+        </div>
+        <div class="dedupe-column">
+          <label class="f" for="dedupeColumn">
+            Coloana unică <span class="hint">– numele din antet sau numărul coloanei</span>
+          </label>
+          <input
+            type="text"
+            id="dedupeColumn"
+            data-persist="dedupeColumn"
+            maxlength="60"
+            placeholder="ex. Cod bilet sau 3"
+          />
+        </div>
+      </div>
+    )}
+
+    <div class="row">
+      <button class="primary" id="startBtn">
+        Pornește extragerea ▶
+      </button>
+      <button id="checkBtn">{gw ? 'Verifică comentariile' : 'Verifică listele'}</button>
+      <span id="setupMsg" class="msg" role="status"></span>
+    </div>
+    <div class="dups" id="dups"></div>
+    <div class="check" id="check"></div>
+
+    <div class="opts">
+      {!gw && (
+        <label class="opt">
+          <input type="checkbox" id="multiWin" data-persist="multiWin" />{' '}
+          <span>O persoană poate câștiga mai multe premii (rămâne în joc după ce câștigă)</span>
+        </label>
+      )}
+      {!gw && (
+        <label class="opt">
+          <input type="checkbox" id="grandLast" data-persist="grandLast" checked />{' '}
+          <span>Ultimul premiu este marele premiu (extragere mai lungă, evidențiat la final)</span>
+        </label>
+      )}
+      <label class="opt">
+        <input type="checkbox" id="sound" data-persist="sound" checked /> <span>Sunete (tic-tac, fanfară)</span>
+      </label>
+      <label class="opt">
+        <input type="checkbox" id="countdown" data-persist="countdown" checked />{' '}
+        <span>Numărătoare inversă 3-2-1 înainte de fiecare extragere</span>
+      </label>
+      {!gw && (
+        <label class="opt">
+          <input type="checkbox" id="showEmail" data-persist="showEmail" checked />{' '}
+          <span>
+            Arată emailul (an•••@gmail.com), telefonul sau codul câștigătorului (•••123) parțial ascuns, ca să se poată
+            recunoaște
+          </span>
+        </label>
+      )}
+    </div>
+
+    <details class="more">
+      <summary>Logo, salvare și încărcare configurație</summary>
+      <label class="f" for="logoFile">
+        Logo <span class="hint">– PNG/JPG/SVG, max. 1 MB. Rămâne doar în browserul tău.</span>
+      </label>
+      <div class="logo-row">
+        <img id="logoPreview" alt="" hidden />
+        <input type="file" id="logoFile" accept="image/png,image/jpeg,image/svg+xml,image/webp" />
+        <button class="small" id="logoRemove" hidden>
+          Scoate logo-ul
+        </button>
+      </div>
+      <label class="f">
+        Configurație{' '}
+        <span class="hint">
+          – salvează tot ({gw ? 'comentarii, reguli' : 'liste, premii'}, setări, logo) într-un fișier .json ca s-o
+          încarci pe alt calculator.
+        </span>
+      </label>
+      <div class="row" style="margin-top:0">
+        <button class="small" id="exportCfg">
+          ⬇ Salvează configurația (.json)
+        </button>
+        <label class="small" style="cursor:pointer">
+          <input type="file" id="importCfg" accept="application/json,.json" hidden />
+          <span class="cta ghost" style="font-size:13px;padding:8px 12px">
+            ⬆ Încarcă o configurație
+          </span>
+        </label>
+        {!demo && (
+          <button class="small" id="clearForm">
+            Golește formularul
+          </button>
+        )}
+        <span id="cfgMsg" class="msg"></span>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= STAGE ================= -->
+  <section id="stage">
+    <div class="brand">
+      <img id="stageLogo" alt="" hidden />
+      <div class="brand-title">
+        <span id="stageTitle"></span>
+        <small id="stageSub"></small>
+      </div>
+    </div>
+    <div class="topbar">
+      <span class="topbar-left">
+        <button type="button" class="exit" id="exitBtn" title="Progresul e salvat: poți continua extragerea oricând">
+          ← Înapoi la setări
+        </button>
+        <a class="credit" href={SITE.url} target="_blank" rel="noopener">
+          <Mark size={18} /> {SITE.name}
+        </a>
+      </span>
+      <span id="poolInfo"></span>
+    </div>
+    <div id="saveWarning" class="save-warning" role="alert">
+      ⚠️ Browserul nu mai are loc să salveze extragerea. <b>Nu reîncărca și nu închide pagina</b> până nu descarci
+      rezultatele (CSV și proces-verbal). Un logo mai mic sau o listă mai scurtă ar rezolva problema.
+    </div>
+    <div class="prizecard">
+      <div class="pnum" id="pNum"></div>
+      <div class="pname" id="pName"></div>
+      <div class="psponsor" id="pSponsor"></div>
+    </div>
+    <div class="slot" id="slot">
+      <div id="slotName" aria-live="polite">
+        ?
+      </div>
+      <div id="cd"></div>
+    </div>
+    <div id="winEmail"></div>
+    <div class="controls">
+      <button class="primary" id="drawBtn">
+        🎲 Extrage câștigătorul
+      </button>
+      <button
+        id="redrawBtn"
+        disabled
+        title="Câștigătorul curent nu e eligibil sau nu răspunde? Îl scoate din joc și extrage altcineva."
+      >
+        ↻ Re-extrage
+      </button>
+      <button id="nextBtn" disabled>
+        {gw ? 'Următorul →' : 'Premiul următor →'}
+      </button>
+    </div>
+    <div class="left">
+      <kbd>Space</kbd> extrage / următorul · <kbd>F</kbd> ecran complet · <kbd>T</kbd> temă luminoasă / întunecată ·
+      Re-extrage scoate persoana curentă din joc și apare în procesul-verbal
+    </div>
+
+    <div id="finalView">
+      <div class="pnum">Extragere încheiată 🏁</div>
+      <h2>{gw ? 'Felicitări!' : 'Felicitări tuturor câștigătorilor!'}</h2>
+      <div class="fsub" id="fSub"></div>
+      <div class="fgrid" id="fGrid"></div>
+      <details class="share" id="sharePanel">
+        <summary>📸 Poză pentru social media</summary>
+        <div class="share-body">
+          <div class="share-preview">
+            <canvas id="shareCanvas" role="img" aria-label="Previzualizarea pozei cu câștigătorii"></canvas>
+          </div>
+          <div class="share-options">
+            <label class="f" for="shareChoice">
+              Cine apare
+            </label>
+            <select id="shareChoice"></select>
+            <label class="f" for="shareFormat">
+              Format
+            </label>
+            <select id="shareFormat">
+              <option value="story">Story / Reels (1080 × 1920)</option>
+              <option value="square">Pătrat (1080 × 1080)</option>
+            </select>
+            <label class="opt">
+              <input type="checkbox" id="shareShort" checked /> <span>Prescurtează numele („Ana P.”)</span>
+            </label>
+            <div class="hint">
+              Emailul și telefonul nu apar; codul apare doar dacă lista are numai coduri. Publică numele câștigătorilor
+              doar dacă regulamentul sau acordul lor îți permite. Poza se creează în browser, în tema ecranului (tasta{' '}
+              <kbd>T</kbd>).
+            </div>
+            <div class="row">
+              <button class="primary" id="shareDownload">
+                ⬇ Descarcă poza
+              </button>
+              <button id="shareSend" hidden>
+                Distribuie…
+              </button>
+            </div>
+            <span id="shareMsg" class="msg" role="status"></span>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="progress">
+      <div class="progress-head">
+        <span>
+          {gw ? 'Extrași' : 'Premii acordate'} <b id="progTxt">0 / 0</b>
+        </span>
+        <span id="progLeft"></span>
+      </div>
+      <div class="bar">
+        <i id="progBar"></i>
+      </div>
+    </div>
+    <div class="board" id="board"></div>
+
+    <div id="results">
+      <div class="row">
+        <b>{gw ? 'Rezultate' : 'Câștigători'}</b>
+        <span class="row" style="margin:0">
+          <button class="small" id="tblBtn">
+            Arată tabelul
+          </button>
+          <button class="small" id="copyBtn">
+            📋 Copiază pentru Sheet
+          </button>
+          <button class="small" id="csvBtn">
+            ⬇ CSV
+          </button>
+          <button class="small" id="pvBtn">
+            🖨 Proces-verbal
+          </button>
+          <button
+            class="small"
+            id="listBtn"
+            title="Lista exactă din care s-a extras; amprenta SHA-256 a acestui fișier apare în procesul-verbal"
+          >
+            ⬇ Lista participanților
+          </button>
+          <button class="small" id="newBtn">
+            ↺ Extragere nouă
+          </button>
+        </span>
+      </div>
+      <span id="copyMsg" class="msg"></span>
+      <div id="tableWrap">
+        <table>
+          <thead id="resHead"></thead>
+          <tbody id="resBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="pv"></div>
+
+<script>
+  import { initDrawApp } from '../scripts/draw';
+  initDrawApp();
+</script>

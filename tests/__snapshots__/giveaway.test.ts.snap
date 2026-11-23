@@ -1,0 +1,500 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`applyRules > applies every rule 1`] = `
+{
+  "rejected": [
+    {
+      "name": "@ion",
+      "text": "fără",
+      "user": "ion",
+      "why": "mai puțin de 1 tag",
+    },
+    {
+      "name": "@ema",
+      "text": "@ion",
+      "user": "ema",
+      "why": "lipsește „cafea”",
+    },
+    {
+      "name": "@brand",
+      "text": "cafea @ana",
+      "user": "brand",
+      "why": "cont exclus",
+    },
+  ],
+  "valid": [
+    [
+      "ana",
+      2,
+      1,
+    ],
+  ],
+}
+`;
+
+exports[`applyRules > counts all valid comments 1`] = `
+{
+  "rejected": [
+    {
+      "name": "@brand",
+      "text": "cafea @ana",
+      "user": "brand",
+      "why": "cont exclus",
+    },
+  ],
+  "valid": [
+    [
+      "ana",
+      2,
+      2,
+    ],
+    [
+      "ion",
+      1,
+      1,
+    ],
+    [
+      "ema",
+      1,
+      1,
+    ],
+  ],
+}
+`;
+
+exports[`applyRules > skips text rules for plain lists 1`] = `
+{
+  "rejected": [
+    {
+      "name": "@brand",
+      "text": "cafea @ana",
+      "user": "brand",
+      "why": "cont exclus",
+    },
+  ],
+  "valid": [
+    [
+      "ana",
+      2,
+      1,
+    ],
+    [
+      "ion",
+      1,
+      1,
+    ],
+    [
+      "ema",
+      1,
+      1,
+    ],
+  ],
+}
+`;
+
+exports[`applyRules > weighs by comments 1`] = `
+{
+  "rejected": [
+    {
+      "name": "@ana",
+      "text": "Cafea @ion",
+      "user": "ana",
+      "why": "mai puțin de 2 tag-uri",
+    },
+    {
+      "name": "@Ana",
+      "text": "CĂFEA @ema",
+      "user": "Ana",
+      "why": "mai puțin de 2 tag-uri",
+    },
+    {
+      "name": "@ion",
+      "text": "fără",
+      "user": "ion",
+      "why": "mai puțin de 2 tag-uri",
+    },
+    {
+      "name": "@ema",
+      "text": "@ion",
+      "user": "ema",
+      "why": "mai puțin de 2 tag-uri",
+    },
+    {
+      "name": "@brand",
+      "text": "cafea @ana",
+      "user": "brand",
+      "why": "cont exclus",
+    },
+  ],
+  "valid": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles a multi-line comment 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ana.pop",
+      "text": "prima linie a doua linie @x",
+      "user": "ana.pop",
+    },
+  ],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles a one-word comment 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ana.pop",
+      "text": "Vreau și eu!",
+      "user": "ana.pop",
+    },
+    {
+      "name": "@ion.v",
+      "text": "vreau",
+      "user": "ion.v",
+    },
+    {
+      "name": "@maria.x",
+      "text": "super tare",
+      "user": "maria.x",
+    },
+  ],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles a one-word comment from a verified account 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ion.v",
+      "text": "vreau",
+      "user": "ion.v",
+    },
+    {
+      "name": "@ana.p",
+      "text": "Super tare",
+      "user": "ana.p",
+    },
+  ],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles a verified account 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ana.pop",
+      "text": "vreau și eu",
+      "user": "ana.pop",
+    },
+  ],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles accounts without comments next to a comment 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ana",
+      "text": "",
+      "user": "ana",
+    },
+    {
+      "name": "@ion",
+      "text": "",
+      "user": "ion",
+    },
+    {
+      "name": "@ema",
+      "text": "super tare",
+      "user": "ema",
+    },
+  ],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles lines before the first account 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ana.pop",
+      "text": "",
+      "user": "ana.pop",
+    },
+    {
+      "name": "@vreau",
+      "text": "",
+      "user": "vreau",
+    },
+  ],
+  "format": "comments",
+  "unread": [
+    "Ion Popescu",
+    "@maria",
+  ],
+}
+`;
+
+exports[`parseComments from Instagram > handles nothing 1`] = `
+{
+  "comments": [],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles only one-word comments 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ion.v",
+      "text": "vreau",
+      "user": "ion.v",
+    },
+    {
+      "name": "@ana",
+      "text": "eu",
+      "user": "ana",
+    },
+  ],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from Instagram > handles the Instagram demo 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ana.popescu",
+      "text": "Vreau și eu! 😍 @maria.ionescu @dan.v",
+      "user": "ana.popescu",
+    },
+    {
+      "name": "@cafeneauadincolt",
+      "text": "Mulțumim tuturor! Câștigătorul se anunță vineri 🎉",
+      "user": "cafeneauadincolt",
+    },
+    {
+      "name": "@mihai_constantin",
+      "text": "@ioana.stan hai că noi câștigăm",
+      "user": "mihai_constantin",
+    },
+    {
+      "name": "@elena.dum",
+      "text": "Superb! Ce cafea bună aveți",
+      "user": "elena.dum",
+    },
+    {
+      "name": "@vlad.munteanu",
+      "text": "@george.dobre @radu_n",
+      "user": "vlad.munteanu",
+    },
+    {
+      "name": "@ioana.stan",
+      "text": "@mihai_constantin @laura.matei ☕️",
+      "user": "ioana.stan",
+    },
+    {
+      "name": "@raluca.stoica",
+      "text": "Particip! @diana.ene",
+      "user": "raluca.stoica",
+    },
+    {
+      "name": "@ana.popescu",
+      "text": "Încă o încercare @cristi.marin",
+      "user": "ana.popescu",
+    },
+    {
+      "name": "@bogdan.radu",
+      "text": "Doamne ajută 🙏",
+      "user": "bogdan.radu",
+    },
+    {
+      "name": "@diana.ene",
+      "text": "@raluca.stoica @tudor.c @simona.l",
+      "user": "diana.ene",
+    },
+    {
+      "name": "@cafeneauadincolt",
+      "text": "@bogdan.radu nu uita de tag 😉",
+      "user": "cafeneauadincolt",
+    },
+    {
+      "name": "@bogdan.radu",
+      "text": "@alex.georgescu @oana.m",
+      "user": "bogdan.radu",
+    },
+    {
+      "name": "@george.dobre",
+      "text": "@vlad.munteanu mersi de tag!",
+      "user": "george.dobre",
+    },
+    {
+      "name": "@laura.matei",
+      "text": "@ioana.stan @stefan.ilie",
+      "user": "laura.matei",
+    },
+    {
+      "name": "@tudor.c",
+      "text": "Mi-ar prinde bine o cafea @florin.b",
+      "user": "tudor.c",
+    },
+    {
+      "name": "@simona.l",
+      "text": "@diana.ene ❤️",
+      "user": "simona.l",
+    },
+    {
+      "name": "@cristi.marin",
+      "text": "@ana.popescu mersi!! @radu_n",
+      "user": "cristi.marin",
+    },
+    {
+      "name": "@stefan.ilie",
+      "text": "Super concurs",
+      "user": "stefan.ilie",
+    },
+    {
+      "name": "@oana.m",
+      "text": "@bogdan.radu @alex.georgescu",
+      "user": "oana.m",
+    },
+    {
+      "name": "@radu_n",
+      "text": "@vlad.munteanu @cristi.marin",
+      "user": "radu_n",
+    },
+    {
+      "name": "@florin.b",
+      "text": "@tudor.c 🙌",
+      "user": "florin.b",
+    },
+    {
+      "name": "@alex.georgescu",
+      "text": "@oana.m @bogdan.radu hai!",
+      "user": "alex.georgescu",
+    },
+  ],
+  "format": "comments",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from a list or table > handles a table 1`] = `
+{
+  "comments": [
+    {
+      "name": "@Ana.Pop",
+      "text": "vreau @x",
+      "user": "ana.pop",
+    },
+    {
+      "name": "Ion Popescu",
+      "text": "și eu da",
+      "user": "ion popescu",
+    },
+  ],
+  "format": "table",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from a list or table > handles accounts with and without @ 1`] = `
+{
+  "comments": [
+    {
+      "name": "@ana.pop",
+      "text": "",
+      "user": "ana.pop",
+    },
+    {
+      "name": "ion.v",
+      "text": "",
+      "user": "ion.v",
+    },
+    {
+      "name": "@Ion.V",
+      "text": "",
+      "user": "ion.v",
+    },
+    {
+      "name": "ema",
+      "text": "",
+      "user": "ema",
+    },
+  ],
+  "format": "list",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from a list or table > handles follow buttons 1`] = `
+{
+  "comments": [
+    {
+      "name": "ana",
+      "text": "",
+      "user": "ana",
+    },
+    {
+      "name": "ion",
+      "text": "",
+      "user": "ion",
+    },
+  ],
+  "format": "list",
+  "unread": [
+    "Follow",
+  ],
+}
+`;
+
+exports[`parseComments from a list or table > handles names 1`] = `
+{
+  "comments": [
+    {
+      "name": "Ana Pop",
+      "text": "",
+      "user": "ana pop",
+    },
+    {
+      "name": "Ion Popescu",
+      "text": "",
+      "user": "ion popescu",
+    },
+    {
+      "name": "Ana 🌸",
+      "text": "",
+      "user": "ana 🌸",
+    },
+    {
+      "name": "ana pop",
+      "text": "",
+      "user": "ana pop",
+    },
+  ],
+  "format": "list",
+  "unread": [],
+}
+`;
+
+exports[`parseComments from a list or table > handles nothing 1`] = `
+{
+  "comments": [],
+  "format": "list",
+  "unread": [],
+}
+`;

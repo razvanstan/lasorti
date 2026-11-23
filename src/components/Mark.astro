@@ -1,0 +1,24 @@
+---
+// The lasorti.ro symbol, inline. Its colours come from CSS (--mark-1/2/3), so they follow light/dark mode.
+import { markGradientWith, markShapes } from '../brand/mark.mjs';
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 32, class: cls } = Astro.props;
+// unique per instance: a gradient defined inside a hidden element is not rendered
+const id = `ls-mark-${Math.random().toString(36).slice(2, 8)}`;
+const gradient = markGradientWith(
+  id,
+  [1, 2, 3].map((n) => `style="stop-color:var(--mark-${n})"`),
+);
+---
+
+<svg
+  class={cls}
+  width={size}
+  height={size}
+  viewBox="0 0 64 64"
+  aria-hidden="true"
+  set:html={`<defs>${gradient}</defs>${markShapes(`url(#${id})`)}`}
+/>

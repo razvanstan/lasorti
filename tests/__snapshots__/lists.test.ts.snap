@@ -1,0 +1,480 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`parsePeople > handles Cyrillic duplicates 1`] = `
+{
+  "dups": [
+    [
+      "Іван Петренко",
+      "",
+      "același nume",
+      "Іван Петренко",
+    ],
+  ],
+  "list": [
+    [
+      "n:петренко іван",
+      "Іван Петренко",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles an email learned from a duplicate name 1`] = `
+{
+  "dups": [
+    [
+      "Pop Ana",
+      "ana@e.ro",
+      "același nume",
+      "Ana Pop",
+    ],
+    [
+      "Alta",
+      "ana@e.ro",
+      "același email",
+      "Ana Pop",
+    ],
+  ],
+  "list": [
+    [
+      "n:ana pop",
+      "Ana Pop",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles comma inside the name 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "n:ion popescu",
+      "Popescu Ion",
+      "",
+    ],
+    [
+      "n:maria popescu",
+      "Popescu Maria",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles duplicate emails 1`] = `
+{
+  "dups": [
+    [
+      "Altă Ana",
+      "a@e.ro",
+      "același email",
+      "Ana",
+    ],
+  ],
+  "list": [
+    [
+      "a@e.ro",
+      "Ana",
+      "a@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles duplicate names in another order 1`] = `
+{
+  "dups": [
+    [
+      "Pop Ană",
+      "",
+      "același nume",
+      "Ana Pop",
+    ],
+    [
+      "Ana-Pop",
+      "",
+      "același nume",
+      "Ana Pop",
+    ],
+  ],
+  "list": [
+    [
+      "n:ana pop",
+      "Ana Pop",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles email only 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "ana.pop@e.ro",
+      "Ana.pop",
+      "ana.pop@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles extra columns 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "ana@e.ro",
+      "Ana Pop",
+      "ana@e.ro",
+    ],
+    [
+      "n:ion",
+      "Ion",
+      "",
+    ],
+    [
+      "ema@e.ro",
+      "Ema",
+      "ema@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles header and blank rows 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "ana@e.ro",
+      "Ana Pop",
+      "ana@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles letter case 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "n:ana maria pop",
+      "Ana-Maria Pop",
+      "",
+    ],
+    [
+      "n:ion stefanescu",
+      "Ion Ștefănescu",
+      "",
+    ],
+    [
+      "n:berg der van",
+      "van der Berg",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles name and email in one cell 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "ion@e.ro",
+      "Ion Popescu",
+      "ion@e.ro",
+    ],
+    [
+      "ema@e.ro",
+      "Ema Pop",
+      "ema@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles names that differ only by a number 1`] = `
+{
+  "dups": [
+    [
+      "Echipa 1",
+      "",
+      "același nume",
+      "Echipa 1",
+    ],
+  ],
+  "list": [
+    [
+      "n:1 echipa",
+      "Echipa 1",
+      "",
+    ],
+    [
+      "n:2 echipa",
+      "Echipa 2",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles numbered names 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "n:ana pop",
+      "Ana Pop",
+      "",
+    ],
+    [
+      "n:ion pop",
+      "Ion Pop",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles separate name columns 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "ion@e.ro",
+      "Popescu Ion",
+      "ion@e.ro",
+    ],
+    [
+      "maria@e.ro",
+      "Popescu Maria",
+      "maria@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles separators 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "ana@e.ro",
+      "Ana Pop",
+      "ana@e.ro",
+    ],
+    [
+      "ion@e.ro",
+      "Ion Pop",
+      "ion@e.ro",
+    ],
+    [
+      "ema@e.ro",
+      "Ema Pop",
+      "ema@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > handles timestamps and row numbers 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "ana@e.ro",
+      "Ana Pop",
+      "ana@e.ro",
+    ],
+    [
+      "ion@e.ro",
+      "Ion Pop",
+      "ion@e.ro",
+    ],
+  ],
+}
+`;
+
+exports[`parsePeople > keeps people with the same name when asked to 1`] = `
+{
+  "dups": [],
+  "list": [
+    [
+      "l:0",
+      "Ana Pop",
+      "",
+    ],
+    [
+      "l:1",
+      "Ana Pop",
+      "",
+    ],
+  ],
+}
+`;
+
+exports[`parsePrizes > handles decimals and nearby numbers 1`] = `
+[
+  {
+    "prize": "a 20.50 euro",
+    "rar": "common",
+    "sponsor": "",
+  },
+  {
+    "prize": "b 1.200,50 lei",
+    "rar": "common",
+    "sponsor": "",
+  },
+  {
+    "prize": "c iPhone 15 3000 lei",
+    "rar": "rare",
+    "sponsor": "",
+  },
+  {
+    "prize": "d 1,200 euro",
+    "rar": "epic",
+    "sponsor": "",
+  },
+  {
+    "prize": "e 1 200 euro",
+    "rar": "epic",
+    "sponsor": "",
+  },
+  {
+    "prize": "f 12.500.000 lei",
+    "rar": "legendary",
+    "sponsor": "",
+  },
+  {
+    "prize": "g 250€",
+    "rar": "rare",
+    "sponsor": "",
+  },
+  {
+    "prize": "h 249,99 euro",
+    "rar": "common",
+    "sponsor": "",
+  },
+]
+`;
+
+exports[`parsePrizes > handles forced rarity 1`] = `
+[
+  {
+    "prize": "Voucher",
+    "rar": "epic",
+    "sponsor": "X",
+  },
+  {
+    "prize": "Y",
+    "rar": "legendary",
+    "sponsor": "",
+  },
+]
+`;
+
+exports[`parsePrizes > handles header and numbering 1`] = `
+[
+  {
+    "prize": "Voucher",
+    "rar": "common",
+    "sponsor": "X",
+  },
+]
+`;
+
+exports[`parsePrizes > handles sponsor and prize 1`] = `
+[
+  {
+    "prize": "Voucher",
+    "rar": "common",
+    "sponsor": "X",
+  },
+  {
+    "prize": "Doar premiu",
+    "rar": "common",
+    "sponsor": "",
+  },
+  {
+    "prize": "B · C",
+    "rar": "common",
+    "sponsor": "A",
+  },
+]
+`;
+
+exports[`parsePrizes > handles value thresholds 1`] = `
+[
+  {
+    "prize": "a 249 euro",
+    "rar": "common",
+    "sponsor": "",
+  },
+  {
+    "prize": "b 250 euro",
+    "rar": "rare",
+    "sponsor": "",
+  },
+  {
+    "prize": "c 1.000 €",
+    "rar": "epic",
+    "sponsor": "",
+  },
+  {
+    "prize": "d 3000 eur",
+    "rar": "legendary",
+    "sponsor": "",
+  },
+  {
+    "prize": "e 1.250 lei",
+    "rar": "rare",
+    "sponsor": "",
+  },
+  {
+    "prize": "f 15000 ron",
+    "rar": "legendary",
+    "sponsor": "",
+  },
+  {
+    "prize": "g 1249 lei",
+    "rar": "common",
+    "sponsor": "",
+  },
+  {
+    "prize": "Marele premiu",
+    "rar": "legendary",
+    "sponsor": "",
+  },
+]
+`;
+
+exports[`parsePrizes > promotes the last prize only when there are several 1`] = `
+[
+  [
+    {
+      "prize": "a",
+      "rar": "common",
+      "sponsor": "",
+    },
+    {
+      "prize": "b",
+      "rar": "legendary",
+      "sponsor": "",
+    },
+  ],
+  [
+    {
+      "prize": "a",
+      "rar": "common",
+      "sponsor": "",
+    },
+  ],
+]
+`;

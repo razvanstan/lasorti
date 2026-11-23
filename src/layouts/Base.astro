@@ -1,0 +1,128 @@
+---
+import '@fontsource-variable/archivo';
+import '../styles/global.css';
+import { SITE } from '../config';
+import Email from '../components/Email.astro';
+import Mark from '../components/Mark.astro';
+import ModeToggle from '../components/ModeToggle.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description = SITE.description } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE.name}` : `Extragere premii online, fără reclame · ${SITE.name}`;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const nav = [
+  { href: '/cum-functioneaza/', label: 'Cum funcționează', sm: false },
+  { href: '/demo/', label: 'Demo', sm: true },
+  { href: '/termeni/', label: 'Termeni', sm: false },
+];
+const isCurrent = (href: string) => {
+  const h = href.replace(/\/$/, '') || '/';
+  return h === '/' ? path === '/' : path === h || path.startsWith(h + '/');
+};
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0c0e12" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og-image.png', SITE.url).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="la sorți – extragere de premii pentru evenimente live" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      // light/dark mode and the accent colour are applied before the first paint, to avoid a flash
+      (() => {
+        const root = document.documentElement;
+        const systemLight = matchMedia('(prefers-color-scheme: light)');
+        const read = (key) => {
+          try {
+            return localStorage.getItem(key);
+          } catch {
+            return null; // storage is blocked: use the defaults
+          }
+        };
+        const applyMode = () => {
+          root.dataset.mode = read('ls_mode') || (systemLight.matches ? 'light' : 'dark');
+        };
+        applyMode();
+        systemLight.addEventListener?.('change', applyMode);
+
+        // the accent colour belongs to one draw, so it must not leak to the rest of the site
+        const setupKeys = { '/extragere/tombola': 'ls_setup', '/extragere/giveaway': 'ls_gw_setup' };
+        const setupKey = setupKeys[location.pathname.replace(/\/$/, '')];
+        try {
+          const theme = setupKey && JSON.parse(read(setupKey) || '{}').theme;
+          if (theme) root.dataset.theme = theme;
+        } catch {
+          // unreadable settings: keep the default colour
+        }
+      })();
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href="/" aria-label="la sorți – acasă">
+          <Mark size={24} />
+          <b>
+            LA<span>SORȚI</span>
+          </b>
+        </a>
+        <nav class="site-nav" aria-label="Navigare principală">
+          {nav.map((n) => (
+            <a href={n.href} class={n.sm ? undefined : 'hide-sm'} aria-current={isCurrent(n.href) ? 'page' : undefined}>
+              {n.label}
+            </a>
+          ))}
+          <a class="nav-cta" href="/extragere/" aria-current={path.startsWith('/extragere') ? 'page' : undefined}>
+            Pregătește extragerea
+          </a>
+          <ModeToggle />
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="made">
+          Făcut de{' '}
+          <a href={SITE.authorUrl} rel="author">
+            <b>{SITE.author}</b>
+          </a>
+          , pentru comunitate. Gratuit, fără reclame. <a href={SITE.projectsUrl}>Vezi și alte proiecte</a>
+        </div>
+        <nav class="foot-links" aria-label="Linkuri utile">
+          <Email />
+          <a href={SITE.repoUrl}>Cod sursă pe GitHub</a>
+          <a href="/extragere/">Extragere</a>
+          <a href="/cum-functioneaza/">Cum funcționează</a>
+          <a href="/termeni/">Termeni și confidențialitate</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

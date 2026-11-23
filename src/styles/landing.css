@@ -1,0 +1,363 @@
+/* Home page */
+.eyebrow {
+  color: var(--acc);
+  font: 700 12px var(--font);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+.center {
+  text-align: center;
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.15;
+  color: var(--ink);
+  text-align: center;
+  margin: 0 auto 36px;
+  max-width: 760px;
+  letter-spacing: -0.02em;
+}
+.block {
+  padding: 80px 0;
+}
+.block.alt {
+  background: var(--panel2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cta.big {
+  font-size: 17px;
+  padding: 15px 24px;
+  border-radius: 12px;
+}
+
+/* hero */
+.hero {
+  padding: 64px 0 24px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(38px, 5.4vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--acc);
+}
+.hero-lead {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0 0 28px;
+  max-width: 560px;
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-cta.center {
+  justify-content: center;
+}
+.hero-note {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 16px 0 0;
+}
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 36px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* steps */
+.how {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.how li {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 24px 22px;
+}
+.how-n {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--acc-fill);
+  color: var(--acc-ink);
+  font: 800 20px var(--font-display);
+}
+.how h3 {
+  font-size: 21px;
+  color: var(--ink);
+  margin: 16px 0 8px;
+}
+.how p {
+  margin: 0;
+  color: var(--text);
+}
+@media (max-width: 800px) {
+  .how {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* benefits (.feature is styled in global.css) */
+.block .features {
+  margin-top: 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+  .block .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .block .features {
+    grid-template-columns: 1fr;
+  }
+}
+.block.alt .feature {
+  background: var(--card);
+}
+
+/* audience */
+.usecases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.usecases div {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  background: var(--card);
+}
+.usecases span {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 8px;
+}
+.usecases b {
+  color: var(--ink);
+  font-size: 16px;
+}
+.usecases p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .usecases {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .usecases {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FAQ */
+.faq-wrap {
+  max-width: 820px;
+}
+.faq details {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 52px 16px 20px;
+  position: relative;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 17px;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '+';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font: 400 24px var(--font);
+  color: var(--acc);
+  transition: transform 0.2s;
+}
+.faq details[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+.faq details p {
+  margin: 0;
+  padding: 0 20px 18px;
+  color: var(--text);
+}
+.faq-more {
+  color: var(--muted);
+  margin-top: 22px;
+}
+
+/* final CTA */
+.final-cta {
+  text-align: center;
+  border-radius: 24px;
+  padding: 56px 24px;
+  background: radial-gradient(600px 300px at 50% 0%, rgba(var(--acc-rgb), 0.18), transparent 70%), var(--card);
+  border: 1px solid var(--line);
+}
+.final-cta h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  color: var(--ink);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+.final-cta p {
+  color: var(--text);
+  max-width: 560px;
+  margin: 0 auto 26px;
+  font-size: 17px;
+}
+
+.maker {
+  max-width: 620px;
+  margin: 56px auto 0;
+  text-align: center;
+}
+.maker h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: var(--ink);
+}
+.maker p {
+  margin: 0;
+}
+
+/* no large margin under the last block */
+main > .block:last-child {
+  padding-bottom: 20px;
+}
+
+/* draw type chooser (/extragere/) */
+.chooser {
+  max-width: 920px;
+  padding-bottom: 20px;
+}
+.chooser h1 {
+  font-size: clamp(30px, 4vw, 42px);
+  color: var(--ink);
+  margin: 6px 0 8px;
+  letter-spacing: -0.025em;
+}
+.chooser .sub {
+  color: var(--muted);
+  font-size: 17px;
+  margin: 0 0 30px;
+}
+.kind-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.kind-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 28px 26px 24px;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--text);
+  transition:
+    border-color 0.15s,
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.kind-card:hover {
+  border-color: var(--acc);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -20px rgba(var(--acc-rgb), 0.45);
+  color: var(--text);
+}
+.kind-ico {
+  font-size: 34px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.kind-title {
+  font: 800 30px/1.1 var(--font-display);
+  color: var(--ink);
+  letter-spacing: -0.025em;
+}
+.kind-sub {
+  color: var(--acc);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.kind-card ul {
+  margin: 16px 0 20px;
+  padding-left: 18px;
+  color: var(--text);
+  font-size: 15px;
+}
+.kind-card li {
+  margin: 4px 0;
+}
+.kind-go {
+  margin-top: auto;
+  align-self: flex-start;
+  background: var(--acc-fill);
+  color: var(--acc-ink);
+  font-weight: 700;
+  padding: 11px 18px;
+  border-radius: 10px;
+}
+.kind-resume {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--acc);
+}
+.kind-resume::before {
+  content: '● ';
+}
+.hint-line {
+  color: var(--muted);
+  margin-top: 24px;
+}
+@media (max-width: 720px) {
+  .kind-cards {
+    grid-template-columns: 1fr;
+  }
+}

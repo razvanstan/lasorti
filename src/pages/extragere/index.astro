@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import '../../styles/landing.css';
+---
+
+<Base
+  title="Pregătește extragerea"
+  description="Alege tipul de extragere: tombolă cu premii multiple pentru evenimente sau giveaway din comentariile de pe Instagram sau dintr-o listă."
+>
+  <div class="wrap chooser">
+    <a class="back-link" href="/">
+      ← Prima pagină
+    </a>
+    <h1>Ce extragere pregătești?</h1>
+    <p class="sub">
+      Amândouă au aceeași scenă live, proces-verbal și amprenta listei. Diferă doar de unde vin participanții.
+    </p>
+
+    <div class="kind-cards">
+      <a class="kind-card" href="/extragere/tombola/" data-state="ls_state">
+        <span class="kind-ico" aria-hidden="true">
+          🎟️
+        </span>
+        <span class="kind-title">Tombolă</span>
+        <span class="kind-sub">premii multiple</span>
+        <ul>
+          <li>Participanți din Excel, Google Sheets sau Forms</li>
+          <li>Mai multe premii, cu sponsori și raritate</li>
+          <li>Pentru conferințe, petreceri, evenimente</li>
+        </ul>
+        <span class="kind-go">Pregătește tombola →</span>
+        <span class="kind-resume" hidden>
+          Ai o tombolă în desfășurare: continu-o
+        </span>
+      </a>
+      <a class="kind-card" href="/extragere/giveaway/" data-state="ls_gw_state">
+        <span class="kind-ico" aria-hidden="true">
+          📱
+        </span>
+        <span class="kind-title">Giveaway</span>
+        <span class="kind-sub">din comentarii</span>
+        <ul>
+          <li>Comentarii de pe Instagram sau o listă de participanți</li>
+          <li>Reguli: tag-uri, hashtag, conturi excluse</li>
+          <li>Câștigători și rezerve, cu proces-verbal</li>
+        </ul>
+        <span class="kind-go">Pregătește giveaway-ul →</span>
+        <span class="kind-resume" hidden>
+          Ai un giveaway în desfășurare: continuă-l
+        </span>
+      </a>
+    </div>
+    <p class="hint-line">
+      Vrei să vezi întâi cum arată? <a href="/demo/">Demo tombolă</a> · <a href="/demo/giveaway/">Demo giveaway</a>
+    </p>
+  </div>
+</Base>
+
+<script>
+  // point out draws in progress (saved in this browser)
+  document.querySelectorAll<HTMLElement>('.kind-card').forEach((c) => {
+    try {
+      const s = JSON.parse(localStorage.getItem(c.dataset.state || '') || 'null');
+      if (s && !s.done) c.querySelector<HTMLElement>('.kind-resume')!.hidden = false;
+    } catch {
+      // unreadable or blocked storage: nothing to resume
+    }
+  });
+</script>

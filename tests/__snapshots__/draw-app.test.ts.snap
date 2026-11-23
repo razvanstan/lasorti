@@ -1,0 +1,1051 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`demo > runs the prefilled giveaway without saving the form > check 1`] = `
+[
+  "22 comentarii · 16 participanți valizi · 1 + 2 rezerve",
+  "<b>Comentarii eliminate (5):</b><div><b>@cafeneauadincolt</b> — cont exclus: <i>Mulțumim tuturor! Câștigătorul se anunță vineri 🎉</i></div><div><b>@elena.dum</b> — mai puțin de 1 tag: <i>Superb! Ce cafea bună aveți</i></div><div><b>@bogdan.radu</b> — mai puțin de 1 tag: <i>Doamne ajută 🙏</i></div><div><b>@cafeneauadincolt</b> — cont exclus: <i>@bogdan.radu nu uita de tag 😉</i></div><div><b>@stefan.ilie</b> — mai puțin de 1 tag: <i>Super concurs</i></div>",
+  "<div><b>Format recunoscut:</b> comentarii copiate de pe Instagram.</div><div style="margin-top:6px"><b>Comentarii valide:</b> 17 din 22 · <b>eliminate:</b> cont exclus (2), mai puțin de 1 tag (3)</div><details style="margin-top:6px"><summary><b>Participanți valizi (16)</b></summary>@ana.popescu, @mihai_constantin, @vlad.munteanu, @ioana.stan, @raluca.stoica, @bogdan.radu, @diana.ene, @george.dobre, @laura.matei, @tudor.c, @simona.l, @cristi.marin, @oana.m, @radu_n, @florin.b, @alex.georgescu</details><div style="margin-top:6px"><b>Amprenta listei (SHA-256):</b> <span class="hash">56fe6a68bffe7e51d4c271dac6a7b99b8f0b57c5c44d634ec8ea1e509faaafa0</span><br>Poți publica amprenta înainte de extragere, ca oricine să verifice apoi că lista nu a fost modificată. <a href="#" id="dlList">Descarcă lista (.txt)</a> · <a href="/cum-functioneaza/#amprenta">ce înseamnă?</a></div>",
+]
+`;
+
+exports[`demo > runs the prefilled giveaway without saving the form > final 1`] = `"<div class="fcard grand"><h3>🏆 Câștigător · Voucher de 300 lei la Cafeneaua din Colț</h3><div class="fw">@tudor.c</div></div><div class="fcard"><h3>Rezerve, în ordine</h3><ul><li><div class="fw">@ana.popescu</div><div class="fp">Rezerva 1</div></li><li><div class="fw">@raluca.stoica</div><div class="fp">Rezerva 2</div></li></ul></div>"`;
+
+exports[`demo > runs the prefilled giveaway without saving the form > storage keys 1`] = `
+[
+  "ls_demo_gw_state",
+]
+`;
+
+exports[`demo > runs the prefilled tombola without saving the form > check 1`] = `
+[
+  "20 participanți unici după email și nume (2 duplicate eliminate) · 5 premii",
+  "<b>Duplicate eliminate (2):</b><div>Popescu Andrei · andrei.p@example.com — același nume ca <b>Andrei Popescu</b> · andrei.popescu@example.com</div><div>Maria Ionescu · maria.ionescu@example.com — același email ca <b>Maria Ionescu</b> · maria.ionescu@example.com</div>",
+  "<div><b>Premii după raritate:</b> Comun 2 · Rar 1 · Epic 1 · ★ Legendar 1</div><div style="margin-top:6px"><b>Duplicate:</b> se elimină după email și nume · <b>Premii:</b> fiecare participant poate câștiga un singur premiu</div><div style="margin-top:6px"><b>Amprenta listei (SHA-256):</b> <span class="hash">d98c6bc507b6c5032f246e20b06a0021f4b3462f2b3a5e262f956ac0a9b875ea</span><br>Poți publica amprenta înainte de extragere, ca oricine să verifice apoi că lista nu a fost modificată. <a href="#" id="dlList">Descarcă lista (.txt)</a> · <a href="/cum-functioneaza/#amprenta">ce înseamnă?</a></div>",
+]
+`;
+
+exports[`demo > runs the prefilled tombola without saving the form > final 1`] = `"<div class="fcard grand"><h3>⭐ Marele premiu · oferit de Organizatorul</h3><div class="fw">🏆 Bogdan Radu</div><div class="fp">Marele premiu: o tabletă nouă (3.000 lei)</div></div><div class="fcard" style="animation-delay:0s"><h3>Cafeneaua din Colț</h3><ul><li><div class="fw">🏆 Florin Barbu</div><div class="fp">Voucher de consumație de 100 lei</div></li></ul></div><div class="fcard" style="animation-delay:0.12s"><h3>Librăria Pagina 7</h3><ul><li><div class="fw">🏆 George Dobre</div><div class="fp">3 cărți la alegere</div></li></ul></div><div class="fcard" style="animation-delay:0.24s"><h3>Studio Foto Lumina</h3><ul><li><div class="fw">🏆 Maria Ionescu</div><div class="fp">Ședință foto de o oră (250 euro)</div></li></ul></div><div class="fcard" style="animation-delay:0.36s"><h3>Agenția Drum Bun</h3><ul><li><div class="fw">🏆 Alexandru Georgescu</div><div class="fp">Weekend la munte pentru 2 persoane (1.200 euro)</div></li></ul></div>"`;
+
+exports[`demo > runs the prefilled tombola without saving the form > storage keys 1`] = `
+[
+  "ls_demo_state",
+]
+`;
+
+exports[`giveaway > refuses to start with no comments 1`] = `
+[
+  "Nu am găsit niciun participant în text. Verifică sursa aleasă.",
+  "",
+]
+`;
+
+exports[`giveaway > refuses to start with no valid comment 1`] = `
+[
+  "Niciun comentariu nu respectă regulile.",
+  "",
+]
+`;
+
+exports[`giveaway > refuses to start with too few participants 1`] = `
+[
+  "Ai cerut 51 extrași (câștigători + rezerve), dar sunt doar 3 participanți valizi.",
+  "",
+]
+`;
+
+exports[`giveaway > reports valid and rejected comments (one chance per comment) 1`] = `
+[
+  "7 comentarii · 3 participanți valizi · 4 șanse în total · 2 + 1 rezerve",
+  "<b>Comentarii eliminate (3):</b><div><b>@brand</b> — cont exclus: <i>Succes @ion.v cafea</i></div><div><b>@vlad</b> — mai puțin de 1 tag: <i>Fără tag, dar cafea &lt;i&gt;bună&lt;/i&gt;</i></div><div><b>@ema</b> — lipsește „cafea”: <i>doar tag @ion.v</i></div>",
+  "<div><b>Format recunoscut:</b> comentarii copiate de pe Instagram.</div><div style="margin-top:6px"><b>Comentarii valide:</b> 4 din 7 · <b>eliminate:</b> cont exclus (1), mai puțin de 1 tag (1), lipsește „cafea” (1)</div><div style="margin-top:6px"><b>Cele mai multe șanse:</b> @ana.pop × 2</div><details style="margin-top:6px"><summary><b>Participanți valizi (3)</b></summary>@ana.pop, @ion.v, @geo</details><div style="margin-top:6px"><b>Amprenta listei (SHA-256):</b> <span class="hash">094d5baec8f8a779b9783126593d1596ecff47a63a97df6f082e7697d77fe686</span><br>Poți publica amprenta înainte de extragere, ca oricine să verifice apoi că lista nu a fost modificată. <a href="#" id="dlList">Descarcă lista (.txt)</a> · <a href="/cum-functioneaza/#amprenta">ce înseamnă?</a></div>",
+]
+`;
+
+exports[`giveaway > reports valid and rejected comments (one chance per person) 1`] = `
+[
+  "7 comentarii · 3 participanți valizi · 2 + 1 rezerve",
+  "<b>Comentarii eliminate (3):</b><div><b>@brand</b> — cont exclus: <i>Succes @ion.v cafea</i></div><div><b>@vlad</b> — mai puțin de 1 tag: <i>Fără tag, dar cafea &lt;i&gt;bună&lt;/i&gt;</i></div><div><b>@ema</b> — lipsește „cafea”: <i>doar tag @ion.v</i></div>",
+  "<div><b>Format recunoscut:</b> comentarii copiate de pe Instagram.</div><div style="margin-top:6px"><b>Comentarii valide:</b> 4 din 7 · <b>eliminate:</b> cont exclus (1), mai puțin de 1 tag (1), lipsește „cafea” (1)</div><details style="margin-top:6px"><summary><b>Participanți valizi (3)</b></summary>@ana.pop, @ion.v, @geo</details><div style="margin-top:6px"><b>Amprenta listei (SHA-256):</b> <span class="hash">472728d9c3ab8016ed4fa05884bb1e3f8c85c4d1ee17e45f507fe6a745ea757d</span><br>Poți publica amprenta înainte de extragere, ca oricine să verifice apoi că lista nu a fost modificată. <a href="#" id="dlList">Descarcă lista (.txt)</a> · <a href="/cum-functioneaza/#amprenta">ce înseamnă?</a></div>",
+]
+`;
+
+exports[`giveaway > runs from start to exports (one chance per comment) > exports 1`] = `
+{
+  "clipboard": [
+    "1	Câștigător	Voucher	@ana.pop	2
+2	Rezerva 1	Voucher	@geo	1",
+  ],
+  "downloads": [
+    {
+      "content": "﻿"Nr.";"Rol";"Premiu";"Câștigător";"Șanse";"Ora extragerii"
+"1";"Câștigător";"Voucher";"@ana.pop";"2";"10:00:16"
+"2";"Rezerva 1";"Voucher";"@geo";"1";"10:00:23"",
+      "name": "castigatori-giveaway.csv",
+    },
+    {
+      "content": "@ana.pop	2
+@ion.v	1
+@geo	1
+",
+      "name": "participanti-giveaway.txt",
+    },
+  ],
+  "printed": 1,
+  "report": "
+      <h1>Proces-verbal de extragere – giveaway</h1>
+      <div>Giveaway</div>
+      <h2>Date generale</h2>
+      <table class="kv"><tbody>
+        <tr><td>Începutul extragerii</td><td>23 noiembrie 2026 la 10:00:00</td></tr>
+        <tr><td>Sfârșitul extragerii</td><td>23 noiembrie 2026 la 10:00:27</td></tr>
+        
+        <tr><td>Sursa participanților</td><td>comentarii copiate de pe Instagram</td></tr>
+        <tr><td>Comentarii analizate</td><td>7 (valide: 4)</td></tr>
+        <tr><td>Reguli</td><td>minim 1 tag (@cont) în comentariu; comentariul conține „cafea”; conturi excluse: brand; fiecare comentariu valid = o șansă</td></tr>
+        <tr><td>Comentarii eliminate</td><td>cont exclus: 1; mai puțin de 1 tag: 1; lipsește „cafea”: 1</td></tr>
+        <tr><td>Participanți valizi</td><td>3 (4 șanse în total)</td></tr>
+        <tr><td>Extrași</td><td>1 câștigător și 1 rezervă; premiu: Voucher</td></tr>
+        <tr><td>Amprenta listei de participanți (SHA-256)</td><td class="mono">094d5baec8f8a779b9783126593d1596ecff47a63a97df6f082e7697d77fe686</td></tr>
+        <tr><td>Metodă</td><td>Extragere aleatorie ponderată după numărul de șanse, fără reintroducere (o persoană poate fi extrasă o singură dată), cu generatorul criptografic al browserului (Web Crypto, <code>crypto.getRandomValues</code>), prin instrumentul lasorti.ro, rulat local.</td></tr>
+      </tbody></table>
+      <h2>Câștigători și rezerve</h2>
+      <table><thead><tr><th>Nr.</th><th>Rol</th><th>Premiu</th><th>Câștigător</th><th>Șanse</th><th>Ora</th></tr></thead><tbody>
+        <tr><td>1</td><td>Câștigător</td><td>Voucher</td><td>@ana.pop</td><td>2</td><td>10:00:16</td></tr><tr><td>2</td><td>Rezerva 1</td><td>Voucher</td><td>@geo</td><td>1</td><td>10:00:23</td></tr>
+      </tbody></table>
+      <h2>Re-extrageri</h2>
+      <table><thead><tr><th>Poziția</th><th>Persoană extrasă inițial (scoasă din joc)</th><th>Ora</th></tr></thead><tbody>
+        <tr><td>1 – Câștigător</td><td>@ion.v</td><td>10:00:16</td></tr>
+      </tbody></table>
+      <div class="sign"><div>Organizator (nume, semnătură)</div><div>Martor / comisie (nume, semnătură)</div></div>
+      <p class="foot">Document generat cu lasorti.ro la 23 noiembrie 2026 la 10:00:32. Instrumentul doar efectuează extragerea aleatorie și aplică regulile introduse de organizator asupra textului lipit de acesta; organizatorul răspunde de regulamentul campaniei, de eligibilitatea participanților, de acordarea premiilor și de respectarea legislației aplicabile și a regulilor platformei.</p>",
+}
+`;
+
+exports[`giveaway > runs from start to exports (one chance per comment) > final 1`] = `
+[
+  "1 câștigător · 1 rezervă · 3 participanți valizi · mulțumim tuturor!",
+  "<div class="fcard grand"><h3>🏆 Câștigător · Voucher</h3><div class="fw">@ana.pop</div></div><div class="fcard"><h3>Rezerve, în ordine</h3><ul><li><div class="fw">@geo</div><div class="fp">Rezerva 1</div></li></ul></div>",
+]
+`;
+
+exports[`giveaway > runs from start to exports (one chance per comment) > first winner 1`] = `
+{
+  "board": "<div class="tile legendary won justwon"><span class="n">#1</span><div class="r">Câștigător</div><div class="t" title="Voucher">Voucher</div><div class="s"></div><div class="w">🏆 @ion.v</div></div><div class="tile common upcoming"><span class="n">#2</span><div class="r">Rezerva 1</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div>",
+  "disabled": "drawBtn",
+  "nextBtn": "Următorul →",
+  "pName": "Voucher",
+  "pNum": "Câștigătorul",
+  "pSponsor": "<div><span class="prar r">Câștigător</span></div>",
+  "poolInfo": "2 participanți în joc (3 șanse) · amprenta listei 094d5baec8f8…",
+  "progLeft": "1 rămași",
+  "progTxt": "1 / 2",
+  "resBody": "<tr><td>1</td><td>Câștigător</td><td>Voucher</td><td>@ion.v</td><td>1</td></tr>",
+  "resHead": "<tr><th>Nr.</th><th>Rol</th><th>Premiu</th><th>Câștigător</th><th>Șanse</th></tr>",
+  "slotName": "@ion.v",
+  "track": "<span data-id="u:ion.v" class="won">@ion.v</span><span data-id="u:geo">@geo</span><span data-id="u:ana.pop">@ana.pop</span><span data-id="u:ion.v" class="won">@ion.v</span><span data-id="u:geo">@geo</span><span data-id="u:ana.pop">@ana.pop</span>",
+  "winEmail": "1 șansă din 4",
+}
+`;
+
+exports[`giveaway > runs from start to exports (one chance per comment) > ready 1`] = `
+{
+  "board": "<div class="tile legendary current"><span class="n">#1</span><div class="r">Câștigător</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div><div class="tile common upcoming"><span class="n">#2</span><div class="r">Rezerva 1</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div>",
+  "disabled": "redrawBtn,nextBtn",
+  "nextBtn": "Următorul →",
+  "pName": "Voucher",
+  "pNum": "Câștigătorul",
+  "pSponsor": "<div><span class="prar r">Câștigător</span></div>",
+  "poolInfo": "3 participanți în joc (4 șanse) · amprenta listei 094d5baec8f8…",
+  "progLeft": "2 rămași",
+  "progTxt": "0 / 2",
+  "resBody": "",
+  "resHead": "",
+  "slotName": "?",
+  "track": "<span data-id="u:ion.v">@ion.v</span><span data-id="u:geo">@geo</span><span data-id="u:ana.pop">@ana.pop</span><span data-id="u:ion.v">@ion.v</span><span data-id="u:geo">@geo</span><span data-id="u:ana.pop">@ana.pop</span>",
+  "winEmail": "",
+}
+`;
+
+exports[`giveaway > runs from start to exports (one chance per comment) > state 1`] = `
+{
+  "all": [
+    {
+      "email": "",
+      "id": "u:ana.pop",
+      "name": "@ana.pop",
+      "w": 2,
+    },
+    {
+      "email": "",
+      "id": "u:ion.v",
+      "name": "@ion.v",
+      "w": 1,
+    },
+    {
+      "email": "",
+      "id": "u:geo",
+      "name": "@geo",
+      "w": 1,
+    },
+  ],
+  "done": true,
+  "gw": {
+    "comments": 7,
+    "format": "comments",
+    "prize": "Voucher",
+    "rejected": [
+      {
+        "n": 1,
+        "why": "cont exclus",
+      },
+      {
+        "n": 1,
+        "why": "mai puțin de 1 tag",
+      },
+      {
+        "n": 1,
+        "why": "lipsește „cafea”",
+      },
+    ],
+    "reserves": 1,
+    "rules": {
+      "exclude": [
+        "brand",
+      ],
+      "keyword": "cafea",
+      "minTags": 1,
+      "mode": "comment",
+    },
+    "validComments": 4,
+    "winners": 1,
+  },
+  "idx": 1,
+  "kind": "giveaway",
+  "meta": {
+    "dupCount": 0,
+    "endedAt": 1795428027000,
+    "hash": "094d5baec8f8a779b9783126593d1596ecff47a63a97df6f082e7697d77fe686",
+    "logo": "",
+    "startedAt": 1795428000000,
+    "sub": "",
+    "theme": "",
+    "title": "Giveaway",
+  },
+  "opts": {
+    "countdown": true,
+    "dedupeColumn": "",
+    "grandLast": false,
+    "multiWin": false,
+    "showEmail": false,
+    "sound": true,
+  },
+  "pool": [],
+  "prizes": [
+    {
+      "label": "Câștigător",
+      "prize": "Voucher",
+      "rar": "legendary",
+      "sponsor": "",
+    },
+    {
+      "label": "Rezerva 1",
+      "prize": "Voucher",
+      "rar": "common",
+      "reserve": true,
+      "sponsor": "",
+    },
+  ],
+  "redraws": [
+    {
+      "at": 1795428016136,
+      "email": "",
+      "idx": 0,
+      "name": "@ion.v",
+    },
+  ],
+  "results": [
+    {
+      "at": 1795428016136,
+      "email": "",
+      "id": "u:ana.pop",
+      "label": "Câștigător",
+      "name": "@ana.pop",
+      "prize": "Voucher",
+      "rar": "legendary",
+      "sponsor": "",
+      "w": 2,
+    },
+    {
+      "at": 1795428023280,
+      "email": "",
+      "id": "u:geo",
+      "label": "Rezerva 1",
+      "name": "@geo",
+      "prize": "Voucher",
+      "rar": "common",
+      "reserve": true,
+      "sponsor": "",
+      "w": 1,
+    },
+  ],
+  "ts": 1795428027000,
+  "v": 1,
+}
+`;
+
+exports[`giveaway > runs from start to exports (one chance per person) > exports 1`] = `
+{
+  "clipboard": [
+    "1	Câștigător 1	Voucher	@ana.pop
+2	Câștigător 2	Voucher	@ion.v",
+  ],
+  "downloads": [
+    {
+      "content": "﻿"Nr.";"Rol";"Premiu";"Câștigător";"Ora extragerii"
+"1";"Câștigător 1";"Voucher";"@ana.pop";"10:00:14"
+"2";"Câștigător 2";"Voucher";"@ion.v";"10:00:23"",
+      "name": "castigatori-giveaway.csv",
+    },
+    {
+      "content": "@ana.pop
+@ion.v
+@geo
+",
+      "name": "participanti-giveaway.txt",
+    },
+  ],
+  "printed": 1,
+  "report": "
+      <h1>Proces-verbal de extragere – giveaway</h1>
+      <div>Giveaway</div>
+      <h2>Date generale</h2>
+      <table class="kv"><tbody>
+        <tr><td>Începutul extragerii</td><td>23 noiembrie 2026 la 10:00:00</td></tr>
+        <tr><td>Sfârșitul extragerii</td><td>extragere în desfășurare</td></tr>
+        
+        <tr><td>Sursa participanților</td><td>comentarii copiate de pe Instagram</td></tr>
+        <tr><td>Comentarii analizate</td><td>7 (valide: 4)</td></tr>
+        <tr><td>Reguli</td><td>minim 1 tag (@cont) în comentariu; comentariul conține „cafea”; conturi excluse: brand; o șansă de persoană, indiferent de numărul de comentarii</td></tr>
+        <tr><td>Comentarii eliminate</td><td>cont exclus: 1; mai puțin de 1 tag: 1; lipsește „cafea”: 1</td></tr>
+        <tr><td>Participanți valizi</td><td>3</td></tr>
+        <tr><td>Extrași</td><td>2 câștigători și 1 rezervă; premiu: Voucher</td></tr>
+        <tr><td>Amprenta listei de participanți (SHA-256)</td><td class="mono">472728d9c3ab8016ed4fa05884bb1e3f8c85c4d1ee17e45f507fe6a745ea757d</td></tr>
+        <tr><td>Metodă</td><td>Extragere aleatorie uniformă, fără reintroducere (fiecare persoană poate fi extrasă o singură dată), cu generatorul criptografic al browserului (Web Crypto, <code>crypto.getRandomValues</code>), prin instrumentul lasorti.ro, rulat local.</td></tr>
+      </tbody></table>
+      <h2>Câștigători și rezerve</h2>
+      <table><thead><tr><th>Nr.</th><th>Rol</th><th>Premiu</th><th>Câștigător</th><th>Ora</th></tr></thead><tbody>
+        <tr><td>1</td><td>Câștigător 1</td><td>Voucher</td><td>@ana.pop</td><td>10:00:14</td></tr><tr><td>2</td><td>Câștigător 2</td><td>Voucher</td><td>@ion.v</td><td>10:00:23</td></tr>
+      </tbody></table>
+      <h2>Re-extrageri</h2>
+      <table><thead><tr><th>Poziția</th><th>Persoană extrasă inițial (scoasă din joc)</th><th>Ora</th></tr></thead><tbody>
+        <tr><td>1 – Câștigător 1</td><td>@geo</td><td>10:00:14</td></tr>
+      </tbody></table>
+      <div class="sign"><div>Organizator (nume, semnătură)</div><div>Martor / comisie (nume, semnătură)</div></div>
+      <p class="foot">Document generat cu lasorti.ro la 23 noiembrie 2026 la 10:03:23. Instrumentul doar efectuează extragerea aleatorie și aplică regulile introduse de organizator asupra textului lipit de acesta; organizatorul răspunde de regulamentul campaniei, de eligibilitatea participanților, de acordarea premiilor și de respectarea legislației aplicabile și a regulilor platformei.</p>",
+}
+`;
+
+exports[`giveaway > runs from start to exports (one chance per person) > final 1`] = `
+[
+  "",
+  "",
+]
+`;
+
+exports[`giveaway > runs from start to exports (one chance per person) > first winner 1`] = `
+{
+  "board": "<div class="tile epic won justwon"><span class="n">#1</span><div class="r">Câștigător 1</div><div class="t" title="Voucher">Voucher</div><div class="s"></div><div class="w">🏆 @geo</div></div><div class="tile epic upcoming"><span class="n">#2</span><div class="r">Câștigător 2</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div><div class="tile common upcoming"><span class="n">#3</span><div class="r">Rezerva 1</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div>",
+  "disabled": "drawBtn",
+  "nextBtn": "Următorul →",
+  "pName": "Voucher",
+  "pNum": "Câștigător 1 din 2",
+  "pSponsor": "<div><span class="prar r">Câștigător 1</span></div>",
+  "poolInfo": "2 participanți în joc · amprenta listei 472728d9c3ab…",
+  "progLeft": "2 rămași",
+  "progTxt": "1 / 3",
+  "resBody": "<tr><td>1</td><td>Câștigător 1</td><td>Voucher</td><td>@geo</td></tr>",
+  "resHead": "<tr><th>Nr.</th><th>Rol</th><th>Premiu</th><th>Câștigător</th></tr>",
+  "slotName": "@geo",
+  "track": "<span data-id="u:ion.v">@ion.v</span><span data-id="u:geo" class="won">@geo</span><span data-id="u:ana.pop">@ana.pop</span><span data-id="u:ion.v">@ion.v</span><span data-id="u:geo" class="won">@geo</span><span data-id="u:ana.pop">@ana.pop</span>",
+  "winEmail": "",
+}
+`;
+
+exports[`giveaway > runs from start to exports (one chance per person) > ready 1`] = `
+{
+  "board": "<div class="tile epic current"><span class="n">#1</span><div class="r">Câștigător 1</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div><div class="tile epic upcoming"><span class="n">#2</span><div class="r">Câștigător 2</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div><div class="tile common upcoming"><span class="n">#3</span><div class="r">Rezerva 1</div><div class="t" title="Voucher">Voucher</div><div class="s"></div></div>",
+  "disabled": "redrawBtn,nextBtn",
+  "nextBtn": "Următorul →",
+  "pName": "Voucher",
+  "pNum": "Câștigător 1 din 2",
+  "pSponsor": "<div><span class="prar r">Câștigător 1</span></div>",
+  "poolInfo": "3 participanți în joc · amprenta listei 472728d9c3ab…",
+  "progLeft": "3 rămași",
+  "progTxt": "0 / 3",
+  "resBody": "",
+  "resHead": "",
+  "slotName": "?",
+  "track": "<span data-id="u:ion.v">@ion.v</span><span data-id="u:geo">@geo</span><span data-id="u:ana.pop">@ana.pop</span><span data-id="u:ion.v">@ion.v</span><span data-id="u:geo">@geo</span><span data-id="u:ana.pop">@ana.pop</span>",
+  "winEmail": "",
+}
+`;
+
+exports[`giveaway > runs from start to exports (one chance per person) > state 1`] = `
+{
+  "all": [
+    {
+      "email": "",
+      "id": "u:ana.pop",
+      "name": "@ana.pop",
+      "w": 1,
+    },
+    {
+      "email": "",
+      "id": "u:ion.v",
+      "name": "@ion.v",
+      "w": 1,
+    },
+    {
+      "email": "",
+      "id": "u:geo",
+      "name": "@geo",
+      "w": 1,
+    },
+  ],
+  "done": false,
+  "gw": {
+    "comments": 7,
+    "format": "comments",
+    "prize": "Voucher",
+    "rejected": [
+      {
+        "n": 1,
+        "why": "cont exclus",
+      },
+      {
+        "n": 1,
+        "why": "mai puțin de 1 tag",
+      },
+      {
+        "n": 1,
+        "why": "lipsește „cafea”",
+      },
+    ],
+    "reserves": 1,
+    "rules": {
+      "exclude": [
+        "brand",
+      ],
+      "keyword": "cafea",
+      "minTags": 1,
+      "mode": "person",
+    },
+    "validComments": 4,
+    "winners": 2,
+  },
+  "idx": 2,
+  "kind": "giveaway",
+  "meta": {
+    "dupCount": 0,
+    "endedAt": 0,
+    "hash": "472728d9c3ab8016ed4fa05884bb1e3f8c85c4d1ee17e45f507fe6a745ea757d",
+    "logo": "",
+    "startedAt": 1795428000000,
+    "sub": "",
+    "theme": "",
+    "title": "Giveaway",
+  },
+  "opts": {
+    "countdown": true,
+    "dedupeColumn": "",
+    "grandLast": false,
+    "multiWin": false,
+    "showEmail": false,
+    "sound": true,
+  },
+  "pool": [],
+  "prizes": [
+    {
+      "label": "Câștigător 1",
+      "prize": "Voucher",
+      "rar": "epic",
+      "sponsor": "",
+    },
+    {
+      "label": "Câștigător 2",
+      "prize": "Voucher",
+      "rar": "epic",
+      "sponsor": "",
+    },
+    {
+      "label": "Rezerva 1",
+      "prize": "Voucher",
+      "rar": "common",
+      "reserve": true,
+      "sponsor": "",
+    },
+  ],
+  "redraws": [
+    {
+      "at": 1795428014280,
+      "email": "",
+      "idx": 0,
+      "name": "@geo",
+    },
+  ],
+  "results": [
+    {
+      "at": 1795428014280,
+      "email": "",
+      "id": "u:ana.pop",
+      "label": "Câștigător 1",
+      "name": "@ana.pop",
+      "prize": "Voucher",
+      "rar": "epic",
+      "sponsor": "",
+      "w": 1,
+    },
+    {
+      "at": 1795428023280,
+      "email": "",
+      "id": "u:ion.v",
+      "label": "Câștigător 2",
+      "name": "@ion.v",
+      "prize": "Voucher",
+      "rar": "epic",
+      "sponsor": "",
+      "w": 1,
+    },
+  ],
+  "ts": 1795428027000,
+  "v": 1,
+}
+`;
+
+exports[`giveaway > warns that rules cannot apply to a plain account list > report 1`] = `
+"
+      <h1>Proces-verbal de extragere – giveaway</h1>
+      <div>Giveaway</div>
+      <h2>Date generale</h2>
+      <table class="kv"><tbody>
+        <tr><td>Începutul extragerii</td><td>23 noiembrie 2026 la 10:00:00</td></tr>
+        <tr><td>Sfârșitul extragerii</td><td>extragere în desfășurare</td></tr>
+        
+        <tr><td>Sursa participanților</td><td>listă de participanți</td></tr>
+        <tr><td>Rânduri în listă</td><td>4 (valide: 4)</td></tr>
+        <tr><td>Reguli</td><td>conturi excluse: brand; o șansă de persoană, indiferent de numărul de comentarii</td></tr>
+        <tr><td>Comentarii eliminate</td><td>niciunul</td></tr>
+        <tr><td>Participanți valizi</td><td>3</td></tr>
+        <tr><td>Extrași</td><td>2 câștigători și 1 rezervă; premiu: Voucher</td></tr>
+        <tr><td>Amprenta listei de participanți (SHA-256)</td><td class="mono">5837327a99499bc7d7a4d80d7ba7db78786f36bf4ef2043a54a5902beeb662f9</td></tr>
+        <tr><td>Metodă</td><td>Extragere aleatorie uniformă, fără reintroducere (fiecare persoană poate fi extrasă o singură dată), cu generatorul criptografic al browserului (Web Crypto, <code>crypto.getRandomValues</code>), prin instrumentul lasorti.ro, rulat local.</td></tr>
+      </tbody></table>
+      <h2>Câștigători și rezerve</h2>
+      <table><thead><tr><th>Nr.</th><th>Rol</th><th>Premiu</th><th>Câștigător</th><th>Ora</th></tr></thead><tbody>
+        
+      </tbody></table>
+      <h2>Re-extrageri</h2>
+      <p>Nu au avut loc re-extrageri.</p>
+      <div class="sign"><div>Organizator (nume, semnătură)</div><div>Martor / comisie (nume, semnătură)</div></div>
+      <p class="foot">Document generat cu lasorti.ro la 23 noiembrie 2026 la 10:00:00. Instrumentul doar efectuează extragerea aleatorie și aplică regulile introduse de organizator asupra textului lipit de acesta; organizatorul răspunde de regulamentul campaniei, de eligibilitatea participanților, de acordarea premiilor și de respectarea legislației aplicabile și a regulilor platformei.</p>"
+`;
+
+exports[`giveaway > warns that rules cannot apply to a plain account list 1`] = `
+[
+  "4 rânduri · 3 participanți valizi · 2 + 1 rezerve",
+  "",
+  "<div><b>Format recunoscut:</b> listă de participanți.</div><div style="margin-top:6px">Lista nu conține text de comentariu, așa că regulile despre tag-uri și cuvânt nu se pot aplica.</div><div style="margin-top:6px"><b>Comentarii valide:</b> 4 din 4</div><details style="margin-top:6px"><summary><b>Participanți valizi (3)</b></summary>@ana, @ion, @ema</details><div style="margin-top:6px"><b>Amprenta listei (SHA-256):</b> <span class="hash">5837327a99499bc7d7a4d80d7ba7db78786f36bf4ef2043a54a5902beeb662f9</span><br>Poți publica amprenta înainte de extragere, ca oricine să verifice apoi că lista nu a fost modificată. <a href="#" id="dlList">Descarcă lista (.txt)</a> · <a href="/cum-functioneaza/#amprenta">ce înseamnă?</a></div>",
+]
+`;
+
+exports[`setup form > imports a valid file 1`] = `
+[
+  "Configurație încărcată.",
+  "msg",
+  {
+    "countdown": true,
+    "dedupe": "email",
+    "dedupeColumn": "",
+    "grandLast": true,
+    "logo": "",
+    "multiWin": false,
+    "people": "",
+    "prizes": "",
+    "showEmail": true,
+    "sound": true,
+    "sub": "",
+    "theme": "",
+    "title": "Importat",
+  },
+]
+`;
+
+exports[`setup form > imports another app 1`] = `
+[
+  "Fișierul nu este o configurație lasorti.ro validă.",
+  "msg err",
+  null,
+]
+`;
+
+exports[`setup form > imports invalid JSON 1`] = `
+[
+  "Fișierul nu este o configurație lasorti.ro validă.",
+  "msg err",
+  null,
+]
+`;
+
+exports[`setup form > imports the other kind 1`] = `
+[
+  "Fișierul e pentru un giveaway. Deschide pagina potrivită și încarcă-l acolo.",
+  "msg err",
+  null,
+]
+`;
+
+exports[`setup form > saves, restores, exports and clears the giveaway form > cleared 1`] = `
+[
+  "Formular golit.",
+  {},
+]
+`;
+
+exports[`setup form > saves, restores, exports and clears the giveaway form > exported 1`] = `
+[
+  {
+    "content": "{
+  "app": "lasorti.ro",
+  "v": 1,
+  "kind": "giveaway",
+  "logo": "",
+  "title": "Giveaway",
+  "sub": "",
+  "theme": "",
+  "gwSource": "instagram",
+  "comments": "ana.pop\\nVreau! @maria #Cafea\\n2h  3 likes  Reply\\nion.v\\ncafea @dan @ana.pop\\n1h\\nbrand\\nSucces @ion.v cafea\\n1h\\nana.pop\\nîncă una @dan cafea\\n1h\\nvlad\\nFără tag, dar cafea <i>bună</i>\\n3h\\nema\\ndoar tag @ion.v\\n3h\\ngeo\\n@ana.pop CAFEA\\n3h",
+  "gwPrize": "Voucher",
+  "gwWinners": "2",
+  "gwReserves": "1",
+  "gwMinTags": "1",
+  "gwKeyword": "cafea",
+  "gwExclude": "@brand",
+  "gwMode": "person",
+  "sound": true,
+  "countdown": true
+}",
+    "name": "lasorti-giveaway-giveaway.json",
+  },
+]
+`;
+
+exports[`setup form > saves, restores, exports and clears the giveaway form > saved 1`] = `
+{
+  "ls_gw_setup": "{"logo":"","title":"Giveaway","sub":"","theme":"","gwSource":"instagram","comments":"ana.pop\\nVreau! @maria #Cafea\\n2h  3 likes  Reply\\nion.v\\ncafea @dan @ana.pop\\n1h\\nbrand\\nSucces @ion.v cafea\\n1h\\nana.pop\\nîncă una @dan cafea\\n1h\\nvlad\\nFără tag, dar cafea <i>bună</i>\\n3h\\nema\\ndoar tag @ion.v\\n3h\\ngeo\\n@ana.pop CAFEA\\n3h","gwPrize":"Voucher","gwWinners":"2","gwReserves":"1","gwMinTags":"1","gwKeyword":"cafea","gwExclude":"@brand","gwMode":"person","sound":true,"countdown":true}",
+}
+`;
+
+exports[`setup form > saves, restores, exports and clears the tombola form > cleared 1`] = `
+[
+  "Formular golit.",
+  {},
+]
+`;
+
+exports[`setup form > saves, restores, exports and clears the tombola form > exported 1`] = `
+[
+  {
+    "content": "{
+  "app": "lasorti.ro",
+  "v": 1,
+  "kind": "tombola",
+  "logo": "",
+  "title": "Gală & Co",
+  "sub": "Live",
+  "theme": "verde",
+  "people": "Nume\\tEmail\\nAna Pop\\tana.pop@example.com\\nion ionescu\\tion@example.com\\nPop Ana\\tana2@example.com\\nMaria <b>X</b>\\tmaria@example.com\\nDan & Co\\nȘtefan Ilie\\tstefan@example.com\\nION@example.com",
+  "prizes": "Cafenea | Voucher de 100 lei\\nStudio \\"Foto\\" | Ședință (250 euro)\\nOrganizator | Marele premiu: tabletă",
+  "dedupe": "email-name",
+  "dedupeColumn": "",
+  "multiWin": false,
+  "grandLast": true,
+  "sound": true,
+  "countdown": true,
+  "showEmail": true
+}",
+    "name": "lasorti-co-gala.json",
+  },
+]
+`;
+
+exports[`setup form > saves, restores, exports and clears the tombola form > saved 1`] = `
+{
+  "ls_setup": "{"logo":"","title":"Gală & Co","sub":"Live","theme":"verde","people":"Nume\\tEmail\\nAna Pop\\tana.pop@example.com\\nion ionescu\\tion@example.com\\nPop Ana\\tana2@example.com\\nMaria <b>X</b>\\tmaria@example.com\\nDan & Co\\nȘtefan Ilie\\tstefan@example.com\\nION@example.com","prizes":"Cafenea | Voucher de 100 lei\\nStudio \\"Foto\\" | Ședință (250 euro)\\nOrganizator | Marele premiu: tabletă","dedupe":"email-name","dedupeColumn":"","multiWin":false,"grandLast":true,"sound":true,"countdown":true,"showEmail":true}",
+}
+`;
+
+exports[`tombola > groups all prizes by sponsor when there is no grand prize 1`] = `
+[
+  "",
+  "<div class="fcard" style="animation-delay:0s"><h3>A</h3><ul><li><div class="fw">🏆 Maria &lt;b&gt;X&lt;/b&gt;</div><div class="fp">Unu</div></li><li><div class="fw">🏆 Ștefan Ilie</div><div class="fp">Trei</div></li></ul></div><div class="fcard" style="animation-delay:0.12s"><h3>Premii</h3><ul><li><div class="fw">🏆 Ion Ionescu</div><div class="fp">Doi</div></li></ul></div>",
+  {
+    "clipboard": [
+      "1	A	Unu	Maria <b>X</b>	maria@example.com
+2		Doi	Ion Ionescu	ion@example.com
+3	A	Trei	Ștefan Ilie	stefan@example.com",
+    ],
+    "downloads": [
+      {
+        "content": "﻿"Nr.";"Oferit de";"Premiu";"Raritate";"Câștigător";"Email";"Ora extragerii"
+"1";"A";"Unu";"Comun";"Maria <b>X</b>";"maria@example.com";"10:00:03"
+"2";"";"Doi";"Comun";"Ion Ionescu";"ion@example.com";"10:00:12"
+"3";"A";"Trei";"Comun";"Ștefan Ilie";"stefan@example.com";"10:00:21"",
+        "name": "castigatori-co-gala.csv",
+      },
+      {
+        "content": "Ana Pop	ana.pop@example.com
+Ion Ionescu	ion@example.com
+Pop Ana	ana2@example.com
+Maria <b>X</b>	maria@example.com
+Dan & Co
+Ștefan Ilie	stefan@example.com
+",
+        "name": "participanti-co-gala.txt",
+      },
+    ],
+    "printed": 1,
+    "report": "
+      <h1>Proces-verbal de extragere a premiilor</h1>
+      <div>Gală &amp; Co · Live</div>
+      <h2>Date generale</h2>
+      <table class="kv"><tbody>
+        <tr><td>Începutul extragerii</td><td>23 noiembrie 2026 la 10:00:00</td></tr>
+        <tr><td>Sfârșitul extragerii</td><td>23 noiembrie 2026 la 10:00:27</td></tr>
+        
+        <tr><td>Participanți unici</td><td>6 (1 înscrieri duplicate eliminate)</td></tr>
+        <tr><td>Duplicate</td><td>se elimină după email</td></tr>
+        <tr><td>Premii de persoană</td><td>fiecare participant poate câștiga un singur premiu</td></tr>
+        <tr><td>Premii</td><td>3 (acordate: 3)</td></tr>
+        <tr><td>Amprenta listei de participanți (SHA-256)</td><td class="mono">c9923e63d4aa53f6f65c676c30f94a977d10bed667e9ff19b761b337e3604318</td></tr>
+        <tr><td>Metodă</td><td>Extragere aleatorie uniformă, fără reintroducere (fiecare persoană poate fi extrasă o singură dată), cu generatorul criptografic al browserului (Web Crypto, <code>crypto.getRandomValues</code>), prin instrumentul lasorti.ro, rulat local.</td></tr>
+      </tbody></table>
+      <h2>Câștigători</h2>
+      <table><thead><tr><th>Nr.</th><th>Oferit de</th><th>Premiu</th><th>Câștigător</th><th>Email</th><th>Ora</th></tr></thead><tbody>
+        <tr><td>1</td><td>A</td><td>Unu</td><td>Maria &lt;b&gt;X&lt;/b&gt;</td><td>ma•••@example.com</td><td>10:00:03</td></tr><tr><td>2</td><td></td><td>Doi</td><td>Ion Ionescu</td><td>io•••@example.com</td><td>10:00:12</td></tr><tr><td>3</td><td>A</td><td>Trei</td><td>Ștefan Ilie</td><td>st•••@example.com</td><td>10:00:21</td></tr>
+      </tbody></table>
+      <h2>Re-extrageri</h2>
+      <p>Nu au avut loc re-extrageri.</p>
+      <div class="sign"><div>Organizator (nume, semnătură)</div><div>Martor / comisie (nume, semnătură)</div></div>
+      <p class="foot">Document generat cu lasorti.ro la 23 noiembrie 2026 la 10:00:32. Instrumentul doar efectuează extragerea aleatorie; organizatorul răspunde de regulamentul campaniei, de eligibilitatea participanților, de acordarea premiilor și de respectarea legislației aplicabile.</p>",
+  },
+]
+`;
+
+exports[`tombola > keeps a backup when the saved draw is discarded 1`] = `
+[
+  "ls_state_backup",
+]
+`;
+
+exports[`tombola > never draws over a finished draw after resuming it 1`] = `"„Gală & Co” – încheiată, 3 premii acordate."`;
+
+exports[`tombola > refuses to start with more prizes than people 1`] = `
+[
+  "Sunt mai multe premii (2) decât participanți (1).",
+  "msg err",
+  "",
+]
+`;
+
+exports[`tombola > refuses to start with nothing filled in 1`] = `
+[
+  "Lipsesc participanții sau premiile.",
+  "msg err",
+  "",
+]
+`;
+
+exports[`tombola > reports the parsed lists and the fingerprint 1`] = `
+[
+  "5 participanți unici după email și nume (2 duplicate eliminate) · 3 premii",
+  "<b>Duplicate eliminate (2):</b><div>Pop Ana · ana2@example.com — același nume ca <b>Ana Pop</b> · ana.pop@example.com</div><div>Ion · ion@example.com — același email ca <b>Ion Ionescu</b> · ion@example.com</div>",
+  "<div><b>Premii după raritate:</b> Comun 1 · Rar 1 · Epic 0 · ★ Legendar 1</div><div style="margin-top:6px"><b>Duplicate:</b> se elimină după email și nume · <b>Premii:</b> fiecare participant poate câștiga un singur premiu</div><div style="margin-top:6px">1 participanți fără email: se identifică doar după nume.</div><div style="margin-top:6px"><b>Amprenta listei (SHA-256):</b> <span class="hash">ff40d5a8d15b4e2f94ea03ed5446f7172def983fff82a3a271433ecac604963f</span><br>Poți publica amprenta înainte de extragere, ca oricine să verifice apoi că lista nu a fost modificată. <a href="#" id="dlList">Descarcă lista (.txt)</a> · <a href="/cum-functioneaza/#amprenta">ce înseamnă?</a></div>",
+]
+`;
+
+exports[`tombola > reports the parsed lists and the fingerprint 2`] = `
+[
+  {
+    "content": "Ana Pop	ana.pop@example.com
+Ion Ionescu	ion@example.com
+Maria <b>X</b>	maria@example.com
+Dan & Co
+Ștefan Ilie	stefan@example.com
+",
+    "name": "participanti-co-gala.txt",
+  },
+]
+`;
+
+exports[`tombola > resumes an unfinished draw with the current winner on screen > offer 1`] = `
+[
+  "„Gală & Co” – 1 / 3 premii acordate, ultimul extras: Ana Pop.",
+  true,
+]
+`;
+
+exports[`tombola > resumes an unfinished draw with the current winner on screen > resumed 1`] = `
+{
+  "board": "<div class="tile common won"><span class="n">#1</span><div class="r">Comun</div><div class="t" title="Voucher de 100 lei">Voucher de 100 lei</div><div class="s">Cafenea</div><div class="w">🏆 Ana Pop</div></div><div class="tile rare upcoming"><span class="n">#2</span><div class="r">Rar</div><div class="t" title="Ședință (250 euro)">Ședință (250 euro)</div><div class="s">Studio "Foto"</div></div><div class="tile legendary upcoming"><span class="n">#3</span><div class="r">★ Legendar</div><div class="t" title="Marele premiu: tabletă">Marele premiu: tabletă</div><div class="s">Organizator</div></div>",
+  "disabled": "drawBtn",
+  "nextBtn": "Premiul următor →",
+  "pName": "Voucher de 100 lei",
+  "pNum": "Premiul 1 din 3",
+  "pSponsor": "oferit de Cafenea<div><span class="prar r">Comun</span></div>",
+  "poolInfo": "4 participanți în joc · amprenta listei ff40d5a8d15b…",
+  "progLeft": "2 premii rămase",
+  "progTxt": "1 / 3",
+  "resBody": "<tr><td>1</td><td>Cafenea</td><td>Voucher de 100 lei</td><td>Ana Pop</td><td>an•••@example.com</td></tr>",
+  "resHead": "<tr><th>Nr.</th><th>Oferit de</th><th>Premiu</th><th>Câștigător</th><th>Email</th></tr>",
+  "slotName": "Ana Pop",
+  "track": "<span data-id="stefan@example.com">Ștefan Ilie</span><span data-id="n:co dan">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ana.pop@example.com" class="won">Ana Pop</span><span data-id="ion@example.com">Ion Ionescu</span><span data-id="stefan@example.com">Ștefan Ilie</span><span data-id="n:co dan">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ana.pop@example.com" class="won">Ana Pop</span><span data-id="ion@example.com">Ion Ionescu</span>",
+  "winEmail": "an•••@example.com",
+}
+`;
+
+exports[`tombola > runs from start to exports, with a redraw > after redraw 1`] = `
+{
+  "board": "<div class="tile common won justwon"><span class="n">#1</span><div class="r">Comun</div><div class="t" title="Voucher de 100 lei">Voucher de 100 lei</div><div class="s">Cafenea</div><div class="w">🏆 Dan &amp; Co</div></div><div class="tile rare upcoming"><span class="n">#2</span><div class="r">Rar</div><div class="t" title="Ședință (250 euro)">Ședință (250 euro)</div><div class="s">Studio "Foto"</div></div><div class="tile legendary upcoming"><span class="n">#3</span><div class="r">★ Legendar</div><div class="t" title="Marele premiu: tabletă">Marele premiu: tabletă</div><div class="s">Organizator</div></div>",
+  "disabled": "drawBtn",
+  "nextBtn": "Premiul următor →",
+  "pName": "Voucher de 100 lei",
+  "pNum": "Premiul 1 din 3",
+  "pSponsor": "oferit de Cafenea<div><span class="prar r">Comun</span></div>",
+  "poolInfo": "3 participanți în joc · amprenta listei ff40d5a8d15b…",
+  "progLeft": "2 premii rămase",
+  "progTxt": "1 / 3",
+  "resBody": "<tr><td>1</td><td>Cafenea</td><td>Voucher de 100 lei</td><td>Dan &amp; Co</td><td></td></tr>",
+  "resHead": "<tr><th>Nr.</th><th>Oferit de</th><th>Premiu</th><th>Câștigător</th><th>Email</th></tr>",
+  "slotName": "Dan &amp; Co",
+  "track": "<span data-id="n:co dan" class="won">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ion@example.com">Ion Ionescu</span><span data-id="stefan@example.com">Ștefan Ilie</span><span data-id="n:co dan" class="won">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ion@example.com">Ion Ionescu</span><span data-id="stefan@example.com">Ștefan Ilie</span>",
+  "winEmail": "",
+}
+`;
+
+exports[`tombola > runs from start to exports, with a redraw > countdown 1`] = `"<span>2</span>"`;
+
+exports[`tombola > runs from start to exports, with a redraw > exports 1`] = `
+{
+  "clipboard": [
+    "1	Cafenea	Voucher de 100 lei	Dan & Co	
+2	Studio "Foto"	Ședință (250 euro)	Ion Ionescu	ion@example.com
+3	Organizator	Marele premiu: tabletă	Maria <b>X</b>	maria@example.com",
+  ],
+  "downloads": [
+    {
+      "content": "﻿"Nr.";"Oferit de";"Premiu";"Raritate";"Câștigător";"Email";"Ora extragerii"
+"1";"Cafenea";"Voucher de 100 lei";"Comun";"Dan & Co";"";"10:00:14"
+"2";"Studio ""Foto""";"Ședință (250 euro)";"Rar";"Ion Ionescu";"ion@example.com";"10:00:23"
+"3";"Organizator";"Marele premiu: tabletă";"★ Legendar";"Maria <b>X</b>";"maria@example.com";"10:00:34"",
+      "name": "castigatori-co-gala.csv",
+    },
+    {
+      "content": "Ana Pop	ana.pop@example.com
+Ion Ionescu	ion@example.com
+Maria <b>X</b>	maria@example.com
+Dan & Co
+Ștefan Ilie	stefan@example.com
+",
+      "name": "participanti-co-gala.txt",
+    },
+  ],
+  "printed": 1,
+  "report": "
+      <h1>Proces-verbal de extragere a premiilor</h1>
+      <div>Gală &amp; Co · Live</div>
+      <h2>Date generale</h2>
+      <table class="kv"><tbody>
+        <tr><td>Începutul extragerii</td><td>23 noiembrie 2026 la 10:00:00</td></tr>
+        <tr><td>Sfârșitul extragerii</td><td>23 noiembrie 2026 la 10:00:36</td></tr>
+        
+        <tr><td>Participanți unici</td><td>5 (2 înscrieri duplicate eliminate)</td></tr>
+        <tr><td>Duplicate</td><td>se elimină după email și nume</td></tr>
+        <tr><td>Premii de persoană</td><td>fiecare participant poate câștiga un singur premiu</td></tr>
+        <tr><td>Premii</td><td>3 (acordate: 3)</td></tr>
+        <tr><td>Amprenta listei de participanți (SHA-256)</td><td class="mono">ff40d5a8d15b4e2f94ea03ed5446f7172def983fff82a3a271433ecac604963f</td></tr>
+        <tr><td>Metodă</td><td>Extragere aleatorie uniformă, fără reintroducere (fiecare persoană poate fi extrasă o singură dată), cu generatorul criptografic al browserului (Web Crypto, <code>crypto.getRandomValues</code>), prin instrumentul lasorti.ro, rulat local.</td></tr>
+      </tbody></table>
+      <h2>Câștigători</h2>
+      <table><thead><tr><th>Nr.</th><th>Oferit de</th><th>Premiu</th><th>Câștigător</th><th>Email</th><th>Ora</th></tr></thead><tbody>
+        <tr><td>1</td><td>Cafenea</td><td>Voucher de 100 lei</td><td>Dan &amp; Co</td><td></td><td>10:00:14</td></tr><tr><td>2</td><td>Studio "Foto"</td><td>Ședință (250 euro)</td><td>Ion Ionescu</td><td>io•••@example.com</td><td>10:00:23</td></tr><tr><td>3</td><td>Organizator</td><td>Marele premiu: tabletă</td><td>Maria &lt;b&gt;X&lt;/b&gt;</td><td>ma•••@example.com</td><td>10:00:34</td></tr>
+      </tbody></table>
+      <h2>Re-extrageri</h2>
+      <table><thead><tr><th>Poziția</th><th>Persoană extrasă inițial (scoasă din joc)</th><th>Contact</th><th>Ora</th></tr></thead><tbody>
+        <tr><td>1</td><td>Ana Pop</td><td>an•••@example.com</td><td>10:00:14</td></tr>
+      </tbody></table>
+      <div class="sign"><div>Organizator (nume, semnătură)</div><div>Martor / comisie (nume, semnătură)</div></div>
+      <p class="foot">Document generat cu lasorti.ro la 23 noiembrie 2026 la 10:00:41. Instrumentul doar efectuează extragerea aleatorie; organizatorul răspunde de regulamentul campaniei, de eligibilitatea participanților, de acordarea premiilor și de respectarea legislației aplicabile.</p>",
+}
+`;
+
+exports[`tombola > runs from start to exports, with a redraw > final 1`] = `
+[
+  "3 premii acordate · 5 participanți · mulțumim sponsorilor!",
+  "<div class="fcard grand"><h3>⭐ Marele premiu · oferit de Organizator</h3><div class="fw">🏆 Maria &lt;b&gt;X&lt;/b&gt;</div><div class="fp">Marele premiu: tabletă</div></div><div class="fcard" style="animation-delay:0s"><h3>Cafenea</h3><ul><li><div class="fw">🏆 Dan &amp; Co</div><div class="fp">Voucher de 100 lei</div></li></ul></div><div class="fcard" style="animation-delay:0.12s"><h3>Studio "Foto"</h3><ul><li><div class="fw">🏆 Ion Ionescu</div><div class="fp">Ședință (250 euro)</div></li></ul></div>",
+]
+`;
+
+exports[`tombola > runs from start to exports, with a redraw > first winner 1`] = `
+{
+  "board": "<div class="tile common won justwon"><span class="n">#1</span><div class="r">Comun</div><div class="t" title="Voucher de 100 lei">Voucher de 100 lei</div><div class="s">Cafenea</div><div class="w">🏆 Ana Pop</div></div><div class="tile rare upcoming"><span class="n">#2</span><div class="r">Rar</div><div class="t" title="Ședință (250 euro)">Ședință (250 euro)</div><div class="s">Studio "Foto"</div></div><div class="tile legendary upcoming"><span class="n">#3</span><div class="r">★ Legendar</div><div class="t" title="Marele premiu: tabletă">Marele premiu: tabletă</div><div class="s">Organizator</div></div>",
+  "disabled": "drawBtn",
+  "nextBtn": "Premiul următor →",
+  "pName": "Voucher de 100 lei",
+  "pNum": "Premiul 1 din 3",
+  "pSponsor": "oferit de Cafenea<div><span class="prar r">Comun</span></div>",
+  "poolInfo": "4 participanți în joc · amprenta listei ff40d5a8d15b…",
+  "progLeft": "2 premii rămase",
+  "progTxt": "1 / 3",
+  "resBody": "<tr><td>1</td><td>Cafenea</td><td>Voucher de 100 lei</td><td>Ana Pop</td><td>an•••@example.com</td></tr>",
+  "resHead": "<tr><th>Nr.</th><th>Oferit de</th><th>Premiu</th><th>Câștigător</th><th>Email</th></tr>",
+  "slotName": "Ana Pop",
+  "track": "<span data-id="n:co dan">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ion@example.com">Ion Ionescu</span><span data-id="stefan@example.com">Ștefan Ilie</span><span data-id="ana.pop@example.com" class="won">Ana Pop</span><span data-id="n:co dan">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ion@example.com">Ion Ionescu</span><span data-id="stefan@example.com">Ștefan Ilie</span><span data-id="ana.pop@example.com" class="won">Ana Pop</span>",
+  "winEmail": "an•••@example.com",
+}
+`;
+
+exports[`tombola > runs from start to exports, with a redraw > ready 1`] = `
+{
+  "board": "<div class="tile common current"><span class="n">#1</span><div class="r">Comun</div><div class="t" title="Voucher de 100 lei">Voucher de 100 lei</div><div class="s">Cafenea</div></div><div class="tile rare upcoming"><span class="n">#2</span><div class="r">Rar</div><div class="t" title="Ședință (250 euro)">Ședință (250 euro)</div><div class="s">Studio "Foto"</div></div><div class="tile legendary upcoming"><span class="n">#3</span><div class="r">★ Legendar</div><div class="t" title="Marele premiu: tabletă">Marele premiu: tabletă</div><div class="s">Organizator</div></div>",
+  "disabled": "redrawBtn,nextBtn",
+  "nextBtn": "Premiul următor →",
+  "pName": "Voucher de 100 lei",
+  "pNum": "Premiul 1 din 3",
+  "pSponsor": "oferit de Cafenea<div><span class="prar r">Comun</span></div>",
+  "poolInfo": "5 participanți în joc · amprenta listei ff40d5a8d15b…",
+  "progLeft": "3 premii rămase",
+  "progTxt": "0 / 3",
+  "resBody": "",
+  "resHead": "",
+  "slotName": "?",
+  "track": "<span data-id="n:co dan">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ion@example.com">Ion Ionescu</span><span data-id="stefan@example.com">Ștefan Ilie</span><span data-id="ana.pop@example.com">Ana Pop</span><span data-id="n:co dan">Dan &amp; Co</span><span data-id="maria@example.com">Maria &lt;b&gt;X&lt;/b&gt;</span><span data-id="ion@example.com">Ion Ionescu</span><span data-id="stefan@example.com">Ștefan Ilie</span><span data-id="ana.pop@example.com">Ana Pop</span>",
+  "winEmail": "",
+}
+`;
+
+exports[`tombola > runs from start to exports, with a redraw > state 1`] = `
+{
+  "all": [
+    {
+      "email": "ana.pop@example.com",
+      "id": "ana.pop@example.com",
+      "name": "Ana Pop",
+    },
+    {
+      "email": "ion@example.com",
+      "id": "ion@example.com",
+      "name": "Ion Ionescu",
+    },
+    {
+      "email": "maria@example.com",
+      "id": "maria@example.com",
+      "name": "Maria <b>X</b>",
+    },
+    {
+      "email": "",
+      "id": "n:co dan",
+      "name": "Dan & Co",
+    },
+    {
+      "email": "stefan@example.com",
+      "id": "stefan@example.com",
+      "name": "Ștefan Ilie",
+    },
+  ],
+  "done": true,
+  "idx": 2,
+  "kind": "tombola",
+  "meta": {
+    "dupCount": 2,
+    "endedAt": 1795428036700,
+    "hash": "ff40d5a8d15b4e2f94ea03ed5446f7172def983fff82a3a271433ecac604963f",
+    "logo": "",
+    "startedAt": 1795428000000,
+    "sub": "Live",
+    "theme": "verde",
+    "title": "Gală & Co",
+  },
+  "opts": {
+    "countdown": true,
+    "dedupe": "email-name",
+    "dedupeColumn": "",
+    "grandLast": true,
+    "multiWin": false,
+    "showEmail": true,
+    "sound": true,
+  },
+  "pool": [
+    {
+      "email": "stefan@example.com",
+      "id": "stefan@example.com",
+      "name": "Ștefan Ilie",
+    },
+  ],
+  "prizes": [
+    {
+      "prize": "Voucher de 100 lei",
+      "rar": "common",
+      "sponsor": "Cafenea",
+    },
+    {
+      "prize": "Ședință (250 euro)",
+      "rar": "rare",
+      "sponsor": "Studio "Foto"",
+    },
+    {
+      "prize": "Marele premiu: tabletă",
+      "rar": "legendary",
+      "sponsor": "Organizator",
+    },
+  ],
+  "redraws": [
+    {
+      "at": 1795428014980,
+      "email": "ana.pop@example.com",
+      "idx": 0,
+      "name": "Ana Pop",
+    },
+  ],
+  "results": [
+    {
+      "at": 1795428014980,
+      "email": "",
+      "id": "n:co dan",
+      "name": "Dan & Co",
+      "prize": "Voucher de 100 lei",
+      "rar": "common",
+      "sponsor": "Cafenea",
+    },
+    {
+      "at": 1795428023980,
+      "email": "ion@example.com",
+      "id": "ion@example.com",
+      "name": "Ion Ionescu",
+      "prize": "Ședință (250 euro)",
+      "rar": "rare",
+      "sponsor": "Studio "Foto"",
+    },
+    {
+      "at": 1795428034836,
+      "email": "maria@example.com",
+      "id": "maria@example.com",
+      "name": "Maria <b>X</b>",
+      "prize": "Marele premiu: tabletă",
+      "rar": "legendary",
+      "sponsor": "Organizator",
+    },
+  ],
+  "ts": 1795428036700,
+  "v": 1,
+}
+`;

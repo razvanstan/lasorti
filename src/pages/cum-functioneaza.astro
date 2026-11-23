@@ -1,0 +1,289 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+import Email from '../components/Email.astro';
+---
+
+<Base
+  title="Cum funcționează"
+  description="Cum pregătești și cum faci o extragere de premii live cu lasorti.ro: liste, duplicate, raritate, proces-verbal și verificarea listei."
+>
+  <article class="wrap prose">
+    <h1>Cum funcționează</h1>
+    <p class="lead">
+      Ai nevoie de o listă cu participanții, o listă cu premiile și un ecran pe care să proiectezi. Restul îl face
+      instrumentul.
+    </p>
+    <p>
+      <a class="cta" href="/demo/">
+        Vezi extragerea demo
+      </a>{' '}
+      <a class="cta ghost" href="/extragere/">
+        Pregătește o extragere
+      </a>
+    </p>
+
+    <div class="callout">
+      <p>
+        Există două tipuri de extrageri: <strong>tombola</strong> (mai multe premii, participanți din Excel sau Forms,
+        pentru evenimente) și <strong>giveaway-ul</strong> (câștigători din comentariile de pe Instagram sau dintr-o
+        listă de participanți). Pașii de mai jos sunt pentru tombolă; giveaway-ul are{' '}
+        <a href="#giveaway">secțiunea lui</a>. Scena, procesul-verbal și amprenta listei sunt aceleași.
+      </p>
+    </div>
+
+    <h2>Pașii, pe scurt</h2>
+    <ol class="steps">
+      <li>
+        <b>Lipește participanții.</b> Copiezi coloanele din Excel, Google Sheets sau răspunsurile din Google Forms și le
+        lipești în primul câmp. Poate fi nume + email (în orice ordine) sau doar nume, câte unul pe rând.
+      </li>
+      <li>
+        <b>Lipește premiile</b>, în ordinea în care vrei să le extragi, de obicei de la cel mai mic la marele premiu.
+        Format: <code>Sponsor | Premiu</code> sau doar premiul.
+      </li>
+      <li>
+        <b>Apasă „Verifică listele”.</b> Vezi câți participanți unici au rămas, ce duplicate s-au eliminat și amprenta
+        listei.
+      </li>
+      <li>
+        <b>Personalizează</b> (opțional): numele evenimentului, subtitlul, culoarea și logo-ul.
+      </li>
+      <li>
+        <b>Pornește extragerea</b>, treci pe ecran complet cu <kbd>F</kbd> și apasă <kbd>Space</kbd> pentru fiecare
+        premiu.
+      </li>
+      <li>
+        <b>La final</b>, descarci câștigătorii (CSV sau copy-paste în Sheet) și tipărești sau salvezi ca PDF
+        procesul-verbal.
+      </li>
+    </ol>
+
+    <h2>Lista de participanți</h2>
+    <ul>
+      <li>
+        Fiecare rând este o persoană. Coloanele se pot separa cu tab (copy-paste din tabel), virgulă, punct și virgulă
+        sau <code>|</code>.
+      </li>
+      <li>
+        Coloanele care arată ca o dată (de exemplu marcajul de timp din Google Forms), numerele de ordine și rândul de
+        antet se ignoră automat.
+      </li>
+      <li>
+        Numele scrise integral cu litere mici sau MARI se corectează („ION POPESCU” → „Ion Popescu”). Restul rămân exact
+        cum au fost scrise.
+      </li>
+      <li>
+        <strong>Alegi dacă se elimină duplicatele și care e câmpul unic:</strong> email și nume (implicit), doar email,
+        telefon, nume sau altă coloană (un cod, numărul biletului). La nume se ignoră diacriticele, majusculele și
+        ordinea: „Popescu Ion” = „ion popescu”. La telefon, „+40 722 000 111” = „0722000111”. Vezi mereu ce s-a eliminat
+        și de ce, iar regula apare în procesul-verbal.
+      </li>
+      <li>
+        Pentru altă coloană, scrie numele ei din antet (ex. „Cod bilet”) sau numărul ei. Dacă două persoane diferite pot
+        avea același nume, alege emailul, telefonul sau un cod. Dacă nu elimini duplicatele, fiecare rând e o șansă
+        separată, deci cineva înscris de două ori poate câștiga de două ori.
+      </li>
+    </ul>
+
+    <h2 id="raritate">Premiile și raritatea</h2>
+    <p>Fiecare premiu primește automat o raritate, care schimbă felul în care apare pe ecran:</p>
+    <ul>
+      <li>
+        <strong>Legendar</strong>: ultimul premiu (dacă bifezi „Ultimul premiu este marele premiu”), orice premiu care
+        conține „marele premiu” sau unul de cel puțin 3.000 de euro. Extragerea durează mai mult, pentru suspans.
+      </li>
+      <li>
+        <strong>Epic</strong>: de la 1.000 de euro. <strong>Rar</strong>: de la 250 de euro. <strong>Comun</strong>:
+        restul.
+      </li>
+      <li>
+        Valoarea se citește din text: „(1.200 euro)”, „300 €”, „500 lei” (leii se convertesc aproximativ, 5 lei = 1
+        euro).
+      </li>
+      <li>
+        Poți forța raritatea scriind oriunde pe rând <code>#comun</code>, <code>#rar</code>, <code>#epic</code> sau{' '}
+        <code>#legendar</code>. Eticheta nu apare pe ecran.
+      </li>
+    </ul>
+    <pre><code>Cafeneaua din Colț | Voucher de 100 lei
+Studio Foto Lumina | Ședință foto (250 euro)
+Agenția Drum Bun | Weekend la munte #epic
+Organizatorul | Marele premiu: o tabletă</code></pre>
+
+    <h2 id="giveaway">Giveaway din comentarii</h2>
+    <p>
+      Pentru concursurile de pe rețelele sociale: „lasă un comentariu și dă tag unui prieten”. Instrumentul{' '}
+      <strong>nu se conectează la contul tău</strong> și nu citește nimic de pe Instagram; lucrează doar cu textul pe
+      care îl lipești tu.
+    </p>
+    <h3>Cum copiezi comentariile</h3>
+    <ol>
+      <li>
+        Deschide postarea pe <strong>calculator</strong>, în browser (de pe telefon e greu de selectat tot).
+      </li>
+      <li>
+        Încarcă <strong>toate</strong> comentariile: apasă pe „Vezi mai multe comentarii” / „+” până nu mai apar altele.
+      </li>
+      <li>
+        Selectează de la primul la ultimul comentariu și copiază (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>C</kbd>).
+      </li>
+      <li>Lipește tot în câmpul „Comentarii”, cu tot cu ore, like-uri și „Reply”: le curăță instrumentul.</li>
+    </ol>
+    <p>
+      Pentru Facebook, TikTok sau orice altă platformă, alege sursa <strong>„Listă sau tabel”</strong>: câte un
+      participant pe rând sau un tabel copiat din Excel, cu participantul în prima coloană și comentariul în a doua.
+      Merg și conturi, și nume obișnuite. <strong>Participanții nu au nevoie de @</strong>: „@ana.pop” și „ana.pop” sunt
+      aceeași persoană, iar numele se afișează cum sunt scrise. Două persoane cu exact același nume se consideră una
+      singură.
+    </p>
+    <div class="callout">
+      <p>
+        Apasă mereu <strong>„Verifică comentariile”</strong> înainte de extragere: vezi participanții găsiți,
+        comentariile eliminate, cu motivul, și rândurile pe care instrumentul nu le-a putut atribui cuiva. Compară
+        numărul cu cel afișat sub postare; dacă e mult mai mic, nu s-au încărcat toate comentariile înainte de copiere.
+      </p>
+    </div>
+    <h3>Reguli</h3>
+    <ul>
+      <li>
+        <strong>Minim tag-uri:</strong> câte conturi diferite (<code>@prieten</code>) trebuie să apară în comentariu.
+        Tag-ul propriu nu se pune la socoteală. Se numără doar tag-urile scrise cu @; implicit e 0, adică nu se cer
+        tag-uri.
+      </li>
+      <li>
+        <strong>Cuvânt sau hashtag obligatoriu:</strong> de exemplu <code>#cafea</code>. Nu contează majusculele și
+        diacriticele.
+      </li>
+      <li>
+        <strong>Conturi excluse:</strong> contul organizatorului, echipa, partenerii. Comentariile lor nu intră în
+        extragere.
+      </li>
+      <li>
+        <strong>Șanse:</strong> fie <em>o șansă de persoană</em>, oricâte comentarii ar lăsa, fie{' '}
+        <em>fiecare comentariu valid = o șansă</em>. În al doilea caz, cine are mai multe comentarii valide are
+        proporțional mai multe șanse, iar procesul-verbal arată câte a avut fiecare câștigător.
+      </li>
+    </ul>
+    <h3>Câștigători și rezerve</h3>
+    <p>
+      Alegi câți câștigători și câte <strong>rezerve</strong> vrei. Rezervele se extrag după câștigători, în ordine, și
+      se folosesc dacă un câștigător nu răspunde sau nu respectă regulile. Fiecare persoană poate fi extrasă o singură
+      dată. Pentru transparență, înregistrează ecranul în timpul extragerii și publică video-ul împreună cu amprenta
+      listei.
+    </p>
+
+    <h2>În timpul extragerii</h2>
+    <ul>
+      <li>
+        <kbd>Space</kbd> extrage câștigătorul sau, după ce s-a extras, trece la premiul următor. <kbd>F</kbd> comută
+        ecranul complet. <kbd>T</kbd> comută tema luminoasă / întunecată: în sălile luminoase, pe proiector, tema
+        luminoasă se vede de obicei mai bine.
+      </li>
+      <li>
+        <strong>Implicit, fiecare participant poate câștiga un singur premiu</strong> și iese din joc imediat după
+        extragere. La tombolă poți bifa ca o persoană să poată câștiga mai multe premii; cine e re-extras iese oricum
+        din joc.
+      </li>
+      <li>
+        <strong>Re-extrage</strong>: dacă persoana extrasă nu e în sală sau nu e eligibilă, o scoți din joc și extragi
+        alt câștigător pentru același premiu. Fiecare re-extragere apare în procesul-verbal.
+      </li>
+      <li>
+        Emailul câștigătorului apare parțial ascuns (<code>an•••@gmail.com</code>), la fel telefonul sau codul (
+        <code>•••123</code>), ca să se poată recunoaște fără să-l afișezi întreg pe proiector. Poți dezactiva opțiunea.
+      </li>
+      <li>
+        <strong>Poză pentru social media:</strong> la final poți descărca o poză cu un câștigător sau cu toți, în format
+        Story sau pătrat. Numele sunt prescurtate implicit („Ana P.”). Publică-le doar dacă regulamentul sau acordul
+        câștigătorilor îți permite.
+      </li>
+      <li>
+        <strong>Refresh-ul nu strică nimic.</strong> Progresul se salvează după fiecare pas, iar la redeschidere apare
+        butonul „Continuă extragerea”.
+      </li>
+    </ul>
+
+    <h2 id="amprenta">Amprenta listei (SHA-256) și verificarea</h2>
+    <p>
+      Când verifici listele, instrumentul calculează o <strong>amprentă SHA-256</strong> a listei finale de participanți
+      (după eliminarea duplicatelor). Amprenta e un șir de 64 de caractere care se schimbă complet dacă lista se
+      modifică oricât de puțin, chiar și cu o literă.
+    </p>
+    <p>Dacă vrei transparență totală:</p>
+    <ol>
+      <li>Înainte de extragere, publici amprenta (pe ecran, în grupul evenimentului, pe site).</li>
+      <li>
+        După extragere, descarci „Lista participanților” (.txt) și o pui la dispoziție, de exemplu doar cu nume, dacă nu
+        vrei să publici emailurile. Atenție: amprenta corespunde fișierului exact, așa cum a fost descărcat.
+      </li>
+      <li>Oricine poate recalcula amprenta fișierului și o poate compara cu cea publicată:</li>
+    </ol>
+    <pre><code># macOS / Linux
+shasum -a 256 participanti.txt
+# Windows (PowerShell)
+Get-FileHash participanti.txt -Algorithm SHA256</code></pre>
+    <div class="callout">
+      <p>
+        Amprenta dovedește că <strong>lista</strong> nu a fost schimbată. Nu dovedește corectitudinea extragerii în
+        sine, care rulează pe calculatorul organizatorului. Pentru asta, codul e public și procesul-verbal consemnează
+        fiecare re-extragere. La extragerile importante, recomandăm o comisie sau un martor.
+      </p>
+    </div>
+
+    <h2>Cum se alege câștigătorul</h2>
+    <p>
+      Câștigătorul se alege cu <code>crypto.getRandomValues</code>, generatorul criptografic al browserului (același
+      folosit pentru chei de securitate), cu o metodă care elimină orice avantaj statistic între participanți. Fiecare
+      persoană rămasă în joc are exact aceeași șansă. Animația cu nume care se derulează e doar spectacol: câștigătorul
+      e stabilit în momentul în care pornește derularea, iar ultimul nume afișat este întotdeauna el.
+    </p>
+    <p>
+      Codul e public, îl poți citi oricând: <a href={SITE.repoUrl}>{SITE.repoUrl.replace('https://', '')}</a>.
+    </p>
+
+    <h2>Ce rămâne la final</h2>
+    <ul>
+      <li>
+        <strong>Copiază pentru Sheet</strong>: tabelul câștigătorilor, cu emailurile complete, gata de lipit în Google
+        Sheets sau Excel.
+      </li>
+      <li>
+        <strong>CSV</strong>: același tabel, ca fișier.
+      </li>
+      <li>
+        <strong>Proces-verbal</strong>: document de tipărit sau de salvat ca PDF, cu data, numărul de participanți,
+        amprenta listei, câștigătorii, re-extragerile și loc de semnătură.
+      </li>
+      <li>
+        <strong>Lista participanților</strong>: fișierul exact din care s-a extras, pentru verificarea amprentei.
+      </li>
+    </ul>
+
+    <h2>Unde sunt datele</h2>
+    <p>
+      Doar în browserul tău. Site-ul e o pagină statică: nu are server de aplicație, conturi, bază de date, cookie-uri
+      sau tracking. Listele, setările și progresul se salvează în <code>localStorage</code>, pe calculatorul de pe care
+      faci extragerea. Detalii în <a href="/termeni/#date">Termeni și confidențialitate</a>.
+    </p>
+
+    <h2>Sfaturi pentru evenimentul live</h2>
+    <ul>
+      <li>
+        Fă o repetiție înainte, pe laptopul și proiectorul de la eveniment, eventual cu <a href="/demo/">demo-ul</a>.
+      </li>
+      <li>
+        Salvează configurația (.json) și pune-o pe un stick. Dacă se strică laptopul, o încarci pe altul în 10 secunde.
+      </li>
+      <li>Verifică sunetul: tic-tac-ul și fanfara contează mult pentru atmosferă.</li>
+      <li>Anunță regulile înainte: un premiu de persoană, ce se întâmplă dacă cel extras nu e în sală.</li>
+      <li>Pune premiile în ordinea crescătoare a valorii și lasă marele premiu la final.</li>
+    </ul>
+
+    <h2>Ai o sugestie?</h2>
+    <p>
+      Dacă ai folosit instrumentul la un eveniment, ți-a lipsit ceva sau ai găsit o problemă, scrie-mi la <Email /> sau
+      deschide un <a href={`${SITE.repoUrl}/issues`}>issue pe GitHub</a>. Citesc tot.
+    </p>
+  </article>
+</Base>

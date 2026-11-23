@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import DrawApp from '../../components/DrawApp.astro';
+import DemoTabs from '../../components/DemoTabs.astro';
+---
+
+<Base
+  title="Demo: tombolă"
+  description="Încearcă o tombolă cu 20 de participanți și 5 premii fictive, exact cum ar arăta la evenimentul tău."
+>
+  <div class="wrap">
+    <a class="back-link page-intro" href="/">
+      ← Prima pagină
+    </a>
+    <div>
+      <DemoTabs active="tombola" />
+    </div>
+    <DrawApp demo kind="tombola">
+      <div slot="intro" class="page-intro">
+        <h1>Demo: tombolă</h1>
+        <p class="sub">
+          Așa arată o extragere live. Totul e precompletat: apasă „Pornește extragerea”, apoi <kbd>Space</kbd> pentru
+          fiecare premiu și <kbd>F</kbd> pentru ecran complet.
+        </p>
+      </div>
+    </DrawApp>
+  </div>
+</Base>

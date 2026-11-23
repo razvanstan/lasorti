@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import DrawApp from '../../components/DrawApp.astro';
+import DemoTabs from '../../components/DemoTabs.astro';
+---
+
+<Base
+  title="Demo: giveaway"
+  description="Încearcă un giveaway din comentarii fictive de Instagram: reguli cu tag-uri, conturi excluse, un câștigător și două rezerve."
+>
+  <div class="wrap">
+    <a class="back-link page-intro" href="/">
+      ← Prima pagină
+    </a>
+    <div>
+      <DemoTabs active="giveaway" />
+    </div>
+    <DrawApp demo kind="giveaway">
+      <div slot="intro" class="page-intro">
+        <h1>Demo: giveaway</h1>
+        <p class="sub">
+          Comentariile sunt copiate exact cum vin de pe Instagram. Apasă „Verifică comentariile” ca să vezi cum se
+          curăță, apoi „Pornește extragerea” și <kbd>Space</kbd>.
+        </p>
+      </div>
+    </DrawApp>
+  </div>
+</Base>

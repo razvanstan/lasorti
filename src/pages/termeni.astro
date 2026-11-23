@@ -1,0 +1,183 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+import Email from '../components/Email.astro';
+---
+
+<Base
+  title="Termeni și confidențialitate"
+  description="Termenii de utilizare și politica de confidențialitate lasorti.ro: instrumentul doar efectuează extragerea, datele rămân în browserul tău."
+>
+  <article class="wrap prose">
+    <h1>Termeni de utilizare și confidențialitate</h1>
+    <p class="meta">Ultima actualizare: {SITE.lastUpdatedTerms}</p>
+
+    <div class="callout">
+      <p>
+        <strong>Pe scurt:</strong> lasorti.ro este un instrument gratuit care alege aleatoriu câștigători dintr-o listă.
+        Nu organizează campanii sau tombole, nu verifică participanții, nu acordă premii și nu primește datele tale. Tot
+        ce ține de campanie (regulament, eligibilitate, premii, taxe, date personale) este responsabilitatea
+        organizatorului care folosește instrumentul.
+      </p>
+    </div>
+
+    <h2>1. Despre serviciu</h2>
+    <p>
+      lasorti.ro („Instrumentul”) este un proiect personal, realizat de {SITE.author} și pus gratuit la dispoziția
+      oricui. Codul sursă este public, sub licența MIT, la{' '}
+      <a href={SITE.repoUrl}>{SITE.repoUrl.replace('https://', '')}</a>. Site-ul nu afișează reclame, nu vinde nimic și
+      nu cere cont.
+    </p>
+    <p>Folosind Instrumentul, accepți acești termeni. Dacă nu ești de acord cu ei, nu folosi Instrumentul.</p>
+
+    <h2>2. Ce face și ce nu face Instrumentul</h2>
+    <p>
+      <strong>Face:</strong> primește listele sau comentariile introduse de tine, elimină duplicatele și aplică regulile
+      pe care le setezi (de exemplu numărul minim de tag-uri), extrage aleatoriu câștigători pentru premiile introduse
+      de tine și generează documente (tabel, CSV, proces-verbal) pe baza acestor date.
+    </p>
+    <p>
+      <strong>Nu face:</strong>
+    </p>
+    <ul>
+      <li>
+        nu organizează, nu administrează și nu garantează nicio campanie promoțională, tombolă, concurs sau giveaway;
+      </li>
+      <li>nu verifică identitatea, eligibilitatea sau corectitudinea datelor participanților;</li>
+      <li>
+        nu se conectează la Instagram, Facebook, TikTok sau alte platforme și nu poate garanta că textul lipit conține
+        toate comentariile; rezultatul depinde de ce copiază organizatorul;
+      </li>
+      <li>nu acordă, nu livrează și nu garantează premiile;</li>
+      <li>nu păstrează o evidență oficială a extragerilor; documentele generate rămân la tine;</li>
+      <li>nu oferă consultanță juridică sau fiscală.</li>
+    </ul>
+
+    <h2>3. Responsabilitatea organizatorului</h2>
+    <p>
+      Persoana sau entitatea care folosește Instrumentul („Organizatorul”) este singura responsabilă pentru campania în
+      cadrul căreia face extragerea. În special, Organizatorul răspunde pentru:
+    </p>
+    <ul>
+      <li>
+        <strong>Regulament.</strong> Redactarea, publicarea și respectarea regulamentului campaniei, inclusiv a
+        condițiilor de participare, a modului de desemnare a câștigătorilor și a procedurii de re-extragere.
+      </li>
+      <li>
+        <strong>Legalitate.</strong> Respectarea legislației aplicabile, de exemplu cea privind campaniile promoționale
+        cu premii (în România, inclusiv Ordonanța Guvernului nr. 99/2000), cea privind jocurile de noroc (OUG nr.
+        77/2009), aplicabilă mai ales tombolelor cu bilete sau participări plătite, și regulile platformelor pe care se
+        desfășoară campania (Facebook, Instagram, TikTok etc.).
+      </li>
+      <li>
+        <strong>Obligații fiscale.</strong> Reținerea și declararea impozitului pe veniturile din premii, acolo unde
+        legea o cere.
+      </li>
+      <li>
+        <strong>Lista de participanți.</strong> Corectitudinea și completitudinea listei introduse, precum și dreptul de
+        a folosi acele date.
+      </li>
+      <li>
+        <strong>Desfășurarea extragerii.</strong> Folosirea corectă a Instrumentului, inclusiv decizia de a re-extrage
+        un premiu, și comunicarea rezultatelor.
+      </li>
+      <li>
+        <strong>Premii.</strong> Acordarea premiilor câștigătorilor, în condițiile anunțate.
+      </li>
+    </ul>
+    <p>Dacă nu știi ce obligații ai, consultă un avocat sau un contabil înainte de campanie.</p>
+
+    <h2>4. Aleatoriu și corectitudine</h2>
+    <p>
+      Câștigătorii se aleg cu generatorul criptografic de numere aleatorii al browserului (
+      <code>crypto.getRandomValues</code>), printr-o metodă care dă fiecărui participant rămas în joc aceeași șansă.
+      Detalii tehnice în <a href="/cum-functioneaza/">Cum funcționează</a>.
+    </p>
+    <p>
+      Pentru că Instrumentul rulează pe dispozitivul Organizatorului, autorul nu poate garanta și nu poate verifica
+      modul în care a fost folosit într-o anumită extragere (de exemplu, ce listă a fost introdusă sau de câte ori s-a
+      re-extras). Amprenta SHA-256 a listei și procesul-verbal, care consemnează re-extragerile, sunt puse la dispoziție
+      tocmai ca Organizatorul să poată oferi transparență participanților.
+    </p>
+
+    <h2 id="date">5. Date personale și confidențialitate</h2>
+    <h3>Ce date procesează Instrumentul</h3>
+    <p>
+      Listele de participanți (nume, eventual email), premiile, setările și logo-ul introduse de tine sunt procesate{' '}
+      <strong>exclusiv în browserul tău</strong>. Ele <strong>nu sunt trimise</strong> către autor sau către vreun
+      server. Autorul nu are acces la ele.
+    </p>
+    <h3>Unde se salvează</h3>
+    <p>
+      Pentru ca extragerea să poată continua după un refresh și ca formularul să nu se piardă, datele se salvează în
+      memoria locală a browserului (<code>localStorage</code>), doar pe dispozitivul folosit. Le poți șterge oricând cu
+      butonul „Golește formularul”, cu „Șterge și începe de la zero” sau din setările browserului (ștergerea datelor
+      site-ului lasorti.ro). La ștergerea unei extrageri se păstrează o copie de rezervă locală a ultimei extrageri,
+      eliminată odată cu datele site-ului.
+    </p>
+    <p>
+      Fișierele exportate (configurația .json, CSV-ul, lista participanților, procesul-verbal) conțin datele
+      participanților și rămân în grija ta.
+    </p>
+    <h3>Cine este operatorul datelor</h3>
+    <p>
+      În sensul Regulamentului (UE) 2016/679 (GDPR), <strong>Organizatorul este operatorul</strong> datelor
+      participanților pe care le introduce în Instrument. El trebuie să aibă un temei legal pentru folosirea lor și să-i
+      informeze pe participanți. Pentru că datele nu ajung la el, autorul Instrumentului nu este operator și nici
+      persoană împuternicită pentru aceste date.
+    </p>
+    <p>
+      Pe ecranul de extragere, emailurile apar implicit parțial ascunse. Te rugăm să nu proiectezi sau să nu publici
+      date personale complete fără să fie necesar.
+    </p>
+    <h3>Ce date despre vizitatori se colectează</h3>
+    <p>
+      Site-ul nu folosește cookie-uri, nu are sistem de analiză a traficului și nu încarcă resurse de la terți
+      (fonturile sunt găzduite pe același domeniu). Furnizorul de găzduire poate înregistra, ca orice server web, date
+      tehnice ale cererilor (adresa IP, browserul, pagina accesată), pentru funcționare și securitate, conform
+      propriilor politici.
+    </p>
+    <p>
+      Dacă în viitor adăugăm o formă de statistici de trafic, va fi una fără cookie-uri, care nu colectează datele
+      introduse în Instrument, iar această pagină va fi actualizată.
+    </p>
+
+    <h2>6. Fără garanții și limitarea răspunderii</h2>
+    <p>
+      Instrumentul este oferit gratuit, „ca atare” și „în măsura disponibilității”, fără garanții de niciun fel, exprese
+      sau implicite, inclusiv privind funcționarea neîntreruptă, lipsa erorilor sau potrivirea pentru un anumit scop.
+      Licența MIT a codului sursă conține aceeași exonerare.
+    </p>
+    <p>
+      În limita maximă permisă de lege, autorul nu răspunde pentru niciun prejudiciu direct sau indirect rezultat din
+      folosirea sau imposibilitatea folosirii Instrumentului, inclusiv, fără a se limita la: erori de calcul sau de
+      afișare, pierderea datelor salvate local, defecțiuni ale dispozitivului sau browserului, rezultate contestate ale
+      unei extrageri, nerespectarea de către Organizator a regulamentului sau a legislației ori dispute între
+      Organizator și participanți.
+    </p>
+    <p>
+      Recomandăm testarea Instrumentului înainte de eveniment (vezi <a href="/demo/">demo-ul</a>) și păstrarea unei
+      copii a configurației.
+    </p>
+
+    <h2>7. Utilizare acceptabilă</h2>
+    <p>
+      Nu folosi Instrumentul pentru activități ilegale, pentru a induce în eroare participanții (de exemplu prezentând
+      drept aleatorie o extragere stabilită dinainte) sau pentru a prelucra date personale fără drept.
+    </p>
+
+    <h2>8. Modificări</h2>
+    <p>
+      Instrumentul și acești termeni se pot modifica oricând. Versiunea în vigoare este cea publicată pe această pagină,
+      iar istoricul complet al modificărilor e public în depozitul de cod.
+    </p>
+
+    <h2>9. Contact</h2>
+    <p>
+      Pentru întrebări, sugestii sau probleme, scrie-mi la <Email /> sau deschide un{' '}
+      <a href={`${SITE.repoUrl}/issues`}>issue pe GitHub</a>. Te rog să nu trimiți liste de participanți sau alte date
+      personale pe email: nu am nevoie de ele ca să te ajut.
+    </p>
+    <p>Acești termeni sunt guvernați de legea română.</p>
+  </article>
+</Base>

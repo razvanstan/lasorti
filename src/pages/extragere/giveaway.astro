@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import DrawApp from '../../components/DrawApp.astro';
+---
+
+<Base
+  title="Giveaway: extragere câștigători din comentarii"
+  description="Lipește comentariile de pe Instagram sau o listă de participanți, setează regulile (tag-uri, hashtag, conturi excluse) și extrage câștigătorii și rezervele live. Gratuit, fără cont."
+>
+  <div class="wrap">
+    <a class="back-link page-intro" href="/extragere/">
+      ← Alege alt tip de extragere
+    </a>
+    <DrawApp kind="giveaway">
+      <div slot="intro" class="page-intro">
+        <h1>Giveaway</h1>
+        <p class="sub">
+          Lipește comentariile de sub postare, setează regulile și extrage câștigătorii și rezervele. Fără conectare la
+          contul tău de Instagram: lucrezi doar cu textul copiat, care rămâne în browser. Prima dată aici? Încearcă{' '}
+          <a href="/demo/giveaway/">demo-ul de giveaway</a>.
+        </p>
+      </div>
+    </DrawApp>
+  </div>
+</Base>

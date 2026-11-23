@@ -1,0 +1,6 @@
+dist/
+.astro/
+docs/
+public/
+package-lock.json
+tests/__snapshots__/

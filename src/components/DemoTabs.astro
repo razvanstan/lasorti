@@ -1,0 +1,54 @@
+---
+// Switches between the two demos.
+interface Props {
+  active: 'tombola' | 'giveaway';
+}
+const { active } = Astro.props;
+---
+
+<nav class="demo-tabs page-intro" aria-label="Alege demo-ul">
+  <a href="/demo/" aria-current={active === 'tombola' ? 'page' : undefined}>
+    🎟️ Tombolă <small>premii multiple</small>
+  </a>
+  <a href="/demo/giveaway/" aria-current={active === 'giveaway' ? 'page' : undefined}>
+    📱 Giveaway <small>din comentarii</small>
+  </a>
+</nav>
+<style>
+  .demo-tabs {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    background: var(--panel2);
+    border: 1px solid var(--line);
+    margin: 0 0 22px;
+  }
+  .demo-tabs a {
+    padding: 8px 16px;
+    border-radius: 9px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .demo-tabs a small {
+    font-weight: 500;
+    color: var(--muted);
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  .demo-tabs a:hover {
+    color: var(--ink);
+  }
+  .demo-tabs a[aria-current='page'] {
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  }
+  @media (max-width: 520px) {
+    .demo-tabs a small {
+      display: none;
+    }
+  }
+</style>
