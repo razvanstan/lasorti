@@ -1,3 +1,31 @@
+# lasorti.ro — every page is public and meant to be found and shared.
+
+# Link previews (Facebook, Messenger, WhatsApp, Instagram, X, LinkedIn, Slack, Discord)
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: meta-externalagent
+User-agent: Twitterbot
+User-agent: LinkedInBot
+User-agent: Slackbot
+User-agent: Discordbot
+User-agent: WhatsApp
+Allow: /
+
+# AI assistants and AI search: allowed, so they can recommend the tool
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+
+# Everyone else
 User-agent: *
 Allow: /
 

@@ -2,6 +2,8 @@
 Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
+# robots.txt and llms.txt carry diacritics
+AddCharset utf-8 .txt
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -12,6 +14,8 @@ ErrorDocument 404 /404.html
   # www -> no www
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+  # /sitemap.xml, where most tools look first -> the index Astro generates
+  RewriteRule ^sitemap\.xml$ /sitemap-index.xml [L,R=301]
 </IfModule>
 
 <IfModule mod_headers.c>
