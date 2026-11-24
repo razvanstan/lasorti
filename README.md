@@ -17,7 +17,7 @@ A free, ad-free tool for drawing winners live, at events or for social media giv
 
 - **Tombola:** several prizes with sponsors and rarities; participants pasted from Excel, Google Sheets or Forms, with a choice of unique field (email, phone, name or any column) and of one or several prizes per person.
 - **Giveaway:** winners and reserves from comments copied from Instagram or from a list of participants, with rules (minimum tags, required keyword, excluded accounts, one chance per person or per comment).
-- **Quick tools:** random teams and random order, from a list of names; repeated draws of the same list are labelled.
+- **Quick tools:** a wheel of options, random teams and random order; repeated draws of the same list are labelled.
 - A stage for the big screen: countdown, suspense, confetti, sounds, full screen (`F`), `Space` to draw.
 - Redraws for absent winners, recorded in the printable report.
 - Draws resume after a page reload, and a winner already chosen cannot be changed by reloading.
@@ -50,24 +50,26 @@ npm run build     # static site in dist/
 [Astro](https://astro.build) with static output, TypeScript and plain CSS; no framework at runtime.
 Code and comments are in English, texts shown to users are in Romanian.
 
-| Path                                                              | What it holds                                    |
-| ----------------------------------------------------------------- | ------------------------------------------------ |
-| `src/components/DrawApp.astro`                                    | markup of the tool (setup and stage)             |
-| `src/scripts/draw.ts`                                             | entry point: flow of a draw, buttons, keyboard   |
-| `src/scripts/kind.ts`                                             | what a draw type has to define                   |
-| `src/scripts/tombola.ts`, `giveaway-kind.ts`                      | the two draw types                               |
-| `src/scripts/people.ts`, `prizes.ts`, `giveaway.ts`               | parsing and rules (pure functions)               |
-| `src/scripts/random.ts`                                           | choosing the winner                              |
-| `src/scripts/quick.ts`, `quick-draw.ts`                           | random teams and order                           |
-| `src/scripts/draw-state.ts`                                       | state of a draw, saved in the browser            |
-| `src/scripts/stage-view.ts`, `spin.ts`, `confetti.ts`, `sound.ts` | what happens on stage                            |
-| `src/scripts/results.ts`, `report.ts`                             | exports and the printable report                 |
-| `src/pages/`                                                      | the site                                         |
-| `integrations/csp.mjs`                                            | Content-Security-Policy, filled in at build time |
-| `src/scripts/share-image.ts`, `share-panel.ts`                    | the picture for social media                     |
-| `src/scripts/stats.ts`                                            | cookie-free counts of visits                     |
-| `scripts/`                                                        | deploy and brand files                           |
-| `tests/`                                                          | tests                                            |
+| Path                                                              | What it holds                                           |
+| ----------------------------------------------------------------- | ------------------------------------------------------- |
+| `src/components/DrawApp.astro`                                    | markup of the tool (setup and stage)                    |
+| `src/scripts/draw.ts`                                             | entry point: flow of a draw, buttons, keyboard          |
+| `src/scripts/kind.ts`                                             | what a draw type has to define                          |
+| `src/scripts/tombola.ts`, `giveaway-kind.ts`                      | the two draw types                                      |
+| `src/scripts/people.ts`, `prizes.ts`, `giveaway.ts`               | parsing and rules (pure functions)                      |
+| `src/scripts/random.ts`                                           | choosing the winner                                     |
+| `src/scripts/quick.ts`, `quick-draw.ts`                           | random teams and order                                  |
+| `src/scripts/wheel.ts`, `wheel-motion.ts`, `wheel-draw.ts`        | the wheel                                               |
+| `src/scripts/quick-store.ts`                                      | what the quick tools save, count and share between tabs |
+| `src/scripts/draw-state.ts`                                       | state of a draw, saved in the browser                   |
+| `src/scripts/stage-view.ts`, `spin.ts`, `confetti.ts`, `sound.ts` | what happens on stage                                   |
+| `src/scripts/results.ts`, `report.ts`                             | exports and the printable report                        |
+| `src/pages/`                                                      | the site                                                |
+| `integrations/csp.mjs`                                            | Content-Security-Policy, filled in at build time        |
+| `src/scripts/share-image.ts`, `share-panel.ts`                    | the picture for social media                            |
+| `src/scripts/stats.ts`                                            | cookie-free counts of visits                            |
+| `scripts/`                                                        | deploy and brand files                                  |
+| `tests/`                                                          | tests                                                   |
 
 `localStorage` keys, the configuration format and the canonical participant list are contracts with existing users: changing them breaks saved draws or published fingerprints.
 

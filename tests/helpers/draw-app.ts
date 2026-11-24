@@ -4,8 +4,10 @@ import { JSDOM } from 'jsdom';
 import { vi } from 'vitest';
 import DrawApp from '../../src/components/DrawApp.astro';
 import QuickDraw from '../../src/components/QuickDraw.astro';
+import Wheel from '../../src/components/Wheel.astro';
 import { initDrawApp } from '../../src/scripts/draw';
 import { initQuickDraw } from '../../src/scripts/quick-draw';
+import { initWheel } from '../../src/scripts/wheel-draw';
 
 export interface Download {
   name: string;
@@ -34,6 +36,8 @@ export const mountDrawApp = ({ kind = 'tombola', demo = false, storage }: Option
 
 export const mountQuickDraw = (kind: 'echipe' | 'ordine', storage?: Record<string, string>) =>
   mountApp(QuickDraw, { kind }, initQuickDraw, storage);
+
+export const mountWheel = (storage?: Record<string, string>) => mountApp(Wheel, {}, initWheel, storage);
 
 /** Renders the real Astro component into jsdom and starts the app on it, with fake time and randomness. */
 async function mountApp(

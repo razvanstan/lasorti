@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Wheel from '../components/Wheel.astro';
+---
+
+<Base
+  title="Roata norocului online"
+  description="Învârte roata norocului cu opțiunile tale: cine plătește, ce mâncăm, ce film vedem. Gratuit, fără reclame, fără cont; lista rămâne în browserul tău."
+>
+  <div class="wrap">
+    <a class="back-link" href="/extragere/">
+      ← Alte extrageri
+    </a>
+    <div class="app">
+      <h1>Roata norocului</h1>
+      <p class="sub">Cine plătește? Ce mâncăm? Scrii opțiunile, învârți roata și gata cu dezbaterea.</p>
+    </div>
+    <Wheel />
+    <div class="prose quick-notes">
+      <h2>E corect?</h2>
+      <p>Fiecare rând are aceeași șansă. O opțiune scrisă de două ori are șanse duble, iar pagina îți spune asta.</p>
+      <p>
+        Rezultatul e ales înainte ca roata să pornească, cu generatorul criptografic al browserului, și se păstrează la
+        reîncărcarea paginii. Dacă învârți din nou cu aceeași listă în aceeași zi, se vede pe ecran și în textul copiat.
+        Contorul e doar în acest browser și dispare cu „Golește tot”. Opțiunile nu sunt trimise nicăieri.
+      </p>
+      <p>
+        Vrei să împarți oamenii în grupuri sau să afli cine începe? Trage la sorți <a href="/echipe/">echipele</a> sau{' '}
+        <a href="/ordine/">ordinea</a>.
+      </p>
+    </div>
+  </div>
+</Base>

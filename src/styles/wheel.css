@@ -1,0 +1,160 @@
+/* /roata/ */
+#wheelApp {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 40px;
+  align-items: start;
+}
+#wheelApp textarea {
+  min-height: 220px;
+}
+.wheel-side {
+  text-align: center;
+}
+#wheel {
+  max-width: min(520px, 60vh);
+  margin: 0 auto;
+  scroll-margin: 16px;
+}
+#wheelSvg {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+#wheel.empty #wheelDisc {
+  opacity: 0.3;
+}
+#wheelSvg .overlay {
+  pointer-events: none;
+}
+#wheelSvg .rim {
+  fill: #7d1a0c;
+}
+#wheelSvg .back {
+  fill: #14171c;
+}
+#wheelSvg .hub {
+  fill: #a52a17;
+}
+#wheelSvg .star {
+  fill: #ffe6a3;
+}
+#wheelSvg .pointer {
+  fill: url('#wheelPointerFill');
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+#wheelSvg .peg {
+  fill: url('#wheelPeg');
+}
+#wheelSvg .bulb {
+  fill: #fff3cd;
+  stroke: #f2c35b;
+  stroke-width: 0.8;
+}
+#wheelSvg .bulb.odd {
+  fill: #d99a3a;
+}
+#wheel.spinning .bulb {
+  animation: wheel-bulb 0.5s steps(1) infinite;
+}
+#wheel.won .bulb {
+  animation: wheel-bulb 0.9s steps(1) 6;
+}
+#wheel .bulb.odd {
+  animation-delay: -0.25s;
+}
+#wheel.won .bulb.odd {
+  animation-delay: -0.45s;
+}
+@keyframes wheel-bulb {
+  0% {
+    fill: #fffbe8;
+  }
+  50% {
+    fill: #b8752a;
+  }
+}
+.slice {
+  transition: opacity 0.4s;
+}
+#wheel.won .slice:not(.winner) {
+  opacity: 0.45;
+}
+@media (prefers-reduced-motion: reduce) {
+  #wheel.spinning .bulb,
+  #wheel.won .bulb {
+    animation: none;
+  }
+}
+.slice path {
+  stroke: #e8c06a;
+  stroke-width: 0.7;
+}
+.slice text {
+  fill: #fff;
+  font-family: var(--font);
+  font-weight: 700;
+}
+/* fixed colours: the labels must be readable in both modes */
+.c0 path {
+  fill: #d13720;
+}
+.c1 path {
+  fill: #1b63bd;
+}
+.c2 path {
+  fill: #f2c35b;
+}
+.c2 text {
+  fill: #17130a;
+}
+.c3 path {
+  fill: #0f7a45;
+}
+.c4 path {
+  fill: #7a3fd1;
+}
+.c5 path {
+  fill: #b03a7a;
+}
+.wheel-row {
+  justify-content: center;
+}
+.wheel-label {
+  margin: 22px 0 0;
+  color: var(--muted);
+}
+#wheelResult {
+  scroll-margin: 24px;
+}
+#wheelWinner {
+  margin: 0 0 4px;
+  color: var(--ink);
+  font: 800 clamp(30px, 5vw, 48px) / 1.15 var(--font-display);
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+#wheelAttempt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+#wheelAttempt.again {
+  color: var(--acc);
+  font-weight: 700;
+}
+#wheelPlan,
+#wheelRepeated {
+  margin: 10px 0 0;
+}
+@media (max-width: 800px) {
+  #wheelApp {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  #wheelApp textarea {
+    min-height: 150px;
+  }
+}

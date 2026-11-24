@@ -3,7 +3,6 @@ import { createStageConfetti, prefersReducedMotion } from './confetti';
 import { byId, fieldValue, isChecked, onConfirmedClick, showMessage } from './dom';
 import {
   drawTeams,
-  listKey,
   parseNames,
   peopleText,
   planError,
@@ -13,27 +12,27 @@ import {
   teamsText,
   type TeamMode,
 } from './quick';
+import {
+  attemptText,
+  countAttempt,
+  createQuickStore,
+  isSameResult,
+  type QuickResult,
+  type QuickState,
+} from './quick-store';
 import { playFanfare, playTone } from './sound';
 import { formatDate } from './text';
 
 type QuickKind = 'echipe' | 'ordine';
 
-interface QuickResult {
+interface GroupsResult extends QuickResult {
   /** The teams; for an order, a single group. */
   groups: string[][];
-  attempt: number;
-  at: number;
 }
 
-interface QuickState {
-  v: 1;
-  names: string;
+interface GroupsState extends QuickState<GroupsResult> {
   mode: TeamMode;
   value: string;
-  sound: boolean;
-  result: QuickResult | null;
-  /** How many times each list was drawn today, so that a redraw cannot pass for the first draw. */
-  draws: { day: string; counts: Record<string, number> };
 }
 
 const STEP_MS = 350;
@@ -41,53 +40,35 @@ const MAX_REVEAL_MS = 6000;
 /** Without animation, so that a double click does not draw twice. */
 const STILL_REVEAL_MS = 800;
 
-function loadState(key: string): QuickState | null {
-  try {
-    const state = JSON.parse(localStorage.getItem(key) || 'null');
-    const isResult = state?.result === null || Array.isArray(state?.result?.groups?.[0]);
-    const isUsable = state?.v === 1 && typeof state.names === 'string' && isResult && state.draws?.counts;
-    return isUsable ? state : null;
-  } catch {
-    return null;
-  }
-}
-
-function emptyState(): QuickState {
+function emptyState(): GroupsState {
   return { v: 1, names: '', mode: 'count', value: '2', sound: true, result: null, draws: { day: '', counts: {} } };
 }
 
 export function initQuickDraw() {
   const app = byId('quick');
   const kind: QuickKind = app.dataset.kind === 'ordine' ? 'ordine' : 'echipe';
-  const storageKey = `ls_${kind}`;
+  const store = createQuickStore<GroupsResult, GroupsState>(`ls_${kind}`, emptyState, ({ groups }) =>
+    Array.isArray(groups?.[0]),
+  );
   const fireConfetti = createStageConfetti(byId<HTMLCanvasElement>('conf'));
   const drawButton = byId<HTMLButtonElement>('quickDraw');
   const resetButton = byId<HTMLButtonElement>('quickReset');
   const teamMode = (): TeamMode => (isChecked('bySize') ? 'size' : 'count');
-  let state = loadState(storageKey) ?? emptyState();
-  let shown: QuickResult | null = null;
+  let state = store.load();
+  let shown: GroupsResult | null = null;
   let isBusy = false;
-  let isSaved = true;
 
   const play: typeof playTone = (...tone) => {
     if (state.sound) playTone(...tone);
   };
 
   function save() {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(state));
-      isSaved = true;
-    } catch {
-      isSaved = false; // storage full or blocked: the tool works, but a reload loses the result
-    }
-    byId('quickUnsaved').hidden = isSaved;
+    byId('quickUnsaved').hidden = store.save(state);
   }
 
-  /** Another tab may have drawn meanwhile. What could not be saved is newer than the storage. */
   function syncDraws() {
-    const saved = isSaved ? loadState(storageKey) : null;
-    if (saved) Object.assign(state, { result: saved.result, draws: saved.draws });
-    if (!isBusy && state.result && JSON.stringify(state.result) !== JSON.stringify(shown)) showResult(state.result);
+    store.sync(state);
+    if (!isBusy && state.result && !isSameResult(state.result, shown)) showResult(state.result);
   }
 
   function showForm() {
@@ -131,19 +112,9 @@ export function initQuickDraw() {
       : '';
   }
 
-  function countAttempt(names: string[]) {
-    const day = new Date().toDateString();
-    if (state.draws.day !== day) state.draws = { day, counts: {} };
-    const key = listKey(names);
-    return (state.draws.counts[key] = (state.draws.counts[key] ?? 0) + 1);
-  }
-
   const groupTitle = (index: number) => (kind === 'echipe' ? `Echipa ${index + 1}` : 'Ordinea');
-  const attemptText = ({ attempt }: QuickResult) =>
-    attempt === 1 ? 'Prima tragere din zi cu această listă' : `A ${attempt}-a tragere din zi cu această listă`;
-
   /** Empty groups and a function that puts each name in its place, in the order of the reveal. */
-  function renderGroups(result: QuickResult) {
+  function renderGroups(result: GroupsResult) {
     shown = result;
     byId('quickResult').hidden = false;
     byId('quickAttempt').textContent = `${attemptText(result)} · ${formatDate(result.at)}`;
@@ -173,7 +144,7 @@ export function initQuickDraw() {
     return steps;
   }
 
-  function showResult(result: QuickResult) {
+  function showResult(result: GroupsResult) {
     renderGroups(result).forEach((step) => step());
   }
 
@@ -225,7 +196,7 @@ export function initQuickDraw() {
     }
     const groups = teams === undefined ? [shuffle(names)] : drawTeams(names, teams);
     // saved before the animation, so that reloading the page cannot be used to get another result
-    state.result = { groups, attempt: countAttempt(names), at: Date.now() };
+    state.result = { groups, attempt: countAttempt(state, names), at: Date.now() };
     save();
     setBusy(true);
     play(600); // iPhones only allow sound that starts in the click itself
@@ -235,7 +206,7 @@ export function initQuickDraw() {
     reveal(steps);
   }
 
-  function resultText(result: QuickResult) {
+  function resultText(result: GroupsResult) {
     const lines =
       kind === 'echipe'
         ? result.groups.map((members, index) => `${groupTitle(index)}: ${members.join(', ')}`)
@@ -256,7 +227,7 @@ export function initQuickDraw() {
     }
   }
 
-  function show(newState: QuickState) {
+  function show(newState: GroupsState) {
     state = newState;
     showForm();
     showPlan();
@@ -265,15 +236,6 @@ export function initQuickDraw() {
     else shown = null;
     showMessage('quickStatus', '');
     setBusy(false);
-  }
-
-  function reset() {
-    try {
-      localStorage.removeItem(storageKey);
-    } catch {
-      // storage is blocked, so nothing was saved
-    }
-    show(emptyState());
   }
 
   byId('quickForm').addEventListener('input', () => {
@@ -287,10 +249,10 @@ export function initQuickDraw() {
     if (!isBusy) draw();
   });
   byId('quickCopy').addEventListener('click', copy);
-  onConfirmedClick(resetButton, reset);
+  onConfirmedClick(resetButton, () => show(store.clear()));
 
-  addEventListener('storage', (event) => {
-    if (event.key === storageKey && !isBusy) show(loadState(storageKey) ?? emptyState());
+  store.onOtherTab(() => {
+    if (!isBusy) show(store.load());
   });
 
   show(state);

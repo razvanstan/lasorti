@@ -1,0 +1,125 @@
+---
+import '../styles/app.css';
+import '../styles/quick.css';
+import '../styles/wheel.css';
+
+const BULBS = 24;
+const onCircle = (degrees: number, radius: number) => {
+  const radians = (degrees * Math.PI) / 180;
+  return { x: +(radius * Math.sin(radians)).toFixed(2), y: +(-radius * Math.cos(radians)).toFixed(2) };
+};
+const bulbs = Array.from({ length: BULBS }, (_, i) => onCircle(((i + 0.5) * 360) / BULBS, 106));
+const star = `M${Array.from({ length: 10 }, (_, i) => onCircle(i * 36, i % 2 ? 3.6 : 8.5))
+  .map(({ x, y }) => `${x} ${y}`)
+  .join('L')}Z`;
+---
+
+<div class="app quick" id="wheelApp">
+  <form id="wheelForm">
+    <label class="f" for="wheelOptions">
+      Opțiunile <span class="hint">câte una pe rând sau separate prin virgulă</span>
+    </label>
+    <textarea id="wheelOptions" spellcheck="false" placeholder={'Pizza\nShaorma\nPaste\nGătim acasă'}></textarea>
+    <p class="msg" id="wheelPlan" role="status"></p>
+    <p class="hint" id="wheelRepeated"></p>
+    <label class="opt">
+      <input type="checkbox" id="wheelSound" checked />
+      Sunet
+    </label>
+    <div class="row">
+      <button type="button" id="wheelReset">
+        Golește tot
+      </button>
+    </div>
+    <p class="msg err" id="wheelUnsaved" hidden>
+      Browserul nu poate salva: dacă reîncarci pagina, rezultatul se pierde.
+    </p>
+  </form>
+
+  <div class="wheel-side">
+    <div id="wheel">
+      <svg id="wheelSvg" viewBox="-118 -132 236 256" role="img" aria-label="Roata, încă fără opțiuni">
+        <defs>
+          <linearGradient id="wheelGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff0b8"></stop>
+            <stop offset="0.3" stop-color="#e0a93a"></stop>
+            <stop offset="0.5" stop-color="#8f5f0c"></stop>
+            <stop offset="0.72" stop-color="#f2c35b"></stop>
+            <stop offset="1" stop-color="#7a5005"></stop>
+          </linearGradient>
+          <radialGradient id="wheelPeg" cx="0.35" cy="0.3" r="0.8">
+            <stop offset="0" stop-color="#ffffff"></stop>
+            <stop offset="0.5" stop-color="#d5d9e0"></stop>
+            <stop offset="1" stop-color="#6b717c"></stop>
+          </radialGradient>
+          <radialGradient id="wheelDepth" r="0.5">
+            <stop offset="0.12" stop-color="#000" stop-opacity="0.35"></stop>
+            <stop offset="0.3" stop-color="#000" stop-opacity="0"></stop>
+            <stop offset="0.88" stop-color="#000" stop-opacity="0"></stop>
+            <stop offset="1" stop-color="#000" stop-opacity="0.45"></stop>
+          </radialGradient>
+          <linearGradient id="wheelShine" x1="0.2" y1="0" x2="0.6" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.16"></stop>
+            <stop offset="0.45" stop-color="#fff" stop-opacity="0"></stop>
+          </linearGradient>
+          <linearGradient id="wheelPointerFill" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ff8a5c"></stop>
+            <stop offset="0.5" stop-color="#e0412a"></stop>
+            <stop offset="1" stop-color="#8f1f0e"></stop>
+          </linearGradient>
+          <radialGradient id="wheelShadow">
+            <stop offset="0.75" stop-color="#000" stop-opacity="0.35"></stop>
+            <stop offset="1" stop-color="#000" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <circle cy="4" r="118" fill="url(#wheelShadow)"></circle>
+        <circle r="113" fill="url(#wheelGold)"></circle>
+        <circle class="rim" r="110.5"></circle>
+        <circle r="101.5" fill="url(#wheelGold)"></circle>
+        {bulbs.map(({ x, y }, i) => (
+          <circle class:list={['bulb', { odd: i % 2 === 1 }]} cx={x} cy={y} r="2.3" />
+        ))}
+        <circle class="back" r="100"></circle>
+        <g id="wheelDisc"></g>
+        <g class="overlay">
+          <circle r="100" fill="url(#wheelDepth)"></circle>
+          <circle r="100" fill="url(#wheelShine)"></circle>
+          <circle r="17" fill="url(#wheelGold)"></circle>
+          <circle class="hub" r="13.5"></circle>
+          <path class="star" d={star}></path>
+          <g id="wheelPointer">
+            <path class="pointer" d="M-8 -117Q0 -127 8 -117L2 -94Q0 -91 -2 -94Z"></path>
+            <circle cy="-115" r="3.6" fill="url(#wheelPeg)"></circle>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="row wheel-row">
+      <button class="primary" type="button" id="wheelSpin">
+        Învârte roata
+      </button>
+    </div>
+    <div role="status">
+      <div id="wheelResult" hidden>
+        <p class="wheel-label">A ieșit</p>
+        <p id="wheelWinner"></p>
+        <p id="wheelAttempt"></p>
+        <div class="row wheel-row">
+          <button type="button" id="wheelRemove" hidden>
+            Scoate de pe roată
+          </button>
+          <button type="button" id="wheelCopy">
+            Copiază rezultatul
+          </button>
+        </div>
+      </div>
+    </div>
+    <p class="msg" id="wheelStatus" role="status"></p>
+  </div>
+  <canvas id="conf"></canvas>
+</div>
+
+<script>
+  import { initWheel } from '../scripts/wheel-draw';
+  initWheel();
+</script>
