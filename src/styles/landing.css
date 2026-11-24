@@ -361,3 +361,45 @@ main > .block:last-child {
     grid-template-columns: 1fr;
   }
 }
+
+/* quick tools (home page and /extragere/) */
+.tools-title {
+  font-size: 22px;
+  color: var(--ink);
+  margin: 44px 0 14px;
+}
+.tool-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.tool-card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--text);
+  text-decoration: none;
+}
+.tool-card:hover {
+  border-color: var(--acc);
+  color: var(--text);
+}
+.tool-card span {
+  font-size: 26px;
+  margin-right: 8px;
+}
+.tool-card b {
+  color: var(--ink);
+  font-size: 18px;
+}
+.tool-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+@media (max-width: 520px) {
+  .tool-cards {
+    grid-template-columns: 1fr;
+  }
+}

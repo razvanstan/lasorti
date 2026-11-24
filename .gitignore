@@ -10,3 +10,6 @@ dist/
 
 # internal documents (ideas, plans), not published
 docs/
+
+# local Claude Code setup (skills, agents, instructions), not published
+.claude/

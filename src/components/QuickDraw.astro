@@ -1,0 +1,76 @@
+---
+import '../styles/app.css';
+import '../styles/quick.css';
+
+interface Props {
+  kind: 'echipe' | 'ordine';
+}
+const { kind } = Astro.props;
+---
+
+<div class="app quick" id="quick" data-kind={kind}>
+  <form id="quickForm">
+    <label class="f" for="quickNames">
+      Numele <span class="hint">câte unul pe rând sau separate prin virgulă</span>
+    </label>
+    <textarea id="quickNames" spellcheck="false" placeholder={'Ana\nMihai\nIoana\nVlad\nElena\nDan'}></textarea>
+
+    {kind === 'echipe' && (
+      <fieldset class="quick-split">
+        <legend class="f">Cum împărțim</legend>
+        <label class="opt">
+          <input type="radio" name="teamMode" id="byCount" checked />
+          Număr de echipe
+        </label>
+        <label class="opt">
+          <input type="radio" name="teamMode" id="bySize" />
+          Cel mult atâția oameni pe echipă
+        </label>
+        <input
+          type="number"
+          id="teamValue"
+          min="1"
+          step="1"
+          value="2"
+          inputmode="numeric"
+          aria-label="Număr de echipe"
+        />
+      </fieldset>
+    )}
+
+    <p class="msg" id="quickPlan" role="status"></p>
+    <p class="hint" id="quickRepeated"></p>
+    <label class="opt">
+      <input type="checkbox" id="quickSound" checked />
+      Sunet
+    </label>
+    <div class="row">
+      <button class="primary" type="submit" id="quickDraw">
+        Trage la sorți
+      </button>
+      <button type="button" id="quickReset">
+        Golește tot
+      </button>
+    </div>
+    <p class="msg err" id="quickUnsaved" hidden>
+      Browserul nu poate salva: dacă reîncarci pagina, rezultatul se pierde.
+    </p>
+  </form>
+
+  <section id="quickResult" hidden aria-label="Rezultat">
+    <p id="quickAttempt"></p>
+    <div id="quickGroups"></div>
+    <div class="row">
+      <button type="button" id="quickCopy">
+        Copiază rezultatul
+      </button>
+      <span class="msg" id="quickStatus" role="status"></span>
+    </div>
+  </section>
+  <canvas id="conf"></canvas>
+</div>
+
+<script>
+  import { initQuickDraw } from '../scripts/quick-draw';
+  initQuickDraw();
+</script>

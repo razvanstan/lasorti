@@ -14,10 +14,10 @@ import Email from '../components/Email.astro';
 
     <div class="callout">
       <p>
-        <strong>Pe scurt:</strong> lasorti.ro este un instrument gratuit care alege aleatoriu câștigători dintr-o listă.
-        Nu organizează campanii sau tombole, nu verifică participanții, nu acordă premii și nu primește datele tale. Tot
-        ce ține de campanie (regulament, eligibilitate, premii, taxe, date personale) este responsabilitatea
-        organizatorului care folosește instrumentul.
+        <strong>Pe scurt:</strong> lasorti.ro este un instrument gratuit care alege aleatoriu câștigători dintr-o listă
+        sau trage la sorți echipe și ordinea unei liste. Nu organizează campanii sau tombole, nu verifică participanții,
+        nu acordă premii și nu primește datele tale. Tot ce ține de campanie (regulament, eligibilitate, premii, taxe,
+        date personale) este responsabilitatea organizatorului care folosește instrumentul.
       </p>
     </div>
 
@@ -34,7 +34,8 @@ import Email from '../components/Email.astro';
     <p>
       <strong>Face:</strong> primește listele sau comentariile introduse de tine, elimină duplicatele și aplică regulile
       pe care le setezi (de exemplu numărul minim de tag-uri), extrage aleatoriu câștigători pentru premiile introduse
-      de tine și generează documente (tabel, CSV, proces-verbal) pe baza acestor date.
+      de tine și generează documente (tabel, CSV, proces-verbal) pe baza acestor date. De asemenea, împarte o listă de
+      nume în echipe sau o pune într-o ordine aleatorie.
     </p>
     <p>
       <strong>Nu face:</strong>
@@ -111,9 +112,9 @@ import Email from '../components/Email.astro';
     <p>
       Pentru ca extragerea să poată continua după un refresh și ca formularul să nu se piardă, datele se salvează în
       memoria locală a browserului (<code>localStorage</code>), doar pe dispozitivul folosit. Le poți șterge oricând cu
-      butonul „Golește formularul”, cu „Șterge și începe de la zero” sau din setările browserului (ștergerea datelor
-      site-ului lasorti.ro). La ștergerea unei extrageri se păstrează o copie de rezervă locală a ultimei extrageri,
-      eliminată odată cu datele site-ului.
+      butonul „Golește formularul” sau „Golește tot”, cu „Șterge și începe de la zero” sau din setările browserului
+      (ștergerea datelor site-ului lasorti.ro). La ștergerea unei extrageri se păstrează o copie de rezervă locală a
+      ultimei extrageri, eliminată odată cu datele site-ului.
     </p>
     <p>
       Fișierele exportate (configurația .json, CSV-ul, lista participanților, procesul-verbal) conțin datele

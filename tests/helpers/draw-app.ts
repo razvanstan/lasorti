@@ -3,7 +3,9 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { JSDOM } from 'jsdom';
 import { vi } from 'vitest';
 import DrawApp from '../../src/components/DrawApp.astro';
+import QuickDraw from '../../src/components/QuickDraw.astro';
 import { initDrawApp } from '../../src/scripts/draw';
+import { initQuickDraw } from '../../src/scripts/quick-draw';
 
 export interface Download {
   name: string;
@@ -27,10 +29,21 @@ async function readBlob(blob: Blob) {
   return new TextDecoder('utf-8', { ignoreBOM: true }).decode(await blob.arrayBuffer());
 }
 
-/** Renders the real Astro component into jsdom and starts the draw app on it, with fake time and randomness. */
-export async function mountDrawApp({ kind = 'tombola', demo = false, storage = {} }: Options = {}) {
+export const mountDrawApp = ({ kind = 'tombola', demo = false, storage }: Options = {}) =>
+  mountApp(DrawApp, { kind, demo }, initDrawApp, storage);
+
+export const mountQuickDraw = (kind: 'echipe' | 'ordine', storage?: Record<string, string>) =>
+  mountApp(QuickDraw, { kind }, initQuickDraw, storage);
+
+/** Renders the real Astro component into jsdom and starts the app on it, with fake time and randomness. */
+async function mountApp(
+  component: Parameters<AstroContainer['renderToString']>[0],
+  props: Record<string, unknown>,
+  init: () => void,
+  storage: Record<string, string> = {},
+) {
   const container = await AstroContainer.create();
-  const html = await container.renderToString(DrawApp, { props: { kind, demo } });
+  const html = await container.renderToString(component, { props });
   const body = html.replace(/<script[\s\S]*?<\/script>/g, '');
   const { window } = new JSDOM(`<!doctype html><html><body>${body}</body></html>`, { url: 'http://localhost/' });
 
@@ -86,7 +99,7 @@ export async function mountDrawApp({ kind = 'tombola', demo = false, storage = {
   });
   vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
 
-  initDrawApp();
+  init();
 
   const byId = <T extends HTMLElement = HTMLElement>(id: string) => window.document.getElementById(id) as T;
   const flush = () => vi.advanceTimersByTimeAsync(0);

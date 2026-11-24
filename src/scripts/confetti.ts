@@ -85,3 +85,30 @@ export function createConfetti(canvas: HTMLCanvasElement, options: ConfettiOptio
 export function prefersReducedMotion() {
   return matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
+
+/** Full-screen bursts, from the middle of the screen. */
+export function createStageConfetti(canvas: HTMLCanvasElement) {
+  const resize = () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+  };
+  addEventListener('resize', resize);
+  resize();
+  const fire = createConfetti(canvas, {
+    count: 220,
+    colors: ['--acc', '--acc-hi', '--acc-pale', '--leg', '--ink'],
+    fallbackColor: '#f2c35b',
+    spread: 16,
+    lift: 16,
+    baseLift: 4,
+    sizeRange: 7,
+    baseSize: 4,
+    gravity: 0.35,
+    drag: 0.99,
+    maxAge: 400,
+    margin: 20,
+  });
+  return () => {
+    if (!prefersReducedMotion()) fire(innerWidth / 2, innerHeight * 0.45);
+  };
+}

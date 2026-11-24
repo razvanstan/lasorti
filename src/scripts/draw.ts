@@ -1,5 +1,5 @@
 // Runs entirely in the browser: no names, prizes or settings are sent to a server (see stats.ts for what is counted).
-import { createConfetti, prefersReducedMotion } from './confetti';
+import { createStageConfetti } from './confetti';
 import { byId, downloadFile, fieldValue, findById, isChecked, onConfirmedClick, setVisible, showMessage } from './dom';
 import {
   canDraw,
@@ -127,7 +127,7 @@ function createDraw(kind: DrawKind, storageKey: string, count: (step: 'start' | 
   let hasWinner = false;
   let isBusy = false;
   let isSaved = true;
-  const fireConfetti = createStageConfetti();
+  const fireConfetti = createStageConfetti(byId<HTMLCanvasElement>('conf'));
 
   const play: typeof playTone = (...tone) => {
     if (state?.opts.sound) playTone(...tone);
@@ -287,33 +287,6 @@ function resumeText(kind: DrawKind, saved: DrawState) {
   const title = saved.meta?.title ? `„${saved.meta.title}” – ` : '';
   if (saved.done) return `${title}încheiată, ${winners.length} ${kind.drawnUnit}.`;
   return `${title}${winners.length} / ${saved.prizes.length} ${kind.drawnUnit}${last ? `, ultimul extras: ${last.name}` : ''}.`;
-}
-
-function createStageConfetti() {
-  const canvas = byId<HTMLCanvasElement>('conf');
-  const resize = () => {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-  };
-  addEventListener('resize', resize);
-  resize();
-  const fire = createConfetti(canvas, {
-    count: 220,
-    colors: ['--acc', '--acc-hi', '--acc-pale', '--leg', '--ink'],
-    fallbackColor: '#f2c35b',
-    spread: 16,
-    lift: 16,
-    baseLift: 4,
-    sizeRange: 7,
-    baseSize: 4,
-    gravity: 0.35,
-    drag: 0.99,
-    maxAge: 400,
-    margin: 20,
-  });
-  return () => {
-    if (!prefersReducedMotion()) fire(innerWidth / 2, innerHeight * 0.45);
-  };
 }
 
 function bindStage(kind: DrawKind, draw: Draw) {

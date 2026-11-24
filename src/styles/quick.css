@@ -1,0 +1,93 @@
+/* Quick tools: /echipe/ and /ordine/ */
+.quick [hidden] {
+  display: none;
+}
+.quick #quickForm {
+  max-width: 620px;
+}
+.app.quick textarea {
+  min-height: 180px;
+  /* 16px, otherwise iPhones zoom in on focus */
+  font: 16px/1.5 var(--font);
+}
+.quick-split {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.quick-split legend {
+  padding: 0;
+}
+.app.quick input#teamValue {
+  width: 110px;
+  font-size: 16px;
+}
+.quick #quickPlan,
+.quick #quickRepeated {
+  margin: 10px 0 0;
+}
+.quick #quickResult {
+  margin-top: 32px;
+  scroll-margin-top: 16px;
+}
+.quick #quickAttempt {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+.quick #quickAttempt.again {
+  color: var(--acc);
+  font-weight: 700;
+}
+.quick #quickGroups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  gap: 14px;
+}
+.quick[data-kind='ordine'] #quickGroups {
+  grid-template-columns: minmax(0, 620px);
+}
+.quick-group {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--acc-fill);
+  border-radius: 14px;
+  padding: 16px 20px;
+  min-height: 110px;
+}
+.quick-group h3 {
+  margin: 0 0 8px;
+  color: var(--acc);
+  font-size: 16px;
+}
+.quick-group ul,
+.quick-group ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.quick-group ol {
+  padding-left: 2em;
+  list-style: decimal;
+}
+.quick-group li {
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  animation: quick-drop 0.35s ease-out;
+}
+@keyframes quick-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-24px) scale(1.15);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quick-group li {
+    animation: none;
+  }
+}
+.quick-notes {
+  margin-left: 0;
+}

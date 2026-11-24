@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import QuickDraw from '../components/QuickDraw.astro';
+---
+
+<Base
+  title="Ordine aleatorie online"
+  description="Amestecă o listă de nume: ordinea prezentărilor, a concurenților sau cine începe. Gratuit, fără cont, numele rămân în browserul tău."
+>
+  <div class="wrap">
+    <a class="back-link" href="/extragere/">
+      ← Alte extrageri
+    </a>
+    <div class="app">
+      <h1>Ordine aleatorie</h1>
+      <p class="sub">Cine începe și cine urmează: scrii numele, iar sorții decid ordinea.</p>
+    </div>
+    <QuickDraw kind="ordine" />
+    <div class="prose quick-notes">
+      <h2>E corect?</h2>
+      <p>Toate ordinile posibile au aceeași șansă.</p>
+      <p>
+        Rezultatul e stabilit înainte de animație, cu generatorul criptografic al browserului, și se păstrează la
+        reîncărcarea paginii. Dacă tragi din nou cu aceeași listă în aceeași zi, se vede pe ecran și în textul copiat.
+        Contorul e doar în acest browser și dispare cu „Golește tot”. Numele nu sunt trimise nicăieri.
+      </p>
+      <p>
+        Vrei să împarți oamenii în grupuri? Trage la sorți <a href="/echipe/">echipele</a>.
+      </p>
+    </div>
+  </div>
+</Base>

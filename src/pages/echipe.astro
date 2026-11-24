@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import QuickDraw from '../components/QuickDraw.astro';
+---
+
+<Base
+  title="Echipe aleatorii online"
+  description="Împarte o listă de oameni în echipe, la sorți: la biliard, la sport, la clasă sau la team building. Gratuit, fără cont, numele rămân în browserul tău."
+>
+  <div class="wrap">
+    <a class="back-link" href="/extragere/">
+      ← Alte extrageri
+    </a>
+    <div class="app">
+      <h1>Echipe aleatorii</h1>
+      <p class="sub">Scrii numele, alegi câte echipe vrei și sorții decid. Așa nu se supără nimeni.</p>
+    </div>
+    <QuickDraw kind="echipe" />
+    <div class="prose quick-notes">
+      <h2>E corect?</h2>
+      <p>
+        Oricine poate ajunge în orice echipă, cu aceleași șanse. Dacă oamenii nu se împart egal, se trage la sorți și
+        care echipe sunt mai mari.
+      </p>
+      <p>
+        Rezultatul e stabilit înainte de animație, cu generatorul criptografic al browserului, și se păstrează la
+        reîncărcarea paginii. Dacă tragi din nou cu aceeași listă în aceeași zi, se vede pe ecran și în textul copiat.
+        Contorul e doar în acest browser și dispare cu „Golește tot”. Numele nu sunt trimise nicăieri.
+      </p>
+      <p>
+        Vrei doar să afli cine începe? Trage la sorți <a href="/ordine/">ordinea</a>.
+      </p>
+    </div>
+  </div>
+</Base>
