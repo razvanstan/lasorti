@@ -30,7 +30,7 @@ A free, ad-free tool for drawing winners live, at events or for social media giv
 - **Random choice:** `crypto.getRandomValues`, with rejection sampling to avoid modulo bias ([`random.ts`](src/scripts/random.ts)). Everyone still in the draw has the same chance, unless the organiser gives one per valid comment.
 - **The animation decides nothing:** the winner is chosen, and saved, before the names start spinning. Reloading the page cannot change it.
 - **What the fingerprint proves:** the SHA-256 of the [canonical list](src/scripts/people.ts) shows that the list was not changed. It does not prove how the tool was used: the draw runs on the organiser's computer, so redraws are written in the report, and important draws should have a witness.
-- **No backend:** lists, settings and progress stay in `localStorage`. The site sets no cookies, has no analytics and loads nothing from other domains, which the Content-Security-Policy in [`.htaccess`](public/.htaccess) also enforces; the hashes of inline scripts are filled in at build time ([`csp.mjs`](integrations/csp.mjs)).
+- **No backend:** lists, settings and progress stay in `localStorage`. The site sets no cookies and loads nothing from other domains. The only requests it makes elsewhere are cookie-free counts of page views and draws started or ended, without any data from the tool, to a self-hosted Umami ([`stats.ts`](src/scripts/stats.ts)). The Content-Security-Policy in [`.htaccess`](public/.htaccess) blocks every other destination; the hashes of inline scripts are filled in at build time ([`csp.mjs`](integrations/csp.mjs)).
 
 ## Development
 
@@ -63,6 +63,7 @@ Code and comments are in English, texts shown to users are in Romanian.
 | `src/pages/`                                                      | the site                                         |
 | `integrations/csp.mjs`                                            | Content-Security-Policy, filled in at build time |
 | `src/scripts/share-image.ts`, `share-panel.ts`                    | the picture for social media                     |
+| `src/scripts/stats.ts`                                            | cookie-free counts of visits                     |
 | `scripts/`                                                        | deploy and brand files                           |
 | `tests/`                                                          | tests                                            |
 

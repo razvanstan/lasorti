@@ -24,7 +24,7 @@ AddCharset utf-8 .txt
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
   # the hashes of the inline scripts are filled in at build time (integrations/csp.mjs)
-  Header always set Content-Security-Policy "default-src 'none'; script-src 'self' __INLINE_SCRIPT_HASHES__; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self' __INLINE_SCRIPT_HASHES__; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://stats.lasorti.ro; manifest-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
   # CSS, JS and fonts only come from /_astro/, with a hash in their name, so they can be cached forever
   <FilesMatch "\.(css|js|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"

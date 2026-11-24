@@ -132,14 +132,24 @@ import Email from '../components/Email.astro';
     </p>
     <h3>Ce date despre vizitatori se colectează</h3>
     <p>
-      Site-ul nu folosește cookie-uri, nu are sistem de analiză a traficului și nu încarcă resurse de la terți
-      (fonturile sunt găzduite pe același domeniu). Furnizorul de găzduire poate înregistra, ca orice server web, date
-      tehnice ale cererilor (adresa IP, browserul, pagina accesată), pentru funcționare și securitate, conform
-      propriilor politici.
+      Site-ul nu folosește cookie-uri și nu încarcă scripturi, fonturi sau alte resurse de la terți. Pentru statistici
+      de trafic folosește Umami, un instrument open source fără cookie-uri, găzduit de autor pe serverul
+      <code>stats.lasorti.ro</code>.
     </p>
     <p>
-      Dacă în viitor adăugăm o formă de statistici de trafic, va fi una fără cookie-uri, care nu colectează datele
-      introduse în Instrument, iar această pagină va fi actualizată.
+      La deschiderea unei pagini se trimit: adresa și titlul paginii, pagina externă de unde ai venit (fără parametri),
+      limba browserului și rezoluția ecranului. Se mai numără, fără niciun detaliu despre conținut, câte extrageri reale
+      sunt pornite și încheiate și de ce tip (tombolă sau giveaway). Din cerere se deduc tipul de browser și de
+      dispozitiv și localizarea aproximativă (țara, orașul). Adresa IP se folosește doar pentru localizare și pentru un
+      identificator pseudonim al vizitei și nu se păstrează în statistici.{' '}
+      <strong>Listele, premiile, setările și logo-ul nu se trimit niciodată.</strong> Datele nu se folosesc pentru
+      publicitate și nu se vând. Codul care le trimite este public, ca restul site-ului.
+    </p>
+    <p>
+      Operatorul acestor statistici este autorul, în temeiul interesului legitim de a ști cât este folosit site-ul. Te
+      poți opune oricând scriind la adresa de contact a site-ului sau setând cheia <code>umami.disabled</code> în
+      memoria locală a browserului. Furnizorul de găzduire poate înregistra, ca orice server web, date tehnice ale
+      cererilor (adresa IP, browserul, pagina accesată), pentru funcționare și securitate, conform propriilor politici.
     </p>
 
     <h2>6. Fără garanții și limitarea răspunderii</h2>

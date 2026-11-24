@@ -1,4 +1,4 @@
-// Runs entirely in the browser: nothing is sent to a server.
+// Runs entirely in the browser: no names, prizes or settings are sent to a server (see stats.ts for what is counted).
 import { createConfetti, prefersReducedMotion } from './confetti';
 import { byId, downloadFile, fieldValue, findById, isChecked, onConfirmedClick, setVisible, showMessage } from './dom';
 import {
@@ -23,6 +23,7 @@ import { initSharePanel } from './share-panel';
 import { playFanfare, playTone } from './sound';
 import { runCountdown, runSpin } from './spin';
 import * as view from './stage-view';
+import { countDraw } from './stats';
 import { slugify } from './text';
 import { readDedupe, tombola } from './tombola';
 import type { DrawState, Person } from './types';
@@ -35,7 +36,9 @@ export function initDrawApp() {
   const isDemo = app.dataset.mode === 'demo';
   const kind = app.dataset.kind === 'giveaway' ? giveaway : tombola;
   const setupForm = initSetupForm(app, kind, isDemo);
-  const draw = createDraw(kind, `ls_${isDemo ? 'demo_' : ''}${kind.storagePrefix}state`);
+  const draw = createDraw(kind, `ls_${isDemo ? 'demo_' : ''}${kind.storagePrefix}state`, (step) => {
+    if (!isDemo) void countDraw(kind.id, step);
+  });
 
   byId('checkBtn').addEventListener('click', () => showCheck(kind.prepare()));
   byId('startBtn').addEventListener('click', () => startFromForm(kind, setupForm.logo(), draw.start));
@@ -119,7 +122,7 @@ async function startFromForm(kind: DrawKind, logo: string, start: (state: DrawSt
 }
 
 /** The draw itself: what happens on stage, from the first prize to the final screen. */
-function createDraw(kind: DrawKind, storageKey: string) {
+function createDraw(kind: DrawKind, storageKey: string, count: (step: 'start' | 'end') => void) {
   let state: DrawState | null = null;
   let hasWinner = false;
   let isBusy = false;
@@ -155,6 +158,7 @@ function createDraw(kind: DrawKind, storageKey: string) {
     state = newState;
     view.openStage(kind, state);
     showPrize();
+    count('start');
   }
 
   function draw() {
@@ -193,6 +197,8 @@ function createDraw(kind: DrawKind, storageKey: string) {
     hasWinner = true;
     isBusy = false;
     save();
+    // counted here because many never press the last button; a redraw is not another draw
+    if (isLastPrize(state) && !replaced) count('end');
   }
 
   function redraw() {

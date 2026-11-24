@@ -8,5 +8,5 @@ export const SITE = {
   projectsUrl: 'https://razvanstan.ro/#lucrari',
   email: 'contact@lasorti.ro',
   repoUrl: 'https://github.com/razvanstan/lasorti',
-  lastUpdatedTerms: '23 noiembrie 2026',
+  lastUpdatedTerms: '24 noiembrie 2026',
 };
